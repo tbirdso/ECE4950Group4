@@ -1,0 +1,76 @@
+const signalNameMap new_analog_loopback_q4_p4_BIOMAP[] =
+  {
+	{0,0,1},
+{-1, -1,1}
+  };
+const signalLabelMap new_analog_loopback_q4_p4_LBLMAP[] =
+  {
+	{0,0,1},
+{-1, -1,1}
+  };
+const signalIdMap new_analog_loopback_q4_p4_SIDMAP[] =
+  {
+	{0,0,1},
+{-1, -1,1}
+  };
+const SortedBlockSignals  new_analog_loopback_q4_p4_SBIO[] ={
+       0,
+      -1
+};
+const SortedBlockLabels  new_analog_loopback_q4_p4_SLBL[] ={
+       0,
+      -1
+};
+const OldSortedBlockParameters  new_analog_loopback_q4_p4_PTIDSMAP[] ={
+	{0,0},
+	{1,1},
+	{2,2},
+	{3,3},
+	{4,4},
+	{5,5},
+	{6,6},
+	{7,7},
+	{8,8},
+	{9,9},
+	{10,10},
+	{11,11},
+	{-1,-1},
+};
+const OldSortedBlockParameters  new_analog_loopback_q4_p4_PTNAMESMAP[] ={
+	{0,0},
+	{9,9},
+	{10,10},
+	{11,11},
+	{1,1},
+	{2,2},
+	{3,3},
+	{4,4},
+	{5,5},
+	{6,6},
+	{7,7},
+	{8,8},
+	{-1,-1},
+};
+const SortedBlockParameters  new_analog_loopback_q4_p4_SPTMAP[] ={
+       0,
+       9,
+      10,
+      11,
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+      -1
+};
+
+
+const EnumElemMapInfo new_analog_loopback_q4_p4_dtmap[] = 
+{
+	{
+		NULL,NULL,0
+	},
+};
