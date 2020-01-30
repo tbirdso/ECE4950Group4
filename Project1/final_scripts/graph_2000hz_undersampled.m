@@ -1,7 +1,7 @@
-% Andrew Lloyd
-% C11473612
+% ECE 4950 Spring 2020
+% Group Fore
+% 2000 Hz Undersampled Sine Graph
 clc; close all;
-% 
 tgOut = tg;
 runTime = tgOut.TimeLog;
 runOutput = tgOut.OutputLog;

@@ -1,7 +1,6 @@
-% Andrew Lloyd
-% C11473612
-clc; close all;
-% 
+% ECE 4950 Spring 2020
+% Group Fore
+% Encoder Graph
 tgOut = tg;
 runTime = tgOut.TimeLog;
 runOutput = tgOut.OutputLog;
