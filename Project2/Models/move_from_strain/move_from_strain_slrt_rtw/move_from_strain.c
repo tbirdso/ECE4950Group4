@@ -7,9 +7,9 @@
  *
  * Code generation for model "move_from_strain".
  *
- * Model version              : 1.39
+ * Model version              : 1.48
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Feb 13 15:45:07 2020
+ * C source code generated on : Thu Feb 13 16:44:14 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -108,10 +108,10 @@ static void move_from_strain_output(void)
     sfcnOutputs(rts,1);
   }
 
-  /* MATLAB Function: '<Root>/MATLAB Function' */
-  /* MATLAB Function 'MATLAB Function': '<S1>:1' */
+  /* MATLAB Function: '<Root>/PW Mapping' */
+  /* MATLAB Function 'PW Mapping': '<S1>:1' */
   /* '<S1>:1:3' */
-  move_from_strain_B.y = move_from_strain_B.Q4AD * 5.0 + 2.0;
+  move_from_strain_B.y = floor(move_from_strain_B.Q4AD) * 10.0 + 2.2;
 
   /* Product: '<S2>/Product' incorporates:
    *  Constant: '<Root>/Period'
@@ -145,7 +145,7 @@ static void move_from_strain_output(void)
 
   /* S-Function (scblock): '<S4>/S-Function' */
   /* ok to acquire for <S4>/S-Function */
-  move_from_strain_DW.SFunction_IWORK_m.AcquireOK = 1;
+  move_from_strain_DW.SFunction_IWORK_d.AcquireOK = 1;
 }
 
 /* Model update function */
@@ -216,6 +216,35 @@ static void move_from_strain_initialize(void)
   /* S-Function Block: <S3>/S-Function (scblock) */
   {
     int i;
+    if ((i = rl32eScopeExists(2)) == 0) {
+      if ((i = rl32eDefScope(2,2)) != 0) {
+        printf("Error creating scope 2\n");
+      } else {
+        rl32eAddSignal(2, rl32eGetSignalNo("Q4 AD"));
+        rl32eSetScope(2, 4, 250);
+        rl32eSetScope(2, 5, 0);
+        rl32eSetScope(2, 6, 1);
+        rl32eSetScope(2, 0, 0);
+        rl32eSetScope(2, 3, rl32eGetSignalNo("Q4 AD"));
+        rl32eSetScope(2, 1, 0.0);
+        rl32eSetScope(2, 2, 0);
+        rl32eSetScope(2, 9, 0);
+        rl32eSetTargetScope(2, 11, 0.0);
+        rl32eSetTargetScope(2, 10, 2.0);
+        xpceScopeAcqOK(2, &move_from_strain_DW.SFunction_IWORK.AcquireOK);
+      }
+    }
+
+    if (i) {
+      rl32eRestartAcquisition(2);
+    }
+  }
+
+  /* Start for S-Function (scblock): '<S4>/S-Function' */
+
+  /* S-Function Block: <S4>/S-Function (scblock) */
+  {
+    int i;
     if ((i = rl32eScopeExists(1)) == 0) {
       if ((i = rl32eDefScope(1,2)) != 0) {
         printf("Error creating scope 1\n");
@@ -233,41 +262,12 @@ static void move_from_strain_initialize(void)
         rl32eSetScope(1, 9, 0);
         rl32eSetTargetScope(1, 11, 0.0);
         rl32eSetTargetScope(1, 10, 6.0);
-        xpceScopeAcqOK(1, &move_from_strain_DW.SFunction_IWORK.AcquireOK);
+        xpceScopeAcqOK(1, &move_from_strain_DW.SFunction_IWORK_d.AcquireOK);
       }
     }
 
     if (i) {
       rl32eRestartAcquisition(1);
-    }
-  }
-
-  /* Start for S-Function (scblock): '<S4>/S-Function' */
-
-  /* S-Function Block: <S4>/S-Function (scblock) */
-  {
-    int i;
-    if ((i = rl32eScopeExists(2)) == 0) {
-      if ((i = rl32eDefScope(2,2)) != 0) {
-        printf("Error creating scope 2\n");
-      } else {
-        rl32eAddSignal(2, rl32eGetSignalNo("Q4 AD"));
-        rl32eSetScope(2, 4, 250);
-        rl32eSetScope(2, 5, 0);
-        rl32eSetScope(2, 6, 1);
-        rl32eSetScope(2, 0, 0);
-        rl32eSetScope(2, 3, rl32eGetSignalNo("Q4 AD"));
-        rl32eSetScope(2, 1, 0.0);
-        rl32eSetScope(2, 2, 0);
-        rl32eSetScope(2, 9, 0);
-        rl32eSetTargetScope(2, 11, 0.0);
-        rl32eSetTargetScope(2, 10, 1.0);
-        xpceScopeAcqOK(2, &move_from_strain_DW.SFunction_IWORK_m.AcquireOK);
-      }
-    }
-
-    if (i) {
-      rl32eRestartAcquisition(2);
     }
   }
 }

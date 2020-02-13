@@ -7,9 +7,9 @@
  *
  * Code generation for model "move_from_strain".
  *
- * Model version              : 1.39
+ * Model version              : 1.48
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Feb 13 15:45:07 2020
+ * C source code generated on : Thu Feb 13 16:44:14 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -45,7 +45,7 @@ static const rtwCAPI_Signals rtBlockSignals[] = {
   /* addrMapIndex, sysNum, blockPath,
    * signalName, portNumber, dataTypeIndex, dimIndex, fxpIndex, sTimeIndex
    */
-  { 0, 1, TARGET_STRING("MATLAB Function"),
+  { 0, 1, TARGET_STRING("PW Mapping"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
   { 1, 0, TARGET_STRING("Q4 AD"),
@@ -280,10 +280,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 2859170596U,
-    1033179204U,
-    3931128055U,
-    1465443039U },
+  { 1462205162U,
+    3161435659U,
+    4063466535U,
+    3568653572U },
   (NULL), 0,
   0
 };

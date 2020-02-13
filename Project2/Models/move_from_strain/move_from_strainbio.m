@@ -1,6 +1,6 @@
 function bio=move_from_strainbio
 bio = [];
-bio(1).blkName='MATLAB Function';
+bio(1).blkName='PW Mapping';
 bio(1).sigName='';
 bio(1).portIdx=0;
 bio(1).dim=[1,1];

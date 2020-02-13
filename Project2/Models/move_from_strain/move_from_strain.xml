@@ -122,6 +122,13 @@ Operator</sigName>
 
 		</SubSystem>
 		<SubSystem>
+		<Name>T AI Scope</Name>
+		<xPCName>move_from_strain/T AI Scope</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
 		<Name>T DO Scope</Name>
 		<xPCName>move_from_strain/T DO Scope</xPCName>
 		
@@ -129,15 +136,8 @@ Operator</sigName>
 
 		</SubSystem>
 		<SubSystem>
-		<Name>T DO Scope1</Name>
-		<xPCName>move_from_strain/T DO Scope1</xPCName>
-		
-		
-
-		</SubSystem>
-		<SubSystem>
-		<Name>MATLAB Function</Name>
-		<xPCName>move_from_strain/MATLAB Function</xPCName>
+		<Name>PW Mapping</Name>
+		<xPCName>move_from_strain/PW Mapping</xPCName>
 		
 		
 
@@ -262,8 +262,8 @@ Operator</sigName>
 			  
 			  
               <signal>
-              <sigName>MATLAB Function</sigName>
-              <xpcsigName>MATLAB Function</xpcsigName>
+              <sigName>PW Mapping</sigName>
+              <xpcsigName>PW Mapping</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
 			  <SubSystemName>move_from_strain</SubSystemName>

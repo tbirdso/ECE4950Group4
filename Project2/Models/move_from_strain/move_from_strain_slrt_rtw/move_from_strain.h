@@ -7,9 +7,9 @@
  *
  * Code generation for model "move_from_strain".
  *
- * Model version              : 1.39
+ * Model version              : 1.48
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Feb 13 15:45:07 2020
+ * C source code generated on : Thu Feb 13 16:44:14 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -836,7 +836,7 @@ typedef struct {
   real_T Product;                      /* '<S2>/Product' */
   real_T DataTypeConversion;           /* '<S2>/Data Type Conversion' */
   real_T Product1;                     /* '<S2>/Product1' */
-  real_T y;                            /* '<Root>/MATLAB Function' */
+  real_T y;                            /* '<Root>/PW Mapping' */
   boolean_T RelationalOperator;        /* '<S2>/Relational Operator' */
 } B_move_from_strain_T;
 
@@ -850,7 +850,7 @@ typedef struct {
 
   struct {
     int_T AcquireOK;
-  } SFunction_IWORK_m;                 /* '<S4>/S-Function' */
+  } SFunction_IWORK_d;                 /* '<S4>/S-Function' */
 } DW_move_from_strain_T;
 
 /* Backward compatible GRT Identifiers */
@@ -1164,9 +1164,9 @@ extern RT_MODEL_move_from_strain_T *const move_from_strain_M;
  * Here is the system hierarchy for this model
  *
  * '<Root>' : 'move_from_strain'
- * '<S1>'   : 'move_from_strain/MATLAB Function'
+ * '<S1>'   : 'move_from_strain/PW Mapping'
  * '<S2>'   : 'move_from_strain/Programmable Pulse Generator'
- * '<S3>'   : 'move_from_strain/T DO Scope'
- * '<S4>'   : 'move_from_strain/T DO Scope1'
+ * '<S3>'   : 'move_from_strain/T AI Scope'
+ * '<S4>'   : 'move_from_strain/T DO Scope'
  */
 #endif                                 /* RTW_HEADER_move_from_strain_h_ */
