@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?><Root>
+      		<SubSystem>
+		<Name>Programmable
+Pulse Generator</Name>
+		<xPCName>move_from_strain/Programmable Pulse Generator</xPCName>
+		
+		
+            <block>
+            <blkName>Constant</blkName>
+            <xpcblkName>Programmable Pulse Generator/Constant</xpcblkName>
+            <SLblockPath>move_from_strain/Programmable Pulse Generator/Constant</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Constant1</blkName>
+            <xpcblkName>Programmable Pulse Generator/Constant1</xpcblkName>
+            <SLblockPath>move_from_strain/Programmable Pulse Generator/Constant1</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Phase Delay Switch</blkName>
+            <xpcblkName>Programmable Pulse Generator/Phase Delay Switch</xpcblkName>
+            <SLblockPath>move_from_strain/Programmable Pulse Generator/Phase Delay Switch</SLblockPath>
+            <isSrc>[0 3 1]</isSrc>
+          <parameter>
+          <paramName>Threshold</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>Clock</sigName>
+              <xpcsigName>Programmable Pulse Generator/Clock</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Data Type Conversion</sigName>
+              <xpcsigName>Programmable Pulse Generator/Data Type Conversion</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>mod</sigName>
+              <xpcsigName>Programmable Pulse Generator/mod</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Product</sigName>
+              <xpcsigName>Programmable Pulse Generator/Product</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Product1</sigName>
+              <xpcsigName>Programmable Pulse Generator/Product1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Relational
+Operator</sigName>
+              <xpcsigName>Programmable Pulse Generator/Relational Operator</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Sum2</sigName>
+              <xpcsigName>Programmable Pulse Generator/Sum2</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Phase Delay Switch</sigName>
+              <xpcsigName>Programmable Pulse Generator/Phase Delay Switch</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>move_from_strain/Programmable Pulse Generator</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>T DO Scope</Name>
+		<xPCName>move_from_strain/T DO Scope</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>T DO Scope1</Name>
+		<xPCName>move_from_strain/T DO Scope1</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>MATLAB Function</Name>
+		<xPCName>move_from_strain/MATLAB Function</xPCName>
+		
+		
+
+		</SubSystem>
+
+      
+            <block>
+            <blkName>Amplitude</blkName>
+            <xpcblkName>Amplitude</xpcblkName>
+            <SLblockPath>move_from_strain/Amplitude</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>PD</blkName>
+            <xpcblkName>PD</xpcblkName>
+            <SLblockPath>move_from_strain/PD</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Period</blkName>
+            <xpcblkName>Period</xpcblkName>
+            <SLblockPath>move_from_strain/Period</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Q4 AD</blkName>
+            <xpcblkName>Q4 AD</xpcblkName>
+            <SLblockPath>move_from_strain/Q4 AD</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>P1</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P2</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P3</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P5</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P6</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P7</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Q4 DO </blkName>
+            <xpcblkName>Q4 DO </xpcblkName>
+            <SLblockPath>move_from_strain/Q4 DO </SLblockPath>
+            <isSrc>[0 1 0]</isSrc>
+          <parameter>
+          <paramName>P1</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P2</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P3</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P4</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P5</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P6</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P7</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P8</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>move_from_strain</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>MATLAB Function</sigName>
+              <xpcsigName>MATLAB Function</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>move_from_strain</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Q4 AD</sigName>
+              <xpcsigName>Q4 AD</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>move_from_strain</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+</Root>
