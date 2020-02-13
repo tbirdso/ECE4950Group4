@@ -1,0 +1,8 @@
+Project 2 References
+
+TAL221 Load Cell Datasheet
+	https://cdn.sparkfun.com/assets/9/9/a/f/3/TAL221.pdf
+MG996R Servo Datasheet
+	https://www.electronicoscaldas.com/datasheet/MG996R_Tower-Pro.pdf
+Programmable Pulse Generator
+	https://www.mathworks.com/matlabcentral/fileexchange/35922-programmable-pulse-generator-using-simulink-s-basic-blocks
