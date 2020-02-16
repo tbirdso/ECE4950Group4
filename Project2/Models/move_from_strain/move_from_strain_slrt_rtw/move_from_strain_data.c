@@ -7,9 +7,9 @@
  *
  * Code generation for model "move_from_strain".
  *
- * Model version              : 1.48
+ * Model version              : 1.55
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Feb 13 16:44:14 2020
+ * C source code generated on : Sun Feb 16 16:29:48 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -30,10 +30,10 @@ P_move_from_strain_T move_from_strain_P = {
                                         * Referenced by: '<Root>/PD'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S2>/Constant1'
+                                        * Referenced by: '<S3>/Constant1'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S2>/Phase Delay Switch'
+                                        * Referenced by: '<S3>/Phase Delay Switch'
                                         */
   0.02,                                /* Expression: 0.02
                                         * Referenced by: '<Root>/Period'
@@ -92,7 +92,7 @@ P_move_from_strain_T move_from_strain_P = {
                                         * Referenced by: '<Root>/Q4 AD'
                                         */
   0.01,                                /* Expression: 1/100
-                                        * Referenced by: '<S2>/Constant'
+                                        * Referenced by: '<S3>/Constant'
                                         */
 
   /*  Computed Parameter: Q4DO_P1_Size

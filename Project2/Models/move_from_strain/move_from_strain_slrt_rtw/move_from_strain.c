@@ -7,9 +7,9 @@
  *
  * Code generation for model "move_from_strain".
  *
- * Model version              : 1.48
+ * Model version              : 1.55
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Feb 13 16:44:14 2020
+ * C source code generated on : Sun Feb 16 16:29:48 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -72,18 +72,18 @@ real_T rt_modd_snf(real_T u0, real_T u1)
 /* Model output function */
 static void move_from_strain_output(void)
 {
-  /* Clock: '<S2>/Clock' */
+  /* Clock: '<S3>/Clock' */
   move_from_strain_B.Clock = move_from_strain_M->Timing.t[0];
 
-  /* Sum: '<S2>/Sum2' incorporates:
+  /* Sum: '<S3>/Sum2' incorporates:
    *  Constant: '<Root>/PD'
    */
   move_from_strain_B.Sum2 = move_from_strain_B.Clock -
     move_from_strain_P.PD_Value;
 
-  /* Switch: '<S2>/Phase Delay Switch' incorporates:
+  /* Switch: '<S3>/Phase Delay Switch' incorporates:
    *  Constant: '<Root>/Amplitude'
-   *  Constant: '<S2>/Constant1'
+   *  Constant: '<S3>/Constant1'
    */
   if (move_from_strain_B.Sum2 >= move_from_strain_P.PhaseDelaySwitch_Threshold)
   {
@@ -92,9 +92,9 @@ static void move_from_strain_output(void)
     move_from_strain_B.PhaseDelaySwitch = move_from_strain_P.Constant1_Value;
   }
 
-  /* End of Switch: '<S2>/Phase Delay Switch' */
+  /* End of Switch: '<S3>/Phase Delay Switch' */
 
-  /* Math: '<S2>/mod' incorporates:
+  /* Math: '<S3>/mod' incorporates:
    *  Constant: '<Root>/Period'
    */
   move_from_strain_B.mod = rt_modd_snf(move_from_strain_B.Sum2,
@@ -109,25 +109,26 @@ static void move_from_strain_output(void)
   }
 
   /* MATLAB Function: '<Root>/PW Mapping' */
-  /* MATLAB Function 'PW Mapping': '<S1>:1' */
-  /* '<S1>:1:3' */
-  move_from_strain_B.y = floor(move_from_strain_B.Q4AD) * 10.0 + 2.2;
+  /* MATLAB Function 'PW Mapping': '<S2>:1' */
+  /* '<S2>:1:3' */
+  move_from_strain_B.y = (move_from_strain_B.Q4AD - 1.0) * 10.0 + 2.2;
+  move_from_strain_B.y = floor(move_from_strain_B.y);
 
-  /* Product: '<S2>/Product' incorporates:
+  /* Product: '<S3>/Product' incorporates:
    *  Constant: '<Root>/Period'
-   *  Constant: '<S2>/Constant'
+   *  Constant: '<S3>/Constant'
    */
   move_from_strain_B.Product = move_from_strain_P.Period_Value *
     move_from_strain_B.y * move_from_strain_P.Constant_Value;
 
-  /* RelationalOperator: '<S2>/Relational Operator' */
+  /* RelationalOperator: '<S3>/Relational Operator' */
   move_from_strain_B.RelationalOperator = (move_from_strain_B.mod <=
     move_from_strain_B.Product);
 
-  /* DataTypeConversion: '<S2>/Data Type Conversion' */
+  /* DataTypeConversion: '<S3>/Data Type Conversion' */
   move_from_strain_B.DataTypeConversion = move_from_strain_B.RelationalOperator;
 
-  /* Product: '<S2>/Product1' */
+  /* Product: '<S3>/Product1' */
   move_from_strain_B.Product1 = move_from_strain_B.PhaseDelaySwitch *
     move_from_strain_B.DataTypeConversion;
 
@@ -139,12 +140,16 @@ static void move_from_strain_output(void)
     sfcnOutputs(rts,1);
   }
 
-  /* S-Function (scblock): '<S3>/S-Function' */
-  /* ok to acquire for <S3>/S-Function */
-  move_from_strain_DW.SFunction_IWORK.AcquireOK = 1;
-
   /* S-Function (scblock): '<S4>/S-Function' */
   /* ok to acquire for <S4>/S-Function */
+  move_from_strain_DW.SFunction_IWORK.AcquireOK = 1;
+
+  /* S-Function (scblock): '<S5>/S-Function' */
+  /* ok to acquire for <S5>/S-Function */
+  move_from_strain_DW.SFunction_IWORK_k.AcquireOK = 1;
+
+  /* S-Function (scblock): '<S6>/S-Function' */
+  /* ok to acquire for <S6>/S-Function */
   move_from_strain_DW.SFunction_IWORK_d.AcquireOK = 1;
 }
 
@@ -211,9 +216,9 @@ static void move_from_strain_initialize(void)
       return;
   }
 
-  /* Start for S-Function (scblock): '<S3>/S-Function' */
+  /* Start for S-Function (scblock): '<S4>/S-Function' */
 
-  /* S-Function Block: <S3>/S-Function (scblock) */
+  /* S-Function Block: <S4>/S-Function (scblock) */
   {
     int i;
     if ((i = rl32eScopeExists(2)) == 0) {
@@ -240,9 +245,38 @@ static void move_from_strain_initialize(void)
     }
   }
 
-  /* Start for S-Function (scblock): '<S4>/S-Function' */
+  /* Start for S-Function (scblock): '<S5>/S-Function' */
 
-  /* S-Function Block: <S4>/S-Function (scblock) */
+  /* S-Function Block: <S5>/S-Function (scblock) */
+  {
+    int i;
+    if ((i = rl32eScopeExists(3)) == 0) {
+      if ((i = rl32eDefScope(3,2)) != 0) {
+        printf("Error creating scope 3\n");
+      } else {
+        rl32eAddSignal(3, rl32eGetSignalNo("PW Mapping"));
+        rl32eSetScope(3, 4, 250);
+        rl32eSetScope(3, 5, 0);
+        rl32eSetScope(3, 6, 1);
+        rl32eSetScope(3, 0, 0);
+        rl32eSetScope(3, 3, rl32eGetSignalNo("PW Mapping"));
+        rl32eSetScope(3, 1, 0.0);
+        rl32eSetScope(3, 2, 0);
+        rl32eSetScope(3, 9, 0);
+        rl32eSetTargetScope(3, 11, 0.0);
+        rl32eSetTargetScope(3, 10, 14.0);
+        xpceScopeAcqOK(3, &move_from_strain_DW.SFunction_IWORK_k.AcquireOK);
+      }
+    }
+
+    if (i) {
+      rl32eRestartAcquisition(3);
+    }
+  }
+
+  /* Start for S-Function (scblock): '<S6>/S-Function' */
+
+  /* S-Function Block: <S6>/S-Function (scblock) */
   {
     int i;
     if ((i = rl32eScopeExists(1)) == 0) {
@@ -727,7 +761,7 @@ RT_MODEL_move_from_strain_T *move_from_strain(void)
   move_from_strain_M->Sizes.numU = (0);/* Number of model inputs */
   move_from_strain_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   move_from_strain_M->Sizes.numSampTimes = (2);/* Number of sample times */
-  move_from_strain_M->Sizes.numBlocks = (19);/* Number of blocks */
+  move_from_strain_M->Sizes.numBlocks = (22);/* Number of blocks */
   move_from_strain_M->Sizes.numBlockIO = (10);/* Number of block outputs */
   move_from_strain_M->Sizes.numBlockPrms = (50);/* Sum of parameter "widths" */
   return move_from_strain_M;

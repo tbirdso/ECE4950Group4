@@ -7,9 +7,9 @@
  *
  * Code generation for model "move_from_strain".
  *
- * Model version              : 1.48
+ * Model version              : 1.55
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Feb 13 16:44:14 2020
+ * C source code generated on : Sun Feb 16 16:29:48 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping

@@ -7,9 +7,9 @@
  *
  * Code generation for model "move_from_strain".
  *
- * Model version              : 1.48
+ * Model version              : 1.55
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Feb 13 16:44:14 2020
+ * C source code generated on : Sun Feb 16 16:29:48 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -828,29 +828,43 @@
 
 /* Block signals (auto storage) */
 typedef struct {
-  real_T Clock;                        /* '<S2>/Clock' */
-  real_T Sum2;                         /* '<S2>/Sum2' */
-  real_T PhaseDelaySwitch;             /* '<S2>/Phase Delay Switch' */
-  real_T mod;                          /* '<S2>/mod' */
+  real_T Clock;                        /* '<S3>/Clock' */
+  real_T Sum2;                         /* '<S3>/Sum2' */
+  real_T PhaseDelaySwitch;             /* '<S3>/Phase Delay Switch' */
+  real_T mod;                          /* '<S3>/mod' */
   real_T Q4AD;                         /* '<Root>/Q4 AD' */
-  real_T Product;                      /* '<S2>/Product' */
-  real_T DataTypeConversion;           /* '<S2>/Data Type Conversion' */
-  real_T Product1;                     /* '<S2>/Product1' */
+  real_T Product;                      /* '<S3>/Product' */
+  real_T DataTypeConversion;           /* '<S3>/Data Type Conversion' */
+  real_T Product1;                     /* '<S3>/Product1' */
   real_T y;                            /* '<Root>/PW Mapping' */
-  boolean_T RelationalOperator;        /* '<S2>/Relational Operator' */
+  boolean_T RelationalOperator;        /* '<S3>/Relational Operator' */
 } B_move_from_strain_T;
 
 /* Block states (auto storage) for system '<Root>' */
 typedef struct {
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedFor_;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedFo_o;   /* synthesized block */
+
   int_T Q4AD_IWORK[2];                 /* '<Root>/Q4 AD' */
   int_T Q4DO_IWORK;                    /* '<Root>/Q4 DO ' */
   struct {
     int_T AcquireOK;
-  } SFunction_IWORK;                   /* '<S3>/S-Function' */
+  } SFunction_IWORK;                   /* '<S4>/S-Function' */
 
   struct {
     int_T AcquireOK;
-  } SFunction_IWORK_d;                 /* '<S4>/S-Function' */
+  } SFunction_IWORK_k;                 /* '<S5>/S-Function' */
+
+  struct {
+    int_T AcquireOK;
+  } SFunction_IWORK_d;                 /* '<S6>/S-Function' */
 } DW_move_from_strain_T;
 
 /* Backward compatible GRT Identifiers */
@@ -870,10 +884,10 @@ struct P_move_from_strain_T_ {
                                         * Referenced by: '<Root>/PD'
                                         */
   real_T Constant1_Value;              /* Expression: 0
-                                        * Referenced by: '<S2>/Constant1'
+                                        * Referenced by: '<S3>/Constant1'
                                         */
   real_T PhaseDelaySwitch_Threshold;   /* Expression: 0
-                                        * Referenced by: '<S2>/Phase Delay Switch'
+                                        * Referenced by: '<S3>/Phase Delay Switch'
                                         */
   real_T Period_Value;                 /* Expression: 0.02
                                         * Referenced by: '<Root>/Period'
@@ -918,7 +932,7 @@ struct P_move_from_strain_T_ {
                                         * Referenced by: '<Root>/Q4 AD'
                                         */
   real_T Constant_Value;               /* Expression: 1/100
-                                        * Referenced by: '<S2>/Constant'
+                                        * Referenced by: '<S3>/Constant'
                                         */
   real_T Q4DO_P1_Size[2];              /* Computed Parameter: Q4DO_P1_Size
                                         * Referenced by: '<Root>/Q4 DO '
@@ -1164,9 +1178,11 @@ extern RT_MODEL_move_from_strain_T *const move_from_strain_M;
  * Here is the system hierarchy for this model
  *
  * '<Root>' : 'move_from_strain'
- * '<S1>'   : 'move_from_strain/PW Mapping'
- * '<S2>'   : 'move_from_strain/Programmable Pulse Generator'
- * '<S3>'   : 'move_from_strain/T AI Scope'
- * '<S4>'   : 'move_from_strain/T DO Scope'
+ * '<S1>'   : 'move_from_strain/DocBlock'
+ * '<S2>'   : 'move_from_strain/PW Mapping'
+ * '<S3>'   : 'move_from_strain/Programmable Pulse Generator'
+ * '<S4>'   : 'move_from_strain/T AI Scope'
+ * '<S5>'   : 'move_from_strain/T AI Scope1'
+ * '<S6>'   : 'move_from_strain/T DO Scope'
  */
 #endif                                 /* RTW_HEADER_move_from_strain_h_ */

@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><Root>
       		<SubSystem>
+		<Name>DocBlock</Name>
+		<xPCName>move_from_strain/DocBlock</xPCName>
+				<SubSystem>
+		<Name>EmptySubsystem</Name>
+		<xPCName>move_from_strain/DocBlock/EmptySubsystem</xPCName>
+		
+		
+
+		</SubSystem>
+
+		
+
+		</SubSystem>
+		<SubSystem>
 		<Name>Programmable
 Pulse Generator</Name>
 		<xPCName>move_from_strain/Programmable Pulse Generator</xPCName>
@@ -124,6 +138,13 @@ Operator</sigName>
 		<SubSystem>
 		<Name>T AI Scope</Name>
 		<xPCName>move_from_strain/T AI Scope</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>T AI Scope1</Name>
+		<xPCName>move_from_strain/T AI Scope1</xPCName>
 		
 		
 

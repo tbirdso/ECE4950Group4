@@ -1,5 +1,5 @@
 @echo off
-call "D:\Visual Studio 2015\VC\VCVARSALL.BAT " x86
+call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\VCVARSALL.BAT " x86
 
 cd .
 nmake -f move_from_strain.mk  ISPROTECTINGMODEL=NOTPROTECTING EXT_MODE=1

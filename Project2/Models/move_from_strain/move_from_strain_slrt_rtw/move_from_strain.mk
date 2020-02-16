@@ -62,12 +62,12 @@ DEBUG_BUILD     = 0
 MODEL           = move_from_strain
 MODULES         = rt_matrx.c rt_printf.c move_from_strain_capi.c move_from_strain_data.c rtGetInf.c rtGetNaN.c rt_nonfinite.c xpc_datatype_ground.c rt_logging_mmi.c rtw_modelmap_utils.c rt_logging.c
 MAKEFILE        = move_from_strain.mk
-MATLAB_ROOT     = D:\MATLAB
-ALT_MATLAB_ROOT = D:\MATLAB
-MATLAB_BIN      = D:\MATLAB\bin
-ALT_MATLAB_BIN  = D:\MATLAB\bin
+MATLAB_ROOT     = C:\Program Files\MATLAB\R2017a
+ALT_MATLAB_ROOT = C:\PROGRA~1\MATLAB\R2017a
+MATLAB_BIN      = C:\Program Files\MATLAB\R2017a\bin
+ALT_MATLAB_BIN  = C:\PROGRA~1\MATLAB\R2017a\bin
 MASTER_ANCHOR_DIR = 
-START_DIR       = D:\ECE4950Group4\Project2\Models\move_from_strain
+START_DIR       = C:\Users\tbirdso\Documents\GitHub\ECE4950Group4\Project2\Models\move_from_strain
 S_FUNCTIONS     = adquanserq8.c doquanserq8.c
 S_FUNCTIONS_LIB = 
 NUMST           = 2
@@ -76,7 +76,7 @@ NCSTATES        = 0
 BUILDARGS       =  ISPROTECTINGMODEL=NOTPROTECTING EXT_MODE=1
 MULTITASKING    = 0
 EXT_MODE        = 0
-MEX_OPT_FILE    = -f "C:\Users\Andrew\AppData\Roaming\MathWorks\MATLAB\R2017a\mex_C_win64.xml"
+MEX_OPT_FILE    = -f "C:\Users\tbirdso\AppData\Roaming\MathWorks\MATLAB\R2017a\mex_C_win64.xml"
 
 MODELREFS       = 
 SHARED_SRC      = 
