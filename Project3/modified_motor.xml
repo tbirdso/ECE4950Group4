@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?><Root>
+      		<SubSystem>
+		<Name>Motor Selector</Name>
+		<xPCName>modified_motor/Motor Selector</xPCName>
+		
+		
+            <block>
+            <blkName>Constant</blkName>
+            <xpcblkName>Motor Selector/Constant</xpcblkName>
+            <SLblockPath>modified_motor/Motor Selector/Constant</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Motor Selector</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Gate1</blkName>
+            <xpcblkName>Motor Selector/Gate1</xpcblkName>
+            <SLblockPath>modified_motor/Motor Selector/Gate1</SLblockPath>
+            <isSrc>[0 3 1]</isSrc>
+          <parameter>
+          <paramName>Threshold</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Motor Selector</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Gate2</blkName>
+            <xpcblkName>Motor Selector/Gate2</xpcblkName>
+            <SLblockPath>modified_motor/Motor Selector/Gate2</SLblockPath>
+            <isSrc>[0 3 1]</isSrc>
+          <parameter>
+          <paramName>Threshold</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Motor Selector</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>Add</sigName>
+              <xpcsigName>Motor Selector/Add</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Motor Selector</SubSystemName>
+                <sigLabel>Switch Position</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Gate1</sigName>
+              <xpcsigName>Motor Selector/Gate1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Motor Selector</SubSystemName>
+                <sigLabel>Simulated Motor</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Gate2</sigName>
+              <xpcsigName>Motor Selector/Gate2</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Motor Selector</SubSystemName>
+                <sigLabel>Real Motor</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Real motor</Name>
+		<xPCName>modified_motor/Real motor</xPCName>
+				<SubSystem>
+		<Name>Convert to Rad</Name>
+		<xPCName>modified_motor/Real motor/Convert to Rad</xPCName>
+		
+		
+
+		</SubSystem>
+
+		
+            <block>
+            <blkName>Saturation</blkName>
+            <xpcblkName>Real motor/Saturation</xpcblkName>
+            <SLblockPath>modified_motor/Real motor/Saturation</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>UpperLimit</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>LowerLimit</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Q4 DA </blkName>
+            <xpcblkName>Real motor/Q4 DA </xpcblkName>
+            <SLblockPath>modified_motor/Real motor/Q4 DA </SLblockPath>
+            <isSrc>[0 1 0]</isSrc>
+          <parameter>
+          <paramName>P1</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P2</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P3</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P4</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P5</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P6</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P7</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P8</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P9</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Q4 Enc </blkName>
+            <xpcblkName>Real motor/Q4 Enc </xpcblkName>
+            <SLblockPath>modified_motor/Real motor/Q4 Enc </SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>P1</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P2</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P3</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P4</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P5</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P6</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P7</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P8</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P9</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P10</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P11</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P12</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Real motor</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>Convert to Rad</sigName>
+              <xpcsigName>Real motor/Convert to Rad</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Real motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Invert Sign</sigName>
+              <xpcsigName>Real motor/Invert Sign</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Real motor</SubSystemName>
+                <sigLabel>Position (rad)</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Saturation</sigName>
+              <xpcsigName>Real motor/Saturation</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Real motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Q4 Enc </sigName>
+              <xpcsigName>Real motor/Q4 Enc </xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Real motor</SubSystemName>
+                <sigLabel>Position (steps)</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Scope </Name>
+		<xPCName>modified_motor/Scope </xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Scope 1</Name>
+		<xPCName>modified_motor/Scope 1</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Scope 2</Name>
+		<xPCName>modified_motor/Scope 2</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Scope 3</Name>
+		<xPCName>modified_motor/Scope 3</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Simulated Motor</Name>
+		<xPCName>modified_motor/Simulated Motor</xPCName>
+		
+		
+            <block>
+            <blkName>Integrator</blkName>
+            <xpcblkName>Simulated Motor/Integrator</xpcblkName>
+            <SLblockPath>modified_motor/Simulated Motor/Integrator</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>InitialCondition</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Integrator1</blkName>
+            <xpcblkName>Simulated Motor/Integrator1</xpcblkName>
+            <SLblockPath>modified_motor/Simulated Motor/Integrator1</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>InitialCondition</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Integrator2</blkName>
+            <xpcblkName>Simulated Motor/Integrator2</xpcblkName>
+            <SLblockPath>modified_motor/Simulated Motor/Integrator2</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>InitialCondition</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>Damping</sigName>
+              <xpcsigName>Simulated Motor/Damping</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Inductance</sigName>
+              <xpcsigName>Simulated Motor/Inductance</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+                <sigLabel>d/dt(i)</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Inertia
+</sigName>
+              <xpcsigName>Simulated Motor/Inertia </xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+                <sigLabel>d2/dt2(theta)</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Ke</sigName>
+              <xpcsigName>Simulated Motor/Ke</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Kt</sigName>
+              <xpcsigName>Simulated Motor/Kt</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Resistance</sigName>
+              <xpcsigName>Simulated Motor/Resistance</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Integrator</sigName>
+              <xpcsigName>Simulated Motor/Integrator</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+                <sigLabel>i</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Integrator1</sigName>
+              <xpcsigName>Simulated Motor/Integrator1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+                <sigLabel>d/dt(theta)</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Integrator2</sigName>
+              <xpcsigName>Simulated Motor/Integrator2</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+                <sigLabel>theta</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Add</sigName>
+              <xpcsigName>Simulated Motor/Add</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Add1</sigName>
+              <xpcsigName>Simulated Motor/Add1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Simulated Motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Slider</Name>
+		<xPCName>modified_motor/Slider</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Switching Logic</Name>
+		<xPCName>modified_motor/Switching Logic</xPCName>
+		
+		
+            <block>
+            <blkName>Switch1</blkName>
+            <xpcblkName>Switching Logic/Switch1</xpcblkName>
+            <SLblockPath>modified_motor/Switching Logic/Switch1</SLblockPath>
+            <isSrc>[0 3 1]</isSrc>
+          <parameter>
+          <paramName>Threshold</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Switching Logic</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>Switch1</sigName>
+              <xpcsigName>Switching Logic/Switch1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Switching Logic</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+
+      
+            <block>
+            <blkName>Constant</blkName>
+            <xpcblkName>Constant</xpcblkName>
+            <SLblockPath>modified_motor/Constant</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Switch</blkName>
+            <xpcblkName>Switch</xpcblkName>
+            <SLblockPath>modified_motor/Switch</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Gain</blkName>
+            <xpcblkName>Gain</xpcblkName>
+            <SLblockPath>modified_motor/Gain</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>KI</blkName>
+            <xpcblkName>KI</xpcblkName>
+            <SLblockPath>modified_motor/KI</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Kd</blkName>
+            <xpcblkName>Kd</xpcblkName>
+            <SLblockPath>modified_motor/Kd</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Kp</blkName>
+            <xpcblkName>Kp</xpcblkName>
+            <SLblockPath>modified_motor/Kp</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Integrator</blkName>
+            <xpcblkName>Integrator</xpcblkName>
+            <SLblockPath>modified_motor/Integrator</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>InitialCondition</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Saturation</blkName>
+            <xpcblkName>Saturation</xpcblkName>
+            <SLblockPath>modified_motor/Saturation</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>UpperLimit</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>LowerLimit</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>Constant</sigName>
+              <xpcsigName>Constant</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+                <sigLabel>Position input (rad)</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Derivative</sigName>
+              <xpcsigName>Derivative</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Gain</sigName>
+              <xpcsigName>Gain</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>KI</sigName>
+              <xpcsigName>KI</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Kd</sigName>
+              <xpcsigName>Kd</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Kp</sigName>
+              <xpcsigName>Kp</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Integrator</sigName>
+              <xpcsigName>Integrator</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Saturation</sigName>
+              <xpcsigName>Saturation</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+                <sigLabel>Voltage_Input</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Sum</sigName>
+              <xpcsigName>Sum</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+                <sigLabel>Sig1</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Sum1</sigName>
+              <xpcsigName>Sum1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+                <sigLabel>Pos_Input</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+<block>
+   <blkName>Model Parameters</blkName>
+   <xpcblkName>Model Parameters</xpcblkName>
+   <SLblockPath>. </SLblockPath>
+   <isSrc>[0 1 1]</isSrc>
+   <parameter>
+      <paramName>J</paramName>
+          <dim>[1,1]</dim>
+		 <SubSystemName>modified_motor</SubSystemName>
+   </parameter>
+   <parameter>
+      <paramName>Ke</paramName>
+          <dim>[1,1]</dim>
+		 <SubSystemName>modified_motor</SubSystemName>
+   </parameter>
+   <parameter>
+      <paramName>Kt</paramName>
+          <dim>[1,1]</dim>
+		 <SubSystemName>modified_motor</SubSystemName>
+   </parameter>
+   <parameter>
+      <paramName>L</paramName>
+          <dim>[1,1]</dim>
+		 <SubSystemName>modified_motor</SubSystemName>
+   </parameter>
+   <parameter>
+      <paramName>R</paramName>
+          <dim>[1,1]</dim>
+		 <SubSystemName>modified_motor</SubSystemName>
+   </parameter>
+   <parameter>
+      <paramName>b</paramName>
+          <dim>[1,1]</dim>
+		 <SubSystemName>modified_motor</SubSystemName>
+   </parameter>
+</block>
+</Root>
