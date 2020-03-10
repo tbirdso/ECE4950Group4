@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.50
+ * Model version              : 1.51
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Mon Mar 09 23:28:12 2020
+ * C source code generated on : Mon Mar 09 23:43:13 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -41,7 +41,7 @@ P_modified_motor_T modified_motor_P = {
   3.5077E-6,                           /* Variable: b
                                         * Referenced by: '<S10>/Damping'
                                         */
-  -0.040956521739,                     /* Expression: -0.040956521739
+  -0.559739130435,                     /* Expression: -0.559739130435
                                         * Referenced by: '<S1>/FIXME_const_pos_out'
                                         */
   1.0,                                 /* Expression: 1
