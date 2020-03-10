@@ -3,7 +3,7 @@ clear; clc; close all;
 
 %% Init Camera
 cam_list = webcamlist;
-cam_name = cam_list{2};
+cam_name = cam_list{1};
 cam = webcam(cam_name);
 
 %% Take Image
@@ -28,12 +28,15 @@ imshow(imgGray);
 %% Convert to Binary Image
 threshLevel = 0.5;
 imgBinary = imbinarize(imgGray, threshLevel);
+imgBinaryComp = imcomplement(imgBinary);
 figure();
 imshow(imgBinary);
+figure();
+imshow(imgBinaryComp);
 
 %% Isolate Circle Elements
 se = strel('disk', 1);                  % need to look into strel()
-imgOpenned = imopen(imgBinary, se);
+imgOpenned = imopen(imgBinaryComp, se);
 figure();
 imshow(imgOpenned);
 
