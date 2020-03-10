@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.36
+ * Model version              : 1.50
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Tue Mar 03 23:06:58 2020
+ * C source code generated on : Mon Mar 09 23:28:12 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -45,91 +45,103 @@ static const rtwCAPI_Signals rtBlockSignals[] = {
   /* addrMapIndex, sysNum, blockPath,
    * signalName, portNumber, dataTypeIndex, dimIndex, fxpIndex, sTimeIndex
    */
-  { 0, 0, TARGET_STRING("Constant"),
-    TARGET_STRING("Position input (rad)"), 0, 0, 0, 0, 0 },
-
-  { 1, 0, TARGET_STRING("Derivative"),
-    TARGET_STRING(""), 0, 0, 0, 0, 1 },
-
-  { 2, 0, TARGET_STRING("Gain"),
+  { 0, 1, TARGET_STRING("Image Processing/Image Processing"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
-  { 3, 0, TARGET_STRING("KI"),
+  { 1, 0, TARGET_STRING("Image Processing/FIXME_const_pos_out"),
+    TARGET_STRING(""), 0, 0, 0, 0, 0 },
+
+  { 2, 0, TARGET_STRING("UI Input/Data Type Conversion"),
+    TARGET_STRING("id_val"), 0, 0, 0, 0, 0 },
+
+  { 3, 0, TARGET_STRING("UI Input/Data Type Conversion1"),
+    TARGET_STRING(""), 0, 0, 0, 0, 0 },
+
+  { 4, 0, TARGET_STRING("UI Input/Data Type Conversion2"),
+    TARGET_STRING(""), 0, 0, 0, 0, 0 },
+
+  { 5, 0, TARGET_STRING("motor_subsystem/Derivative"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 4, 0, TARGET_STRING("Kd"),
+  { 6, 0, TARGET_STRING("motor_subsystem/Gain"),
+    TARGET_STRING(""), 0, 0, 0, 0, 0 },
+
+  { 7, 0, TARGET_STRING("motor_subsystem/KI"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 5, 0, TARGET_STRING("Kp"),
+  { 8, 0, TARGET_STRING("motor_subsystem/Kd"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 6, 0, TARGET_STRING("Integrator"),
+  { 9, 0, TARGET_STRING("motor_subsystem/Kp"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 7, 0, TARGET_STRING("Saturation"),
+  { 10, 0, TARGET_STRING("motor_subsystem/Integrator"),
+    TARGET_STRING(""), 0, 0, 0, 0, 1 },
+
+  { 11, 0, TARGET_STRING("motor_subsystem/Saturation"),
     TARGET_STRING("Voltage_Input"), 0, 0, 0, 0, 1 },
 
-  { 8, 0, TARGET_STRING("Sum"),
+  { 12, 0, TARGET_STRING("motor_subsystem/Sum"),
     TARGET_STRING("Sig1"), 0, 0, 0, 0, 1 },
 
-  { 9, 0, TARGET_STRING("Sum1"),
+  { 13, 0, TARGET_STRING("motor_subsystem/Sum1"),
     TARGET_STRING("Pos_Input"), 0, 0, 0, 0, 1 },
 
-  { 10, 0, TARGET_STRING("Motor Selector/Add"),
+  { 14, 0, TARGET_STRING("motor_subsystem/Motor Selector/Add"),
     TARGET_STRING("Switch Position"), 0, 0, 0, 0, 0 },
 
-  { 11, 0, TARGET_STRING("Motor Selector/Gate1"),
+  { 15, 0, TARGET_STRING("motor_subsystem/Motor Selector/Gate1"),
     TARGET_STRING("Simulated Motor"), 0, 0, 0, 0, 1 },
 
-  { 12, 0, TARGET_STRING("Motor Selector/Gate2"),
+  { 16, 0, TARGET_STRING("motor_subsystem/Motor Selector/Gate2"),
     TARGET_STRING("Real Motor"), 0, 0, 0, 0, 1 },
 
-  { 13, 1, TARGET_STRING("Real motor/Convert to Rad"),
+  { 17, 2, TARGET_STRING("motor_subsystem/Real motor/Convert to Rad"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
-  { 14, 0, TARGET_STRING("Real motor/Invert Sign"),
+  { 18, 0, TARGET_STRING("motor_subsystem/Real motor/Invert Sign"),
     TARGET_STRING("Position (rad)"), 0, 0, 0, 0, 0 },
 
-  { 15, 0, TARGET_STRING("Real motor/Saturation"),
+  { 19, 0, TARGET_STRING("motor_subsystem/Real motor/Saturation"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 16, 0, TARGET_STRING("Real motor/Q4 Enc "),
+  { 20, 0, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("Position (steps)"), 0, 0, 0, 0, 0 },
 
-  { 17, 0, TARGET_STRING("Simulated Motor/Damping"),
+  { 21, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Damping"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 18, 0, TARGET_STRING("Simulated Motor/Inductance"),
+  { 22, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Inductance"),
     TARGET_STRING("d/dt(i)"), 0, 0, 0, 0, 1 },
 
-  { 19, 0, TARGET_STRING("Simulated Motor/Inertia "),
+  { 23, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Inertia "),
     TARGET_STRING("d2/dt2(theta)"), 0, 0, 0, 0, 1 },
 
-  { 20, 0, TARGET_STRING("Simulated Motor/Ke"),
+  { 24, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Ke"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 21, 0, TARGET_STRING("Simulated Motor/Kt"),
+  { 25, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Kt"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 22, 0, TARGET_STRING("Simulated Motor/Resistance"),
+  { 26, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Resistance"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 23, 0, TARGET_STRING("Simulated Motor/Integrator"),
+  { 27, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Integrator"),
     TARGET_STRING("i"), 0, 0, 0, 0, 1 },
 
-  { 24, 0, TARGET_STRING("Simulated Motor/Integrator1"),
+  { 28, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Integrator1"),
     TARGET_STRING("d/dt(theta)"), 0, 0, 0, 0, 1 },
 
-  { 25, 0, TARGET_STRING("Simulated Motor/Integrator2"),
+  { 29, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Integrator2"),
     TARGET_STRING("theta"), 0, 0, 0, 0, 1 },
 
-  { 26, 0, TARGET_STRING("Simulated Motor/Add"),
+  { 30, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Add"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 27, 0, TARGET_STRING("Simulated Motor/Add1"),
+  { 31, 0, TARGET_STRING("motor_subsystem/Simulated Motor/Add1"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 28, 0, TARGET_STRING("Switching Logic/Switch1"),
+  { 32, 0, TARGET_STRING("motor_subsystem/Switching Logic/Switch1"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
   {
@@ -141,121 +153,130 @@ static const rtwCAPI_BlockParameters rtBlockParameters[] = {
   /* addrMapIndex, blockPath,
    * paramName, dataTypeIndex, dimIndex, fixPtIdx
    */
-  { 29, TARGET_STRING("Constant"),
+  { 33, TARGET_STRING("Image Processing/FIXME_const_pos_out"),
     TARGET_STRING("Value"), 0, 0, 0 },
 
-  { 30, TARGET_STRING("Switch"),
+  { 34, TARGET_STRING("UI Input/TODO_Color_Input"),
     TARGET_STRING("Value"), 0, 0, 0 },
 
-  { 31, TARGET_STRING("Gain"),
+  { 35, TARGET_STRING("UI Input/TODO_ID_Input1"),
+    TARGET_STRING("Value"), 0, 0, 0 },
+
+  { 36, TARGET_STRING("UI Input/TODO_Mode_input"),
+    TARGET_STRING("Value"), 1, 0, 0 },
+
+  { 37, TARGET_STRING("motor_subsystem/Switch"),
+    TARGET_STRING("Value"), 0, 0, 0 },
+
+  { 38, TARGET_STRING("motor_subsystem/Gain"),
     TARGET_STRING("Gain"), 0, 0, 0 },
 
-  { 32, TARGET_STRING("KI"),
+  { 39, TARGET_STRING("motor_subsystem/KI"),
     TARGET_STRING("Gain"), 0, 0, 0 },
 
-  { 33, TARGET_STRING("Kd"),
+  { 40, TARGET_STRING("motor_subsystem/Kd"),
     TARGET_STRING("Gain"), 0, 0, 0 },
 
-  { 34, TARGET_STRING("Kp"),
+  { 41, TARGET_STRING("motor_subsystem/Kp"),
     TARGET_STRING("Gain"), 0, 0, 0 },
 
-  { 35, TARGET_STRING("Integrator"),
+  { 42, TARGET_STRING("motor_subsystem/Integrator"),
     TARGET_STRING("InitialCondition"), 0, 0, 0 },
 
-  { 36, TARGET_STRING("Saturation"),
+  { 43, TARGET_STRING("motor_subsystem/Saturation"),
     TARGET_STRING("UpperLimit"), 0, 0, 0 },
 
-  { 37, TARGET_STRING("Saturation"),
+  { 44, TARGET_STRING("motor_subsystem/Saturation"),
     TARGET_STRING("LowerLimit"), 0, 0, 0 },
 
-  { 38, TARGET_STRING("Motor Selector/Constant"),
+  { 45, TARGET_STRING("motor_subsystem/Motor Selector/Constant"),
     TARGET_STRING("Value"), 0, 0, 0 },
 
-  { 39, TARGET_STRING("Motor Selector/Gate1"),
+  { 46, TARGET_STRING("motor_subsystem/Motor Selector/Gate1"),
     TARGET_STRING("Threshold"), 0, 0, 0 },
 
-  { 40, TARGET_STRING("Motor Selector/Gate2"),
+  { 47, TARGET_STRING("motor_subsystem/Motor Selector/Gate2"),
     TARGET_STRING("Threshold"), 0, 0, 0 },
 
-  { 41, TARGET_STRING("Real motor/Saturation"),
+  { 48, TARGET_STRING("motor_subsystem/Real motor/Saturation"),
     TARGET_STRING("UpperLimit"), 0, 0, 0 },
 
-  { 42, TARGET_STRING("Real motor/Saturation"),
+  { 49, TARGET_STRING("motor_subsystem/Real motor/Saturation"),
     TARGET_STRING("LowerLimit"), 0, 0, 0 },
 
-  { 43, TARGET_STRING("Real motor/Q4 DA "),
+  { 50, TARGET_STRING("motor_subsystem/Real motor/Q4 DA "),
     TARGET_STRING("P1"), 0, 0, 0 },
 
-  { 44, TARGET_STRING("Real motor/Q4 DA "),
+  { 51, TARGET_STRING("motor_subsystem/Real motor/Q4 DA "),
     TARGET_STRING("P2"), 0, 0, 0 },
 
-  { 45, TARGET_STRING("Real motor/Q4 DA "),
+  { 52, TARGET_STRING("motor_subsystem/Real motor/Q4 DA "),
     TARGET_STRING("P3"), 0, 0, 0 },
 
-  { 46, TARGET_STRING("Real motor/Q4 DA "),
+  { 53, TARGET_STRING("motor_subsystem/Real motor/Q4 DA "),
     TARGET_STRING("P4"), 0, 0, 0 },
 
-  { 47, TARGET_STRING("Real motor/Q4 DA "),
+  { 54, TARGET_STRING("motor_subsystem/Real motor/Q4 DA "),
     TARGET_STRING("P5"), 0, 0, 0 },
 
-  { 48, TARGET_STRING("Real motor/Q4 DA "),
+  { 55, TARGET_STRING("motor_subsystem/Real motor/Q4 DA "),
     TARGET_STRING("P6"), 0, 0, 0 },
 
-  { 49, TARGET_STRING("Real motor/Q4 DA "),
+  { 56, TARGET_STRING("motor_subsystem/Real motor/Q4 DA "),
     TARGET_STRING("P7"), 0, 0, 0 },
 
-  { 50, TARGET_STRING("Real motor/Q4 DA "),
+  { 57, TARGET_STRING("motor_subsystem/Real motor/Q4 DA "),
     TARGET_STRING("P8"), 0, 0, 0 },
 
-  { 51, TARGET_STRING("Real motor/Q4 DA "),
+  { 58, TARGET_STRING("motor_subsystem/Real motor/Q4 DA "),
     TARGET_STRING("P9"), 0, 0, 0 },
 
-  { 52, TARGET_STRING("Real motor/Q4 Enc "),
+  { 59, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P1"), 0, 0, 0 },
 
-  { 53, TARGET_STRING("Real motor/Q4 Enc "),
+  { 60, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P2"), 0, 0, 0 },
 
-  { 54, TARGET_STRING("Real motor/Q4 Enc "),
+  { 61, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P3"), 0, 0, 0 },
 
-  { 55, TARGET_STRING("Real motor/Q4 Enc "),
+  { 62, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P4"), 0, 0, 0 },
 
-  { 56, TARGET_STRING("Real motor/Q4 Enc "),
+  { 63, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P5"), 0, 0, 0 },
 
-  { 57, TARGET_STRING("Real motor/Q4 Enc "),
+  { 64, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P6"), 0, 0, 0 },
 
-  { 58, TARGET_STRING("Real motor/Q4 Enc "),
+  { 65, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P7"), 0, 0, 0 },
 
-  { 59, TARGET_STRING("Real motor/Q4 Enc "),
+  { 66, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P8"), 0, 0, 0 },
 
-  { 60, TARGET_STRING("Real motor/Q4 Enc "),
+  { 67, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P9"), 0, 0, 0 },
 
-  { 61, TARGET_STRING("Real motor/Q4 Enc "),
+  { 68, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P10"), 0, 0, 0 },
 
-  { 62, TARGET_STRING("Real motor/Q4 Enc "),
+  { 69, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P11"), 0, 0, 0 },
 
-  { 63, TARGET_STRING("Real motor/Q4 Enc "),
+  { 70, TARGET_STRING("motor_subsystem/Real motor/Q4 Enc "),
     TARGET_STRING("P12"), 0, 0, 0 },
 
-  { 64, TARGET_STRING("Simulated Motor/Integrator"),
+  { 71, TARGET_STRING("motor_subsystem/Simulated Motor/Integrator"),
     TARGET_STRING("InitialCondition"), 0, 0, 0 },
 
-  { 65, TARGET_STRING("Simulated Motor/Integrator1"),
+  { 72, TARGET_STRING("motor_subsystem/Simulated Motor/Integrator1"),
     TARGET_STRING("InitialCondition"), 0, 0, 0 },
 
-  { 66, TARGET_STRING("Simulated Motor/Integrator2"),
+  { 73, TARGET_STRING("motor_subsystem/Simulated Motor/Integrator2"),
     TARGET_STRING("InitialCondition"), 0, 0, 0 },
 
-  { 67, TARGET_STRING("Switching Logic/Switch1"),
+  { 74, TARGET_STRING("motor_subsystem/Switching Logic/Switch1"),
     TARGET_STRING("Threshold"), 0, 0, 0 },
 
   {
@@ -266,17 +287,17 @@ static const rtwCAPI_BlockParameters rtBlockParameters[] = {
 /* Tunable variable parameters */
 static const rtwCAPI_ModelParameters rtModelParameters[] = {
   /* addrMapIndex, varName, dataTypeIndex, dimIndex, fixPtIndex */
-  { 68, TARGET_STRING("J"), 0, 0, 0 },
+  { 75, TARGET_STRING("J"), 0, 0, 0 },
 
-  { 69, TARGET_STRING("Ke"), 0, 0, 0 },
+  { 76, TARGET_STRING("Ke"), 0, 0, 0 },
 
-  { 70, TARGET_STRING("Kt"), 0, 0, 0 },
+  { 77, TARGET_STRING("Kt"), 0, 0, 0 },
 
-  { 71, TARGET_STRING("L"), 0, 0, 0 },
+  { 78, TARGET_STRING("L"), 0, 0, 0 },
 
-  { 72, TARGET_STRING("R"), 0, 0, 0 },
+  { 79, TARGET_STRING("R"), 0, 0, 0 },
 
-  { 73, TARGET_STRING("b"), 0, 0, 0 },
+  { 80, TARGET_STRING("b"), 0, 0, 0 },
 
   { 0, (NULL), 0, 0, 0 }
 };
@@ -285,80 +306,87 @@ static const rtwCAPI_ModelParameters rtModelParameters[] = {
 
 /* Declare Data Addresses statically */
 static void* rtDataAddrMap[] = {
-  &modified_motor_B.Positioninputrad,  /* 0: Signal */
-  &modified_motor_B.Derivative,        /* 1: Signal */
-  &modified_motor_B.Gain,              /* 2: Signal */
-  &modified_motor_B.KI,                /* 3: Signal */
-  &modified_motor_B.Kd,                /* 4: Signal */
-  &modified_motor_B.Kp,                /* 5: Signal */
-  &modified_motor_B.Integrator,        /* 6: Signal */
-  &modified_motor_B.Voltage_Input,     /* 7: Signal */
-  &modified_motor_B.Sig1,              /* 8: Signal */
-  &modified_motor_B.Pos_Input,         /* 9: Signal */
-  &modified_motor_B.SwitchPosition,    /* 10: Signal */
-  &modified_motor_B.SimulatedMotor,    /* 11: Signal */
-  &modified_motor_B.RealMotor,         /* 12: Signal */
-  &modified_motor_B.y,                 /* 13: Signal */
-  &modified_motor_B.Positionrad,       /* 14: Signal */
-  &modified_motor_B.Saturation,        /* 15: Signal */
-  &modified_motor_B.Positionsteps,     /* 16: Signal */
-  &modified_motor_B.Damping,           /* 17: Signal */
-  &modified_motor_B.ddti,              /* 18: Signal */
-  &modified_motor_B.d2dt2theta,        /* 19: Signal */
-  &modified_motor_B.Ke,                /* 20: Signal */
-  &modified_motor_B.Kt,                /* 21: Signal */
-  &modified_motor_B.Resistance,        /* 22: Signal */
-  &modified_motor_B.i,                 /* 23: Signal */
-  &modified_motor_B.ddttheta,          /* 24: Signal */
-  &modified_motor_B.theta,             /* 25: Signal */
-  &modified_motor_B.Add,               /* 26: Signal */
-  &modified_motor_B.Add1,              /* 27: Signal */
-  &modified_motor_B.Switch1,           /* 28: Signal */
-  &modified_motor_P.Constant_Value,    /* 29: Block Parameter */
-  &modified_motor_P.Switch_Value,      /* 30: Block Parameter */
-  &modified_motor_P.Gain_Gain,         /* 31: Block Parameter */
-  &modified_motor_P.KI_Gain,           /* 32: Block Parameter */
-  &modified_motor_P.Kd_Gain,           /* 33: Block Parameter */
-  &modified_motor_P.Kp_Gain,           /* 34: Block Parameter */
-  &modified_motor_P.Integrator_IC,     /* 35: Block Parameter */
-  &modified_motor_P.Saturation_UpperSat,/* 36: Block Parameter */
-  &modified_motor_P.Saturation_LowerSat,/* 37: Block Parameter */
-  &modified_motor_P.Constant_Value_c,  /* 38: Block Parameter */
-  &modified_motor_P.Gate1_Threshold,   /* 39: Block Parameter */
-  &modified_motor_P.Gate2_Threshold,   /* 40: Block Parameter */
-  &modified_motor_P.Saturation_UpperSat_a,/* 41: Block Parameter */
-  &modified_motor_P.Saturation_LowerSat_d,/* 42: Block Parameter */
-  &modified_motor_P.Q4DA_P1,           /* 43: Block Parameter */
-  &modified_motor_P.Q4DA_P2,           /* 44: Block Parameter */
-  &modified_motor_P.Q4DA_P3,           /* 45: Block Parameter */
-  &modified_motor_P.Q4DA_P4,           /* 46: Block Parameter */
-  &modified_motor_P.Q4DA_P5,           /* 47: Block Parameter */
-  &modified_motor_P.Q4DA_P6,           /* 48: Block Parameter */
-  &modified_motor_P.Q4DA_P7,           /* 49: Block Parameter */
-  &modified_motor_P.Q4DA_P8,           /* 50: Block Parameter */
-  &modified_motor_P.Q4DA_P9,           /* 51: Block Parameter */
-  &modified_motor_P.Q4Enc_P1,          /* 52: Block Parameter */
-  &modified_motor_P.Q4Enc_P2,          /* 53: Block Parameter */
-  &modified_motor_P.Q4Enc_P3,          /* 54: Block Parameter */
-  &modified_motor_P.Q4Enc_P4,          /* 55: Block Parameter */
-  &modified_motor_P.Q4Enc_P5,          /* 56: Block Parameter */
-  &modified_motor_P.Q4Enc_P6,          /* 57: Block Parameter */
-  &modified_motor_P.Q4Enc_P7,          /* 58: Block Parameter */
-  &modified_motor_P.Q4Enc_P8,          /* 59: Block Parameter */
-  &modified_motor_P.Q4Enc_P9,          /* 60: Block Parameter */
-  &modified_motor_P.Q4Enc_P10,         /* 61: Block Parameter */
-  &modified_motor_P.Q4Enc_P11,         /* 62: Block Parameter */
-  &modified_motor_P.Q4Enc_P12,         /* 63: Block Parameter */
-  &modified_motor_P.Integrator_IC_a,   /* 64: Block Parameter */
-  &modified_motor_P.Integrator1_IC,    /* 65: Block Parameter */
-  &modified_motor_P.Integrator2_IC,    /* 66: Block Parameter */
-  &modified_motor_P.Switch1_Threshold, /* 67: Block Parameter */
-  &modified_motor_P.J,                 /* 68: Model Parameter */
-  &modified_motor_P.Ke,                /* 69: Model Parameter */
-  &modified_motor_P.Kt,                /* 70: Model Parameter */
-  &modified_motor_P.L,                 /* 71: Model Parameter */
-  &modified_motor_P.R,                 /* 72: Model Parameter */
-  &modified_motor_P.b,                 /* 73: Model Parameter */
+  &modified_motor_B.y_c,               /* 0: Signal */
+  &modified_motor_B.FIXME_const_pos_out,/* 1: Signal */
+  &modified_motor_B.id_val,            /* 2: Signal */
+  &modified_motor_B.DataTypeConversion1,/* 3: Signal */
+  &modified_motor_B.DataTypeConversion2,/* 4: Signal */
+  &modified_motor_B.Derivative,        /* 5: Signal */
+  &modified_motor_B.Gain,              /* 6: Signal */
+  &modified_motor_B.KI,                /* 7: Signal */
+  &modified_motor_B.Kd,                /* 8: Signal */
+  &modified_motor_B.Kp,                /* 9: Signal */
+  &modified_motor_B.Integrator,        /* 10: Signal */
+  &modified_motor_B.Voltage_Input,     /* 11: Signal */
+  &modified_motor_B.Sig1,              /* 12: Signal */
+  &modified_motor_B.Pos_Input,         /* 13: Signal */
+  &modified_motor_B.SwitchPosition,    /* 14: Signal */
+  &modified_motor_B.SimulatedMotor,    /* 15: Signal */
+  &modified_motor_B.RealMotor,         /* 16: Signal */
+  &modified_motor_B.y,                 /* 17: Signal */
+  &modified_motor_B.Positionrad,       /* 18: Signal */
+  &modified_motor_B.Saturation,        /* 19: Signal */
+  &modified_motor_B.Positionsteps,     /* 20: Signal */
+  &modified_motor_B.Damping,           /* 21: Signal */
+  &modified_motor_B.ddti,              /* 22: Signal */
+  &modified_motor_B.d2dt2theta,        /* 23: Signal */
+  &modified_motor_B.Ke,                /* 24: Signal */
+  &modified_motor_B.Kt,                /* 25: Signal */
+  &modified_motor_B.Resistance,        /* 26: Signal */
+  &modified_motor_B.i,                 /* 27: Signal */
+  &modified_motor_B.ddttheta,          /* 28: Signal */
+  &modified_motor_B.theta,             /* 29: Signal */
+  &modified_motor_B.Add,               /* 30: Signal */
+  &modified_motor_B.Add1,              /* 31: Signal */
+  &modified_motor_B.Switch1,           /* 32: Signal */
+  &modified_motor_P.FIXME_const_pos_out_Value,/* 33: Block Parameter */
+  &modified_motor_P.TODO_Color_Input_Value,/* 34: Block Parameter */
+  &modified_motor_P.TODO_ID_Input1_Value,/* 35: Block Parameter */
+  &modified_motor_P.TODO_Mode_input_Value,/* 36: Block Parameter */
+  &modified_motor_P.Switch_Value,      /* 37: Block Parameter */
+  &modified_motor_P.Gain_Gain,         /* 38: Block Parameter */
+  &modified_motor_P.KI_Gain,           /* 39: Block Parameter */
+  &modified_motor_P.Kd_Gain,           /* 40: Block Parameter */
+  &modified_motor_P.Kp_Gain,           /* 41: Block Parameter */
+  &modified_motor_P.Integrator_IC,     /* 42: Block Parameter */
+  &modified_motor_P.Saturation_UpperSat,/* 43: Block Parameter */
+  &modified_motor_P.Saturation_LowerSat,/* 44: Block Parameter */
+  &modified_motor_P.Constant_Value,    /* 45: Block Parameter */
+  &modified_motor_P.Gate1_Threshold,   /* 46: Block Parameter */
+  &modified_motor_P.Gate2_Threshold,   /* 47: Block Parameter */
+  &modified_motor_P.Saturation_UpperSat_a,/* 48: Block Parameter */
+  &modified_motor_P.Saturation_LowerSat_d,/* 49: Block Parameter */
+  &modified_motor_P.Q4DA_P1,           /* 50: Block Parameter */
+  &modified_motor_P.Q4DA_P2,           /* 51: Block Parameter */
+  &modified_motor_P.Q4DA_P3,           /* 52: Block Parameter */
+  &modified_motor_P.Q4DA_P4,           /* 53: Block Parameter */
+  &modified_motor_P.Q4DA_P5,           /* 54: Block Parameter */
+  &modified_motor_P.Q4DA_P6,           /* 55: Block Parameter */
+  &modified_motor_P.Q4DA_P7,           /* 56: Block Parameter */
+  &modified_motor_P.Q4DA_P8,           /* 57: Block Parameter */
+  &modified_motor_P.Q4DA_P9,           /* 58: Block Parameter */
+  &modified_motor_P.Q4Enc_P1,          /* 59: Block Parameter */
+  &modified_motor_P.Q4Enc_P2,          /* 60: Block Parameter */
+  &modified_motor_P.Q4Enc_P3,          /* 61: Block Parameter */
+  &modified_motor_P.Q4Enc_P4,          /* 62: Block Parameter */
+  &modified_motor_P.Q4Enc_P5,          /* 63: Block Parameter */
+  &modified_motor_P.Q4Enc_P6,          /* 64: Block Parameter */
+  &modified_motor_P.Q4Enc_P7,          /* 65: Block Parameter */
+  &modified_motor_P.Q4Enc_P8,          /* 66: Block Parameter */
+  &modified_motor_P.Q4Enc_P9,          /* 67: Block Parameter */
+  &modified_motor_P.Q4Enc_P10,         /* 68: Block Parameter */
+  &modified_motor_P.Q4Enc_P11,         /* 69: Block Parameter */
+  &modified_motor_P.Q4Enc_P12,         /* 70: Block Parameter */
+  &modified_motor_P.Integrator_IC_a,   /* 71: Block Parameter */
+  &modified_motor_P.Integrator1_IC,    /* 72: Block Parameter */
+  &modified_motor_P.Integrator2_IC,    /* 73: Block Parameter */
+  &modified_motor_P.Switch1_Threshold, /* 74: Block Parameter */
+  &modified_motor_P.J,                 /* 75: Model Parameter */
+  &modified_motor_P.Ke,                /* 76: Model Parameter */
+  &modified_motor_P.Kt,                /* 77: Model Parameter */
+  &modified_motor_P.L,                 /* 78: Model Parameter */
+  &modified_motor_P.R,                 /* 79: Model Parameter */
+  &modified_motor_P.b,                 /* 80: Model Parameter */
 };
 
 /* Declare Data Run-Time Dimension Buffer Addresses statically */
@@ -372,7 +400,9 @@ static int32_T* rtVarDimsAddrMap[] = {
 static TARGET_CONST rtwCAPI_DataTypeMap rtDataTypeMap[] = {
   /* cName, mwName, numElements, elemMapIndex, dataSize, slDataId, *
    * isComplex, isPointer */
-  { "double", "real_T", 0, 0, sizeof(real_T), SS_DOUBLE, 0, 0 }
+  { "double", "real_T", 0, 0, sizeof(real_T), SS_DOUBLE, 0, 0 },
+
+  { "signed char", "int8_T", 0, 0, sizeof(int8_T), SS_INT8, 0, 0 }
 };
 
 #ifdef HOST_CAPI_BUILD
@@ -435,11 +465,11 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
    *          elementMap, sampleTimeMap, dimensionArray},
    * TargetType: targetType
    */
-  { rtBlockSignals, 29,
+  { rtBlockSignals, 33,
     (NULL), 0,
     (NULL), 0 },
 
-  { rtBlockParameters, 39,
+  { rtBlockParameters, 42,
     rtModelParameters, 6 },
 
   { (NULL), 0 },
@@ -448,10 +478,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 3303141040U,
-    2366261404U,
-    929245492U,
-    4216782932U },
+  { 470792358U,
+    1388207179U,
+    1986949700U,
+    2566611276U },
   (NULL), 0,
   0
 };

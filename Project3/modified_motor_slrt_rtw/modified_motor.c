@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.36
+ * Model version              : 1.50
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Tue Mar 03 23:06:58 2020
+ * C source code generated on : Mon Mar 09 23:28:12 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -144,39 +144,39 @@ void modified_motor_output(void)
     modified_motor_M->Timing.t[0] = rtsiGetT(&modified_motor_M->solverInfo);
   }
 
-  if (rtmIsMajorTimeStep(modified_motor_M)) {
-    /* Constant: '<Root>/Constant' */
-    modified_motor_B.Positioninputrad = modified_motor_P.Constant_Value;
-
-    /* Gain: '<Root>/Gain' */
-    modified_motor_B.Gain = modified_motor_P.Gain_Gain *
-      modified_motor_B.Positioninputrad;
-  }
-
-  /* Integrator: '<S7>/Integrator2' */
+  /* Integrator: '<S10>/Integrator2' */
   modified_motor_B.theta = modified_motor_X.Integrator2_CSTATE;
   if (rtmIsMajorTimeStep(modified_motor_M)) {
-    /* S-Function (encquanserq8): '<S2>/Q4 Enc ' */
+    /* Constant: '<S1>/FIXME_const_pos_out' */
+    modified_motor_B.FIXME_const_pos_out =
+      modified_motor_P.FIXME_const_pos_out_Value;
 
-    /* Level2 S-Function Block: '<S2>/Q4 Enc ' (encquanserq8) */
+    /* Gain: '<S3>/Gain' */
+    modified_motor_B.Gain = modified_motor_P.Gain_Gain *
+      modified_motor_B.FIXME_const_pos_out;
+
+    /* S-Function (encquanserq8): '<S7>/Q4 Enc ' */
+
+    /* Level2 S-Function Block: '<S7>/Q4 Enc ' (encquanserq8) */
     {
       SimStruct *rts = modified_motor_M->childSfunctions[0];
       sfcnOutputs(rts,1);
     }
 
-    /* MATLAB Function: '<S2>/Convert to Rad' */
-    /* MATLAB Function 'Real motor/Convert to Rad': '<S9>:1' */
+    /* MATLAB Function: '<S7>/Convert to Rad' */
+    /* MATLAB Function 'motor_subsystem/Real motor/Convert to Rad': '<S12>:1' */
     /*  Observed experimentally */
-    /* '<S9>:1:6' */
+    /* '<S12>:1:6' */
+    /* '<S12>:1:8' */
     modified_motor_B.y = modified_motor_B.Positionsteps * 2.0 *
-      3.1415926535897931 / 400.0;
+      3.1415926535897931 / 400.0 - 3.1415926535897931;
 
-    /* Fcn: '<S2>/Invert Sign' */
+    /* Fcn: '<S7>/Invert Sign' */
     modified_motor_B.Positionrad = -modified_motor_B.y;
   }
 
-  /* Switch: '<S8>/Switch1' incorporates:
-   *  Constant: '<Root>/Switch'
+  /* Switch: '<S11>/Switch1' incorporates:
+   *  Constant: '<S3>/Switch'
    */
   if (modified_motor_P.Switch_Value > modified_motor_P.Switch1_Threshold) {
     modified_motor_B.Switch1 = modified_motor_B.theta;
@@ -184,15 +184,15 @@ void modified_motor_output(void)
     modified_motor_B.Switch1 = modified_motor_B.Positionrad;
   }
 
-  /* End of Switch: '<S8>/Switch1' */
+  /* End of Switch: '<S11>/Switch1' */
 
-  /* Sum: '<Root>/Sum' */
+  /* Sum: '<S3>/Sum' */
   modified_motor_B.Sig1 = modified_motor_B.Gain - modified_motor_B.Switch1;
 
-  /* Gain: '<Root>/Kp' */
+  /* Gain: '<S3>/Kp' */
   modified_motor_B.Kp = modified_motor_P.Kp_Gain * modified_motor_B.Sig1;
 
-  /* Derivative: '<Root>/Derivative' */
+  /* Derivative: '<S3>/Derivative' */
   if ((modified_motor_DW.TimeStampA >= modified_motor_M->Timing.t[0]) &&
       (modified_motor_DW.TimeStampB >= modified_motor_M->Timing.t[0])) {
     modified_motor_B.Derivative = 0.0;
@@ -215,22 +215,22 @@ void modified_motor_output(void)
     modified_motor_B.Derivative = (modified_motor_B.Sig1 - *lastU) / lastTime;
   }
 
-  /* End of Derivative: '<Root>/Derivative' */
+  /* End of Derivative: '<S3>/Derivative' */
 
-  /* Gain: '<Root>/Kd' */
+  /* Gain: '<S3>/Kd' */
   modified_motor_B.Kd = modified_motor_P.Kd_Gain * modified_motor_B.Derivative;
 
-  /* Integrator: '<Root>/Integrator' */
+  /* Integrator: '<S3>/Integrator' */
   modified_motor_B.Integrator = modified_motor_X.Integrator_CSTATE;
 
-  /* Gain: '<Root>/KI' */
+  /* Gain: '<S3>/KI' */
   modified_motor_B.KI = modified_motor_P.KI_Gain * modified_motor_B.Integrator;
 
-  /* Sum: '<Root>/Sum1' */
+  /* Sum: '<S3>/Sum1' */
   modified_motor_B.Pos_Input = (modified_motor_B.Kp + modified_motor_B.Kd) +
     modified_motor_B.KI;
 
-  /* Saturate: '<Root>/Saturation' */
+  /* Saturate: '<S3>/Saturation' */
   lastTime = modified_motor_B.Pos_Input;
   u1 = modified_motor_P.Saturation_LowerSat;
   u2 = modified_motor_P.Saturation_UpperSat;
@@ -242,36 +242,28 @@ void modified_motor_output(void)
     modified_motor_B.Voltage_Input = lastTime;
   }
 
-  /* End of Saturate: '<Root>/Saturation' */
+  /* End of Saturate: '<S3>/Saturation' */
   if (rtmIsMajorTimeStep(modified_motor_M)) {
   }
 
-  /* S-Function (scblock): '<S3>/S-Function' */
-  /* ok to acquire for <S3>/S-Function */
+  /* S-Function (scblock): '<S8>/S-Function' */
+  /* ok to acquire for <S8>/S-Function */
   modified_motor_DW.SFunction_IWORK.AcquireOK = 1;
-
-  /* S-Function (scblock): '<S4>/S-Function' */
-  /* ok to acquire for <S4>/S-Function */
-  modified_motor_DW.SFunction_IWORK_g.AcquireOK = 1;
   if (rtmIsMajorTimeStep(modified_motor_M)) {
-    /* S-Function (scblock): '<S5>/S-Function' */
-    /* ok to acquire for <S5>/S-Function */
-    modified_motor_DW.SFunction_IWORK_f.AcquireOK = 1;
-
-    /* S-Function (scblock): '<S6>/S-Function' */
-    /* ok to acquire for <S6>/S-Function */
+    /* S-Function (scblock): '<S9>/S-Function' */
+    /* ok to acquire for <S9>/S-Function */
     modified_motor_DW.SFunction_IWORK_m.AcquireOK = 1;
 
-    /* Sum: '<S1>/Add' incorporates:
-     *  Constant: '<Root>/Switch'
-     *  Constant: '<S1>/Constant'
+    /* Sum: '<S6>/Add' incorporates:
+     *  Constant: '<S3>/Switch'
+     *  Constant: '<S6>/Constant'
      */
-    modified_motor_B.SwitchPosition = modified_motor_P.Constant_Value_c -
+    modified_motor_B.SwitchPosition = modified_motor_P.Constant_Value -
       modified_motor_P.Switch_Value;
   }
 
-  /* Switch: '<S1>/Gate1' incorporates:
-   *  Constant: '<Root>/Switch'
+  /* Switch: '<S6>/Gate1' incorporates:
+   *  Constant: '<S3>/Switch'
    */
   if (modified_motor_P.Switch_Value > modified_motor_P.Gate1_Threshold) {
     modified_motor_B.SimulatedMotor = modified_motor_B.Voltage_Input;
@@ -279,18 +271,18 @@ void modified_motor_output(void)
     modified_motor_B.SimulatedMotor = 0.0;
   }
 
-  /* End of Switch: '<S1>/Gate1' */
+  /* End of Switch: '<S6>/Gate1' */
 
-  /* Switch: '<S1>/Gate2' */
+  /* Switch: '<S6>/Gate2' */
   if (modified_motor_B.SwitchPosition > modified_motor_P.Gate2_Threshold) {
     modified_motor_B.RealMotor = modified_motor_B.Voltage_Input;
   } else {
     modified_motor_B.RealMotor = 0.0;
   }
 
-  /* End of Switch: '<S1>/Gate2' */
+  /* End of Switch: '<S6>/Gate2' */
 
-  /* Saturate: '<S2>/Saturation' */
+  /* Saturate: '<S7>/Saturation' */
   lastTime = modified_motor_B.RealMotor;
   u1 = modified_motor_P.Saturation_LowerSat_d;
   u2 = modified_motor_P.Saturation_UpperSat_a;
@@ -302,51 +294,97 @@ void modified_motor_output(void)
     modified_motor_B.Saturation = lastTime;
   }
 
-  /* End of Saturate: '<S2>/Saturation' */
+  /* End of Saturate: '<S7>/Saturation' */
   if (rtmIsMajorTimeStep(modified_motor_M)) {
-    /* S-Function (daquanserq8): '<S2>/Q4 DA ' */
+    /* S-Function (daquanserq8): '<S7>/Q4 DA ' */
 
-    /* Level2 S-Function Block: '<S2>/Q4 DA ' (daquanserq8) */
+    /* Level2 S-Function Block: '<S7>/Q4 DA ' (daquanserq8) */
     {
       SimStruct *rts = modified_motor_M->childSfunctions[1];
       sfcnOutputs(rts,1);
     }
   }
 
-  /* Integrator: '<S7>/Integrator' */
+  /* Integrator: '<S10>/Integrator' */
   modified_motor_B.i = modified_motor_X.Integrator_CSTATE_g;
 
-  /* Gain: '<S7>/Resistance' */
+  /* Gain: '<S10>/Resistance' */
   modified_motor_B.Resistance = modified_motor_P.R * modified_motor_B.i;
 
-  /* Integrator: '<S7>/Integrator1' */
+  /* Integrator: '<S10>/Integrator1' */
   modified_motor_B.ddttheta = modified_motor_X.Integrator1_CSTATE;
 
-  /* Gain: '<S7>/Ke' */
+  /* Gain: '<S10>/Ke' */
   modified_motor_B.Ke = modified_motor_P.Ke * modified_motor_B.ddttheta;
 
-  /* Sum: '<S7>/Add' */
+  /* Sum: '<S10>/Add' */
   modified_motor_B.Add = (modified_motor_B.SimulatedMotor -
     modified_motor_B.Resistance) - modified_motor_B.Ke;
 
-  /* Gain: '<S7>/Kt' */
+  /* Gain: '<S10>/Kt' */
   modified_motor_B.Kt = modified_motor_P.Kt * modified_motor_B.i;
 
-  /* Gain: '<S7>/Damping' */
+  /* Gain: '<S10>/Damping' */
   modified_motor_B.Damping = modified_motor_P.b * modified_motor_B.ddttheta;
 
-  /* Sum: '<S7>/Add1' */
+  /* Sum: '<S10>/Add1' */
   modified_motor_B.Add1 = modified_motor_B.Kt - modified_motor_B.Damping;
 
-  /* Gain: '<S7>/Inductance' */
+  /* Gain: '<S10>/Inductance' */
   lastTime = modified_motor_P.L;
   lastTime = 1.0 / lastTime;
   modified_motor_B.ddti = lastTime * modified_motor_B.Add;
 
-  /* Gain: '<S7>/Inertia ' */
+  /* Gain: '<S10>/Inertia ' */
   lastTime = modified_motor_P.J;
   lastTime = 1.0 / lastTime;
   modified_motor_B.d2dt2theta = lastTime * modified_motor_B.Add1;
+  if (rtmIsMajorTimeStep(modified_motor_M)) {
+    /* S-Function (scblock): '<S5>/S-Function' */
+    /* ok to acquire for <S5>/S-Function */
+    modified_motor_DW.SFunction_IWORK_f.AcquireOK = 1;
+
+    /* DataTypeConversion: '<S2>/Data Type Conversion2' incorporates:
+     *  Constant: '<S2>/TODO_Mode_input'
+     */
+    modified_motor_B.DataTypeConversion2 =
+      modified_motor_P.TODO_Mode_input_Value;
+
+    /* DataTypeConversion: '<S2>/Data Type Conversion1' incorporates:
+     *  Constant: '<S2>/TODO_Color_Input'
+     */
+    modified_motor_B.DataTypeConversion1 =
+      modified_motor_P.TODO_Color_Input_Value;
+
+    /* MATLAB Function: '<S1>/Image Processing' */
+    /* MATLAB Function 'Image Processing/Image Processing': '<S4>:1' */
+    /*  PURPOSE - process user GUI selections and generate positions accordingly */
+    /*  INPUTS */
+    /*    - Mode: What should the system do in response to the user selection */
+    /*        - scan: Visit every well with a sticker */
+    /*        - seek color: Visit every well with a sticker of the given color */
+    /*        - seek position: Visit only the well with the given sticker ID */
+    /*  OUTPUTS */
+    /*    - target_pos: The fixed destination position to which the motor */
+    /*        arm should point on the range (-pi, pi] */
+    /*  NOTES */
+    /*    - If mode = 2 then the function ignores ID. */
+    /*    - If mode = 3 then the function ignores color. */
+    /*    - The motor must always return to its original position at the end of */
+    /*    the action. */
+    /*    - The function will always need to iterate through more than one */
+    /*    position in order to visit at least one well and return to its original */
+    /*    position. We probably need to introduce a clock/counter/some form of */
+    /*    memory or delay for this purpose. */
+    /*    TODO process params + computer vision */
+    /* '<S4>:1:27' */
+    modified_motor_B.y_c = 3.1415926535897931;
+
+    /* DataTypeConversion: '<S2>/Data Type Conversion' incorporates:
+     *  Constant: '<S2>/TODO_ID_Input1'
+     */
+    modified_motor_B.id_val = modified_motor_P.TODO_ID_Input1_Value;
+  }
 }
 
 /* Model update function */
@@ -354,7 +392,7 @@ void modified_motor_update(void)
 {
   real_T *lastU;
 
-  /* Update for Derivative: '<Root>/Derivative' */
+  /* Update for Derivative: '<S3>/Derivative' */
   if (modified_motor_DW.TimeStampA == (rtInf)) {
     modified_motor_DW.TimeStampA = modified_motor_M->Timing.t[0];
     lastU = &modified_motor_DW.LastUAtTimeA;
@@ -371,7 +409,7 @@ void modified_motor_update(void)
 
   *lastU = modified_motor_B.Sig1;
 
-  /* End of Update for Derivative: '<Root>/Derivative' */
+  /* End of Update for Derivative: '<S3>/Derivative' */
   if (rtmIsMajorTimeStep(modified_motor_M)) {
     rt_ertODEUpdateContinuousStates(&modified_motor_M->solverInfo);
   }
@@ -418,24 +456,24 @@ void modified_motor_derivatives(void)
   XDot_modified_motor_T *_rtXdot;
   _rtXdot = ((XDot_modified_motor_T *) modified_motor_M->derivs);
 
-  /* Derivatives for Integrator: '<S7>/Integrator2' */
+  /* Derivatives for Integrator: '<S10>/Integrator2' */
   _rtXdot->Integrator2_CSTATE = modified_motor_B.ddttheta;
 
-  /* Derivatives for Integrator: '<Root>/Integrator' */
+  /* Derivatives for Integrator: '<S3>/Integrator' */
   _rtXdot->Integrator_CSTATE = modified_motor_B.Sig1;
 
-  /* Derivatives for Integrator: '<S7>/Integrator' */
+  /* Derivatives for Integrator: '<S10>/Integrator' */
   _rtXdot->Integrator_CSTATE_g = modified_motor_B.ddti;
 
-  /* Derivatives for Integrator: '<S7>/Integrator1' */
+  /* Derivatives for Integrator: '<S10>/Integrator1' */
   _rtXdot->Integrator1_CSTATE = modified_motor_B.d2dt2theta;
 }
 
 /* Model initialize function */
 void modified_motor_initialize(void)
 {
-  /* Start for S-Function (encquanserq8): '<S2>/Q4 Enc ' */
-  /* Level2 S-Function Block: '<S2>/Q4 Enc ' (encquanserq8) */
+  /* Start for S-Function (encquanserq8): '<S7>/Q4 Enc ' */
+  /* Level2 S-Function Block: '<S7>/Q4 Enc ' (encquanserq8) */
   {
     SimStruct *rts = modified_motor_M->childSfunctions[0];
     sfcnStart(rts);
@@ -443,56 +481,27 @@ void modified_motor_initialize(void)
       return;
   }
 
-  /* Start for S-Function (scblock): '<S3>/S-Function' */
+  /* Start for S-Function (scblock): '<S8>/S-Function' */
 
-  /* S-Function Block: <S3>/S-Function (scblock) */
-  {
-    int i;
-    if ((i = rl32eScopeExists(1)) == 0) {
-      if ((i = rl32eDefScope(1,2)) != 0) {
-        printf("Error creating scope 1\n");
-      } else {
-        rl32eAddSignal(1, rl32eGetSignalNo("Switching Logic/Switch1"));
-        rl32eSetScope(1, 4, 250);
-        rl32eSetScope(1, 5, 0);
-        rl32eSetScope(1, 6, 1);
-        rl32eSetScope(1, 0, 0);
-        rl32eSetScope(1, 3, rl32eGetSignalNo("Switching Logic/Switch1"));
-        rl32eSetScope(1, 1, 0.0);
-        rl32eSetScope(1, 2, 0);
-        rl32eSetScope(1, 9, 0);
-        rl32eSetTargetScope(1, 11, 0.0);
-        rl32eSetTargetScope(1, 10, 2.0);
-        xpceScopeAcqOK(1, &modified_motor_DW.SFunction_IWORK.AcquireOK);
-      }
-    }
-
-    if (i) {
-      rl32eRestartAcquisition(1);
-    }
-  }
-
-  /* Start for S-Function (scblock): '<S4>/S-Function' */
-
-  /* S-Function Block: <S4>/S-Function (scblock) */
+  /* S-Function Block: <S8>/S-Function (scblock) */
   {
     int i;
     if ((i = rl32eScopeExists(2)) == 0) {
       if ((i = rl32eDefScope(2,2)) != 0) {
         printf("Error creating scope 2\n");
       } else {
-        rl32eAddSignal(2, rl32eGetSignalNo("Sum"));
+        rl32eAddSignal(2, rl32eGetSignalNo("motor_subsystem/Sum"));
         rl32eSetScope(2, 4, 250);
         rl32eSetScope(2, 5, 0);
         rl32eSetScope(2, 6, 1);
         rl32eSetScope(2, 0, 0);
-        rl32eSetScope(2, 3, rl32eGetSignalNo("Sum"));
+        rl32eSetScope(2, 3, rl32eGetSignalNo("motor_subsystem/Sum"));
         rl32eSetScope(2, 1, 0.0);
         rl32eSetScope(2, 2, 0);
         rl32eSetScope(2, 9, 0);
         rl32eSetTargetScope(2, 11, 0.0);
         rl32eSetTargetScope(2, 10, 2.0);
-        xpceScopeAcqOK(2, &modified_motor_DW.SFunction_IWORK_g.AcquireOK);
+        xpceScopeAcqOK(2, &modified_motor_DW.SFunction_IWORK.AcquireOK);
       }
     }
 
@@ -501,52 +510,24 @@ void modified_motor_initialize(void)
     }
   }
 
-  /* Start for S-Function (scblock): '<S5>/S-Function' */
+  /* Start for S-Function (scblock): '<S9>/S-Function' */
 
-  /* S-Function Block: <S5>/S-Function (scblock) */
-  {
-    int i;
-    if ((i = rl32eScopeExists(3)) == 0) {
-      if ((i = rl32eDefScope(3,2)) != 0) {
-        printf("Error creating scope 3\n");
-      } else {
-        rl32eAddSignal(3, rl32eGetSignalNo("Gain"));
-        rl32eSetScope(3, 4, 250);
-        rl32eSetScope(3, 5, 0);
-        rl32eSetScope(3, 6, 1);
-        rl32eSetScope(3, 0, 0);
-        rl32eSetScope(3, 3, rl32eGetSignalNo("Gain"));
-        rl32eSetScope(3, 1, 0.0);
-        rl32eSetScope(3, 2, 0);
-        rl32eSetScope(3, 9, 0);
-        rl32eSetTargetScope(3, 11, 0.0);
-        rl32eSetTargetScope(3, 10, 2.0);
-        xpceScopeAcqOK(3, &modified_motor_DW.SFunction_IWORK_f.AcquireOK);
-      }
-    }
-
-    if (i) {
-      rl32eRestartAcquisition(3);
-    }
-  }
-
-  /* Start for S-Function (scblock): '<S6>/S-Function' */
-
-  /* S-Function Block: <S6>/S-Function (scblock) */
+  /* S-Function Block: <S9>/S-Function (scblock) */
   {
     int i;
     if ((i = rl32eScopeExists(4)) == 0) {
       if ((i = rl32eDefScope(4,2)) != 0) {
         printf("Error creating scope 4\n");
       } else {
-        rl32eAddSignal(4, rl32eGetSignalNo("Real motor/Q4 Enc "));
-        rl32eSetTargetScopeSigFt(4,rl32eGetSignalNo("Real motor/Q4 Enc "),
-          "%15.6f");
+        rl32eAddSignal(4, rl32eGetSignalNo("motor_subsystem/Real motor/Q4 Enc "));
+        rl32eSetTargetScopeSigFt(4,rl32eGetSignalNo(
+          "motor_subsystem/Real motor/Q4 Enc "),"%15.6f");
         rl32eSetScope(4, 4, 250);
         rl32eSetScope(4, 5, 0);
         rl32eSetScope(4, 6, 1);
         rl32eSetScope(4, 0, 0);
-        rl32eSetScope(4, 3, rl32eGetSignalNo("Real motor/Q4 Enc "));
+        rl32eSetScope(4, 3, rl32eGetSignalNo(
+          "motor_subsystem/Real motor/Q4 Enc "));
         rl32eSetScope(4, 1, 0.0);
         rl32eSetScope(4, 2, 0);
         rl32eSetScope(4, 9, 0);
@@ -562,8 +543,8 @@ void modified_motor_initialize(void)
     }
   }
 
-  /* Start for S-Function (daquanserq8): '<S2>/Q4 DA ' */
-  /* Level2 S-Function Block: '<S2>/Q4 DA ' (daquanserq8) */
+  /* Start for S-Function (daquanserq8): '<S7>/Q4 DA ' */
+  /* Level2 S-Function Block: '<S7>/Q4 DA ' (daquanserq8) */
   {
     SimStruct *rts = modified_motor_M->childSfunctions[1];
     sfcnStart(rts);
@@ -571,35 +552,64 @@ void modified_motor_initialize(void)
       return;
   }
 
-  /* InitializeConditions for Integrator: '<S7>/Integrator2' */
+  /* Start for S-Function (scblock): '<S5>/S-Function' */
+
+  /* S-Function Block: <S5>/S-Function (scblock) */
+  {
+    int i;
+    if ((i = rl32eScopeExists(1)) == 0) {
+      if ((i = rl32eDefScope(1,2)) != 0) {
+        printf("Error creating scope 1\n");
+      } else {
+        rl32eAddSignal(1, rl32eGetSignalNo("Image Processing/Image Processing"));
+        rl32eSetScope(1, 4, 250);
+        rl32eSetScope(1, 5, 0);
+        rl32eSetScope(1, 6, 1);
+        rl32eSetScope(1, 0, 0);
+        rl32eSetScope(1, 3, rl32eGetSignalNo("Image Processing/Image Processing"));
+        rl32eSetScope(1, 1, 0.0);
+        rl32eSetScope(1, 2, 0);
+        rl32eSetScope(1, 9, 0);
+        rl32eSetTargetScope(1, 11, 0.0);
+        rl32eSetTargetScope(1, 10, 0.0);
+        xpceScopeAcqOK(1, &modified_motor_DW.SFunction_IWORK_f.AcquireOK);
+      }
+    }
+
+    if (i) {
+      rl32eRestartAcquisition(1);
+    }
+  }
+
+  /* InitializeConditions for Integrator: '<S10>/Integrator2' */
   modified_motor_X.Integrator2_CSTATE = modified_motor_P.Integrator2_IC;
 
-  /* InitializeConditions for Derivative: '<Root>/Derivative' */
+  /* InitializeConditions for Derivative: '<S3>/Derivative' */
   modified_motor_DW.TimeStampA = (rtInf);
   modified_motor_DW.TimeStampB = (rtInf);
 
-  /* InitializeConditions for Integrator: '<Root>/Integrator' */
+  /* InitializeConditions for Integrator: '<S3>/Integrator' */
   modified_motor_X.Integrator_CSTATE = modified_motor_P.Integrator_IC;
 
-  /* InitializeConditions for Integrator: '<S7>/Integrator' */
+  /* InitializeConditions for Integrator: '<S10>/Integrator' */
   modified_motor_X.Integrator_CSTATE_g = modified_motor_P.Integrator_IC_a;
 
-  /* InitializeConditions for Integrator: '<S7>/Integrator1' */
+  /* InitializeConditions for Integrator: '<S10>/Integrator1' */
   modified_motor_X.Integrator1_CSTATE = modified_motor_P.Integrator1_IC;
 }
 
 /* Model terminate function */
 void modified_motor_terminate(void)
 {
-  /* Terminate for S-Function (encquanserq8): '<S2>/Q4 Enc ' */
-  /* Level2 S-Function Block: '<S2>/Q4 Enc ' (encquanserq8) */
+  /* Terminate for S-Function (encquanserq8): '<S7>/Q4 Enc ' */
+  /* Level2 S-Function Block: '<S7>/Q4 Enc ' (encquanserq8) */
   {
     SimStruct *rts = modified_motor_M->childSfunctions[0];
     sfcnTerminate(rts);
   }
 
-  /* Terminate for S-Function (daquanserq8): '<S2>/Q4 DA ' */
-  /* Level2 S-Function Block: '<S2>/Q4 DA ' (daquanserq8) */
+  /* Terminate for S-Function (daquanserq8): '<S7>/Q4 DA ' */
+  /* Level2 S-Function Block: '<S7>/Q4 DA ' (daquanserq8) */
   {
     SimStruct *rts = modified_motor_M->childSfunctions[1];
     sfcnTerminate(rts);
@@ -840,7 +850,7 @@ RT_MODEL_modified_motor_T *modified_motor(void)
     modified_motor_M->childSfunctions[1] =
       (&modified_motor_M->NonInlinedSFcns.childSFunctions[1]);
 
-    /* Level2 S-Function Block: modified_motor/<S2>/Q4 Enc  (encquanserq8) */
+    /* Level2 S-Function Block: modified_motor/<S7>/Q4 Enc  (encquanserq8) */
     {
       SimStruct *rts = modified_motor_M->childSfunctions[0];
 
@@ -902,7 +912,7 @@ RT_MODEL_modified_motor_T *modified_motor(void)
 
       /* path info */
       ssSetModelName(rts, "Q4 Enc ");
-      ssSetPath(rts, "modified_motor/Real motor/Q4 Enc ");
+      ssSetPath(rts, "modified_motor/motor_subsystem/Real motor/Q4 Enc ");
       ssSetRTModel(rts,modified_motor_M);
       ssSetParentSS(rts, (NULL));
       ssSetRootSS(rts, rts);
@@ -967,7 +977,7 @@ RT_MODEL_modified_motor_T *modified_motor(void)
       /* Update the BufferDstPort flags for each input port */
     }
 
-    /* Level2 S-Function Block: modified_motor/<S2>/Q4 DA  (daquanserq8) */
+    /* Level2 S-Function Block: modified_motor/<S7>/Q4 DA  (daquanserq8) */
     {
       SimStruct *rts = modified_motor_M->childSfunctions[1];
 
@@ -1031,7 +1041,7 @@ RT_MODEL_modified_motor_T *modified_motor(void)
 
       /* path info */
       ssSetModelName(rts, "Q4 DA ");
-      ssSetPath(rts, "modified_motor/Real motor/Q4 DA ");
+      ssSetPath(rts, "modified_motor/motor_subsystem/Real motor/Q4 DA ");
       ssSetRTModel(rts,modified_motor_M);
       ssSetParentSS(rts, (NULL));
       ssSetRootSS(rts, rts);
@@ -1108,9 +1118,9 @@ RT_MODEL_modified_motor_T *modified_motor(void)
   modified_motor_M->Sizes.numU = (0);  /* Number of model inputs */
   modified_motor_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   modified_motor_M->Sizes.numSampTimes = (2);/* Number of sample times */
-  modified_motor_M->Sizes.numBlocks = (40);/* Number of blocks */
-  modified_motor_M->Sizes.numBlockIO = (29);/* Number of block outputs */
-  modified_motor_M->Sizes.numBlockPrms = (87);/* Sum of parameter "widths" */
+  modified_motor_M->Sizes.numBlocks = (48);/* Number of blocks */
+  modified_motor_M->Sizes.numBlockIO = (33);/* Number of block outputs */
+  modified_motor_M->Sizes.numBlockPrms = (90);/* Sum of parameter "widths" */
   return modified_motor_M;
 }
 
