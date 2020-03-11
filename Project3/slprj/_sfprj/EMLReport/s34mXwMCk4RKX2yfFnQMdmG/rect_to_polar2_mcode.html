@@ -1,0 +1,43 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="2,1" id="srcline1"> 1</a></span><span class="line"><span class="comment">% PURPOSE - Convert rectangular object coordinates to angle for</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">%           motor position</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">% INPUTS</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">%   - X, Y coordinates</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">% OUTPUTS</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">%   - Magnitude, angle (rad)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">% NOTES</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">%   - Theta == 0 is at the bottom of the map</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">%   - Positive angles are in RH plane</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,10" id="srcline10">10</a></span><span class="line"><span class="comment">%   - Negative angles are in LH plane</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,11" id="srcline11">11</a></span><span class="line"><span class="comment">%   - Camera origin (0,0) is at NW corner</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,12" id="srcline12">12</a></span><span class="line"><span class="comment">%   - Game board origin is at image center</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,13" id="srcline13">13</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,14" id="srcline14">14</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T1U3">angles</span> = rect_to_polar( <span class="var type1" id="S3T5U6">rect_coords</span> )</span></span>
+<span class="srcline"><span class="lineno"><a href="2,15" id="srcline15">15</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,16" id="srcline16">16</a></span><span class="line"><span class="comment">% FIXME const values</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,17" id="srcline17">17</a></span><span class="line"><span class="mxinfo " id="T2:U3"><span class="var type1" id="S4T2U9">IMG_LENGTH</span> = <span class="mxinfo " id="T2:U5">400</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="2,18" id="srcline18">18</a></span><span class="line"><span class="mxinfo " id="T2:U6"><span class="var type1" id="S5T2U13">IMG_HEIGHT</span> = <span class="mxinfo " id="T2:U8">400</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="2,19" id="srcline19">19</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,20" id="srcline20">20</a></span><span class="line"><span class="comment">% FIXME this math is probably wrong</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,21" id="srcline21">21</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,22" id="srcline22">22</a></span><span class="line"><span class="comment">% Get the game board center so we can calculate relative angles</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,23" id="srcline23">23</a></span><span class="line"><span class="mxinfo " id="T12:U9"><span class="var type1" id="S6T12U17">IMG_CENTER</span> = <span class="mxinfo " id="T12:U11">[<span class="var type1" id="S4T2U21">IMG_LENGTH</span> / 2, <span class="var type1" id="S5T2U24">IMG_HEIGHT</span> / 2]</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="2,24" id="srcline24">24</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,25" id="srcline25">25</a></span><span class="line"><span class="comment">% Get (x,y) relative to the game board center</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,26" id="srcline26">26</a></span><span class="line"><span class="mxinfo " id="T1:U14"><span class="var type1" id="S7T1U28">x_from_center</span> = <span class="mxinfo " id="T1:U16"><span class="mxinfo " id="T2:U17"><span class="var type1" id="S6T12U31">IMG_CENTER</span>(<span class="mxinfo " id="T13:U19">1</span>)</span> - <span class="mxinfo " id="T1:U20"><span class="var type1" id="S3T5U34">rect_coords</span>(<span class="mxinfo " id="T6:U22">:</span>,<span class="mxinfo " id="T13:U23">1</span>)</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="2,27" id="srcline27">27</a></span><span class="line"><span class="mxinfo " id="T1:U24"><span class="var type1" id="S8T1U39">y_from_center</span> = <span class="mxinfo " id="T1:U26"><span class="mxinfo " id="T2:U27"><span class="var type1" id="S6T12U42">IMG_CENTER</span>(<span class="mxinfo " id="T13:U29">2</span>)</span> - <span class="mxinfo " id="T1:U30"><span class="var type1" id="S3T5U45">rect_coords</span>(<span class="mxinfo " id="T6:U32">:</span>,<span class="mxinfo " id="T13:U33">2</span>)</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="2,28" id="srcline28">28</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,29" id="srcline29">29</a></span><span class="line"><span class="comment">% Find cartesian angles where an eastward object is at theta == 0</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,30" id="srcline30">30</a></span><span class="line"><span class="mxinfo " id="T1:U34"><span class="var type1" id="S9T1U50">cartesian_angles</span> = <span class="mxinfo " id="T1:U36">atan(<span class="mxinfo " id="T1:U37"><span class="var type1" id="S8T1U54">y_from_center</span> ./ <span class="var type1" id="S7T1U55">x_from_center</span></span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="2,31" id="srcline31">31</a></span><span class="line"><span class="mxinfo " id="T1:U40"><span class="var type1" id="S2T1U58">angles</span> = <span class="var type1" id="S9T1U59">cartesian_angles</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="2,32" id="srcline32">32</a></span><span class="line"><span class="comment">%angles = - (cartesian_angles - pi/2);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,33" id="srcline33">33</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,34" id="srcline34">34</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,35" id="srcline35">35</a></span><span class="line"></span></span>
+</pre>
+</body>
+</html>

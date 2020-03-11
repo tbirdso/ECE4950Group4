@@ -1,24 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?><Root>
       		<SubSystem>
-		<Name>Image Processing</Name>
-		<xPCName>modified_motor/Image Processing</xPCName>
+		<Name>Image Deconstructor</Name>
+		<xPCName>modified_motor/Image Deconstructor</xPCName>
 				<SubSystem>
-		<Name>Scope </Name>
-		<xPCName>modified_motor/Image Processing/Scope </xPCName>
+		<Name>Clock</Name>
+		<xPCName>modified_motor/Image Deconstructor/Clock</xPCName>
+		
+		
+            <block>
+            <blkName>Constant</blkName>
+            <xpcblkName>Image Deconstructor/Clock/Constant</xpcblkName>
+            <SLblockPath>modified_motor/Image Deconstructor/Clock/Constant</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Image Deconstructor/Clock</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Unit Delay</blkName>
+            <xpcblkName>Image Deconstructor/Clock/Unit Delay</xpcblkName>
+            <SLblockPath>modified_motor/Image Deconstructor/Clock/Unit Delay</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>InitialCondition</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Image Deconstructor/Clock</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>Sum</sigName>
+              <xpcsigName>Image Deconstructor/Clock/Sum</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Image Deconstructor/Clock</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Unit Delay</sigName>
+              <xpcsigName>Image Deconstructor/Clock/Unit Delay</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Image Deconstructor/Clock</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Fire Webcam</Name>
+		<xPCName>modified_motor/Image Deconstructor/Fire Webcam</xPCName>
 		
 		
 
 		</SubSystem>
 		<SubSystem>
-		<Name>Slider</Name>
-		<xPCName>modified_motor/Image Processing/Slider</xPCName>
-		
-		
-
-		</SubSystem>
-		<SubSystem>
-		<Name>Image Processing</Name>
-		<xPCName>modified_motor/Image Processing/Image Processing</xPCName>
+		<Name>Process Image</Name>
+		<xPCName>modified_motor/Image Deconstructor/Process Image</xPCName>
 		
 		
 
@@ -26,34 +68,250 @@
 
 		
             <block>
-            <blkName>FIXME_const_pos_out</blkName>
-            <xpcblkName>Image Processing/FIXME_const_pos_out</xpcblkName>
-            <SLblockPath>modified_motor/Image Processing/FIXME_const_pos_out</SLblockPath>
-            <isSrc>[1 0 1]</isSrc>
+            <blkName>Store Image
+Data</blkName>
+            <xpcblkName>Image Deconstructor/Store Image Data</xpcblkName>
+            <SLblockPath>modified_motor/Image Deconstructor/Store Image Data</SLblockPath>
+            <isSrc>[0 0 0]</isSrc>
           <parameter>
-          <paramName>Value</paramName>
+          <paramName>InitialValue</paramName>
           <dim>[1, 1]</dim>  
-		  <SubSystemName>modified_motor/Image Processing</SubSystemName>
+		  <SubSystemName>modified_motor/Image Deconstructor</SubSystemName>
           </parameter>
           </block>
 			  
 			  
               <signal>
-              <sigName>Image Processing</sigName>
-              <xpcsigName>Image Processing/Image Processing</xpcsigName>
+              <sigName>Fire Webcam</sigName>
+              <xpcsigName>Image Deconstructor/Fire Webcam</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/Image Processing</SubSystemName>
+			  <SubSystemName>modified_motor/Image Deconstructor</SubSystemName>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
 			  
 			  
               <signal>
-              <sigName>FIXME_const_pos_out</sigName>
-              <xpcsigName>Image Processing/FIXME_const_pos_out</xpcsigName>
+              <sigName>Process Image</sigName>
+              <xpcsigName>Image Deconstructor/Process Image</xpcsigName>
+              <sigWidth>400</sigWidth>
+              <sigDim>[100, 4]</sigDim>
+			  <SubSystemName>modified_motor/Image Deconstructor</SubSystemName>
+                <sigLabel>image_data_sig</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Read Image</sigName>
+              <xpcsigName>Image Deconstructor/Read Image</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/Image Processing</SubSystemName>
+			  <SubSystemName>modified_motor/Image Deconstructor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Logic Block</Name>
+		<xPCName>modified_motor/Logic Block</xPCName>
+				<SubSystem>
+		<Name>Clock</Name>
+		<xPCName>modified_motor/Logic Block/Clock</xPCName>
+		
+		
+            <block>
+            <blkName>Constant</blkName>
+            <xpcblkName>Logic Block/Clock/Constant</xpcblkName>
+            <SLblockPath>modified_motor/Logic Block/Clock/Constant</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Logic Block/Clock</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Unit Delay</blkName>
+            <xpcblkName>Logic Block/Clock/Unit Delay</xpcblkName>
+            <SLblockPath>modified_motor/Logic Block/Clock/Unit Delay</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>InitialCondition</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Logic Block/Clock</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>Sum</sigName>
+              <xpcsigName>Logic Block/Clock/Sum</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block/Clock</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Unit Delay</sigName>
+              <xpcsigName>Logic Block/Clock/Unit Delay</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block/Clock</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Position Iterator</Name>
+		<xPCName>modified_motor/Logic Block/Position Iterator</xPCName>
+				<SubSystem>
+		<Name>Iterator</Name>
+		<xPCName>modified_motor/Logic Block/Position Iterator/Iterator</xPCName>
+		
+		
+
+		</SubSystem>
+
+		
+            <block>
+            <blkName>Target_Position</blkName>
+            <xpcblkName>Logic Block/Position Iterator/Target_Position</xpcblkName>
+            <SLblockPath>modified_motor/Logic Block/Position Iterator/Target_Position</SLblockPath>
+            <isSrc>[0 1 0]</isSrc>
+          <parameter>
+          <paramName>InitialOutput</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Store_Index</blkName>
+            <xpcblkName>Logic Block/Position Iterator/Store_Index</xpcblkName>
+            <SLblockPath>modified_motor/Logic Block/Position Iterator/Store_Index</SLblockPath>
+            <isSrc>[0 0 0]</isSrc>
+          <parameter>
+          <paramName>InitialValue</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>Iterator/p1</sigName>
+              <xpcsigName>Logic Block/Position Iterator/Iterator/p1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
+                
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Iterator/p2</sigName>
+              <xpcsigName>Logic Block/Position Iterator/Iterator/p2</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
+                <sigLabel>iter_next_index</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Data Store
+Read</sigName>
+              <xpcsigName>Logic Block/Position Iterator/Data Store Read</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
+                <sigLabel>iter_cur_index</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>XY Graph</Name>
+		<xPCName>modified_motor/Logic Block/XY Graph</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Generate Angles List</Name>
+		<xPCName>modified_motor/Logic Block/Generate Angles List</xPCName>
+		
+		
+
+		</SubSystem>
+
+		
+            <block>
+            <blkName>Rate Transition</blkName>
+            <xpcblkName>Logic Block/Rate Transition</xpcblkName>
+            <SLblockPath>modified_motor/Logic Block/Rate Transition</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>X0</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Logic Block</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>Generate Angles List</sigName>
+              <xpcsigName>Logic Block/Generate Angles List</xpcsigName>
+              <sigWidth>100</sigWidth>
+              <sigDim>[100, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Fcn</sigName>
+              <xpcsigName>Logic Block/Fcn</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Rate Transition</sigName>
+              <xpcsigName>Logic Block/Rate Transition</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
+                
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Selector</sigName>
+              <xpcsigName>Logic Block/Selector</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
+                <sigLabel>x</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Selector1</sigName>
+              <xpcsigName>Logic Block/Selector1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
+                <sigLabel>y</sigLabel>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
 
@@ -61,19 +319,12 @@
 		<SubSystem>
 		<Name>UI Input</Name>
 		<xPCName>modified_motor/UI Input</xPCName>
-				<SubSystem>
-		<Name>Slider</Name>
-		<xPCName>modified_motor/UI Input/Slider</xPCName>
 		
-		
-
-		</SubSystem>
-
 		
             <block>
-            <blkName>TODO_Color_Input</blkName>
-            <xpcblkName>UI Input/TODO_Color_Input</xpcblkName>
-            <SLblockPath>modified_motor/UI Input/TODO_Color_Input</SLblockPath>
+            <blkName>Color</blkName>
+            <xpcblkName>UI Input/Color</xpcblkName>
+            <SLblockPath>modified_motor/UI Input/Color</SLblockPath>
             <isSrc>[1 0 1]</isSrc>
           <parameter>
           <paramName>Value</paramName>
@@ -82,9 +333,9 @@
           </parameter>
           </block>
             <block>
-            <blkName>TODO_ID_Input1</blkName>
-            <xpcblkName>UI Input/TODO_ID_Input1</xpcblkName>
-            <SLblockPath>modified_motor/UI Input/TODO_ID_Input1</SLblockPath>
+            <blkName>ID</blkName>
+            <xpcblkName>UI Input/ID</xpcblkName>
+            <SLblockPath>modified_motor/UI Input/ID</SLblockPath>
             <isSrc>[1 0 1]</isSrc>
           <parameter>
           <paramName>Value</paramName>
@@ -93,9 +344,10 @@
           </parameter>
           </block>
             <block>
-            <blkName>TODO_Mode_input</blkName>
-            <xpcblkName>UI Input/TODO_Mode_input</xpcblkName>
-            <SLblockPath>modified_motor/UI Input/TODO_Mode_input</SLblockPath>
+            <blkName>Mode
+</blkName>
+            <xpcblkName>UI Input/Mode </xpcblkName>
+            <SLblockPath>modified_motor/UI Input/Mode </SLblockPath>
             <isSrc>[1 0 1]</isSrc>
           <parameter>
           <paramName>Value</paramName>
@@ -602,17 +854,6 @@
 
 		
             <block>
-            <blkName>Switch</blkName>
-            <xpcblkName>motor_subsystem/Switch</xpcblkName>
-            <SLblockPath>modified_motor/motor_subsystem/Switch</SLblockPath>
-            <isSrc>[1 0 1]</isSrc>
-          <parameter>
-          <paramName>Value</paramName>
-          <dim>[1, 1]</dim>  
-		  <SubSystemName>modified_motor/motor_subsystem</SubSystemName>
-          </parameter>
-          </block>
-            <block>
             <blkName>Gain</blkName>
             <xpcblkName>motor_subsystem/Gain</xpcblkName>
             <SLblockPath>modified_motor/motor_subsystem/Gain</SLblockPath>
@@ -780,6 +1021,28 @@
 		</SubSystem>
 
       
+            <block>
+            <blkName>Run</blkName>
+            <xpcblkName>Run</xpcblkName>
+            <SLblockPath>modified_motor/Run</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Switch</blkName>
+            <xpcblkName>Switch</xpcblkName>
+            <SLblockPath>modified_motor/Switch</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor</SubSystemName>
+          </parameter>
+          </block>
 
 <block>
    <blkName>Model Parameters</blkName>

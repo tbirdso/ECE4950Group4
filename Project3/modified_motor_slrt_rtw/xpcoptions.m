@@ -10,4 +10,8 @@ info.xpcObjCom=0;
   info.SampleTimes(2).PriorityAssigned = 'yes';
     info.SampleTimes(2).Priority = 40;
   info.SampleTimes(2).TID = 1;
+  info.SampleTimes(3).PeriodAndOffset = [1.0 0.0];
+  info.SampleTimes(3).PriorityAssigned = 'yes';
+    info.SampleTimes(3).Priority = 41;
+  info.SampleTimes(3).TID = 2;
 

@@ -40,6 +40,8 @@ void modified_motor_ChangeStepSize(real_T newBaseRateStepSize,
     ratio;
   modified_motor_M->Timing.stepSize1 = modified_motor_M->Timing.stepSize1 *
     ratio;
+  modified_motor_M->Timing.stepSize2 = modified_motor_M->Timing.stepSize2 *
+    ratio;
   modified_motor_M->Timing.stepSize = modified_motor_M->Timing.stepSize * ratio;
 }
 

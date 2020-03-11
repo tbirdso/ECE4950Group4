@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.51
+ * Model version              : 1.135
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Mon Mar 09 23:43:13 2020
+ * C source code generated on : Wed Mar 11 01:12:51 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -24,6 +24,7 @@
 #include "builtin_typeid_types.h"
 #include "multiword_types.h"
 #include "zero_crossing_types.h"
+#include "modified_motor.h"
 
 extern const serialfifoptr serialfifoground;
 extern const bcmsglist1553 bcmsg1553ground;
@@ -33,8 +34,10 @@ extern const char *getRefMdlPath(const char *refMdl);
 extern int getRefMdlSignalNumber(const char *mdlBlock, const char *signalName);
 extern void encquanserq8(SimStruct *rts);
 extern void daquanserq8(SimStruct *rts);
-
-/* private model entry point functions */
+void modified_motor_output0(void);
+void modified_motor_update0(void);
+void modified_motor_output2(void);
+void modified_motor_update2(void);     /* private model entry point functions */
 extern void modified_motor_derivatives(void);
 
 #endif                                 /* RTW_HEADER_modified_motor_private_h_ */
