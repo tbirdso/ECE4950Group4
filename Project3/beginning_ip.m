@@ -53,7 +53,11 @@ L = bwlabel(binimg);
 
 % create colors matrix
 % empty = 0, red = 1, green = 2, blue = 3
+% centroids: [[210,398],[211,126],[345,247],[572,293]]
+% centroids colors: [green,purple,red,blue]
 n = 17; % number of wells
+gameState.wellCoord = [[210,398] [211,126] [345,247] [572,293] [] [] []];
+gameState.wellLoc = [30,60,90,135,180,-45,-90,-120,-150];
 gameState.wellColor = zeros(1,n);
 for x = 1:4
 %    centroids(x,1),centroids(x,2)
