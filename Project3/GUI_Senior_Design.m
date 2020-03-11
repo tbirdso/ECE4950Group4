@@ -167,7 +167,7 @@ function push_everysticker_Callback(hObject, eventdata, handles)
 every_sticker = get(hObject,'Value');
 if every_sticker == 1
     every_color = 0;
-    specific_sticker = 1;
+    specific_sticker = 0;
 end
 
 
