@@ -92,20 +92,26 @@ function menu_color_Callback(hObject, eventdata, handles)
 % hObject    handle to menu_color (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+BLUE = 1;
+RED = 2;
+GREEN = 3;
+YELLOW = 4;
+IDK_MAN = 0;
+
 color_choice = 0;
 color_contents = cellstr(get(hObject,'String'));
 color = num2str(color_contents{get(hObject,'Value')});
 switch color
     case 'Blue'
-        color_choice = 1;
+        color_choice = BLUE;
     case 'Red'
-        color_choice = 2;
+        color_choice = RED;
     case 'Green'
-        color_choice = 3;
+        color_choice = GREEN;
     case 'Yellow'
-        color_choice = 4;
+        color_choice = YELLOW;
     otherwise
-        color_choice = 0;
+        color_choice = IDK_MAN;
 end
 set_param('modified_motor/UI/Color', 'Value', int2str(color_choice));
 % Hints: contents = cellstr(get(hObject,'String')) returns menu_color contents as cell array

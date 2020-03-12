@@ -3,6 +3,13 @@
 %% Init
 clc; clear; close all;
 
+% Define enums
+BLUE = 1;
+RED = 2;
+GREEN = 3;
+YELLOW = 4;
+IDK_MAN = 0;
+
 %% Load the images
 imgStruct = load("img_with_lamp.mat");
 background = imgStruct.background_img;
@@ -47,15 +54,15 @@ for i = 1:numCentroids
     coords(i,2) = round(centroids(i,2));
     curColor = hsvImg(coords(i,2),coords(i,1),1);
     if ((0 <= curColor)&&(curColor < 0.14)) || (curColor > 0.88)
-        colors(i) = 1;  % red
+        colors(i) = RED;
     elseif (0.14 <= curColor)&&(curColor < 0.22)
-        colors(i) = 2;  % yellow
+        colors(i) = YELLOW;
     elseif (0.22 <= curColor)&&(curColor < 0.44)
-        colors(i) = 3;  % green
+        colors(i) = GREEN;
     elseif (0.44 <= curColor)&&(curColor < 0.75)
-        colors(i) = 4;  % blue
+        colors(i) = BLUE;
     else
-        colors(i) = 0;  % idk man
+        colors(i) = IDK_MAN; 
     end
 end
 
