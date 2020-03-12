@@ -8,7 +8,7 @@ imgStruct = load("img_with_lamp.mat");
 background = imgStruct.background_img;
 newImg = imgStruct.img4;
 % figure, imshow(background);
-figure, imshow(newImg);
+% figure, imshow(newImg);
 
 %% Convert to gray images
 grayBackground = rgb2gray(background);
@@ -63,7 +63,7 @@ end
 % image_data = [color, xPos, yPos]
 image_data = zeros(numCentroids, 3);
 for i = 1:numCentroids
-    image_data(i,1) = colors(i);        % colors
+    image_data(i,1) = colors(i);    % colors
     image_data(i,2) = coords(i,1);  % x positions
     image_data(i,3) = coords(i,2);  % y positions
 end
