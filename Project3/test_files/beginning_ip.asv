@@ -38,11 +38,12 @@ regCentroids = regionprops(connectedComponents, 'centroid');
 centroids = cat(1, regCentroids.Centroid);
 
 %% Detect colors of centroids
-% empty = 0, red = 1, green = 2, blue = 3
-numCentroids = numel(regCentroids);
+
 
 %% Create image_data matrix
 % image_data = [shape, color, xPos, yPos]
+% empty = 0, red = 1, green = 2, blue = 3
+numCentroids = numel(regCentroids);
 image_data = zeros(numCentroids, 4);
 for i = 1:numCentroids
     image_data(i,1) = 1;    % shapes
