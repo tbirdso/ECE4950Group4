@@ -7,7 +7,6 @@ function varargout = GUI_Senior_Design(varargin)
 %      the existing singleton*.
 %
 %      GUI_SENIOR_DESIGN('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in GUI_SENIOR_DESIGN.M with the given input arguments.
 %
 %      GUI_SENIOR_DESIGN('Property','Value',...) creates a new GUI_SENIOR_DESIGN or raises the
 %      existing singleton*.  Starting from the left, property value pairs are
@@ -79,12 +78,12 @@ function push_run_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-cur_index = get_param('modified_motor/Run', 'Value');
+%cur_index = get_param('modified_motor/Run', 'Value');
 if cur_index == '0'
-    set_param('modified_motor/Run', 'Value', '1');
+   % set_param('modified_motor/Run', 'Value', '1');
     
 else
-    set_param('modified_motor/Run', 'Value', '0');
+   % set_param('modified_motor/Run', 'Value', '0');
 end
 
 % --- Executes on selection change in menu_color.
@@ -172,7 +171,8 @@ function sticker_location_Callback(hObject, eventdata, handles)
 % hObject    handle to sticker_location (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-sticker_location_degrees = str2double(get(hObject,'String'))
+sticker_location = 
+%sticker_location_degrees = str2double(get(hObject,'String'))
 stick_location_deg_capped = mod(sticker_location_degrees, 360);
 if stick_location_deg_capped > 180
     stick_location_deg_capped = stick_location_deg_capped - 360;
