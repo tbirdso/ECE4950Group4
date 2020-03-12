@@ -22,7 +22,7 @@ function varargout = GUI_Senior_Design(varargin)
 
 % Edit the above text to modify the response to help GUI_Senior_Design
 
-% Last Modified by GUIDE v2.5 11-Mar-2020 22:14:52
+% Last Modified by GUIDE v2.5 11-Mar-2020 18:26:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -73,13 +73,13 @@ function varargout = GUI_Senior_Design_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in push_run.
-function push_run_Callback(hObject, eventdata, handles)
-% hObject    handle to push_run (see GCBO)
+% --- Executes on button press in toggle_run.
+function toggle_run_Callback(hObject, eventdata, handles)
+% hObject    handle to toggle_run (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of push_run
+% Hint: get(hObject,'Value') returns toggle state of toggle_run
 run = get(hObject,'Value');
 
 
@@ -126,6 +126,13 @@ set_param('modified_motor/UI/Position', 'Value', color_choice);
 % Hints: contents = cellstr(get(hObject,'String')) returns menu_shape contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from menu_shape
 
+% --- Executes on button press in toggle_stop.
+function toggle_stop_Callback(hObject, eventdata, handles)
+% hObject    handle to toggle_stop (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+stop = get(hObject,'Value');
+% Hint: get(hObject,'Value') returns toggle state of toggle_stop
 
 
 % --- Executes on selection change in menu_mode.
@@ -187,11 +194,3 @@ function sticker_location_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-% --- Executes on button press in push_take_picture.
-function push_take_picture_Callback(hObject, eventdata, handles)
-% hObject    handle to push_take_picture (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-take_picture = get(hObject,'Value');
