@@ -8,7 +8,7 @@ imgStruct = load("img_with_lamp.mat");
 background = imgStruct.background_img;
 newImg = imgStruct.img4;
 % figure, imshow(background);
-% figure, imshow(newImg);
+figure, imshow(newImg);
 
 %% Convert to gray images
 grayBackground = rgb2gray(background);
@@ -37,30 +37,33 @@ regProps = regionprops(connectedComponents);
 regCentroids = regionprops(connectedComponents, 'centroid');
 centroids = cat(1, regCentroids.Centroid);
 
-%% Detect colors of centroids
-% empty = 0, red = 1, green = 2, blue = 3
+%% Get coordinates and colors of centroids
 numCentroids = numel(regCentroids);
+hsvImg = rgb2hsv(newImg);
+coords = zeros(numCentroids,2);
+colors = zeros(numCentroids,1);
+for i = 1:numCentroids
+    coords(i,1) = round(centroids(i,1));
+    coords(i,2) = round(centroids(i,2));
+    curColor = hsvImg(coords(i,2),coords(i,1),1);
+    if ((0 <= curColor)&&(curColor < 0.14)) || (curColor > 0.88)
+        colors(i) = 1;  % red
+    elseif (0.14 <= curColor)&&(curColor < 0.22)
+        colors(i) = 2;  % yellow
+    elseif (0.22 <= curColor)&&(curColor < 0.44)
+        colors(i) = 3;  % green
+    elseif (0.44 <= curColor)&&(curColor < 0.75)
+        colors(i) = 4;  % blue
+    else
+        colors(i) = 0;  % idk man
+    end
+end
 
 %% Create image_data matrix
-% image_data = [shape, color, xPos, yPos]
-image_data = zeros(numCentroids, 4);
+% image_data = [color, xPos, yPos]
+image_data = zeros(numCentroids, 3);
 for i = 1:numCentroids
-    image_data(i,1) = 1;    % shapes
-    image_data(i,2) = 3;    % colors
-    image_data(i,3) = round(centroids(i,1));    % x positions
-    image_data(i,4) = round(centroids(i,2));    % y positions
+    image_data(i,1) = colors(i);        % colors
+    image_data(i,2) = coords(i,1);  % x positions
+    image_data(i,3) = coords(i,2);  % y positions
 end
-% image_data(1:4,:) = [1, 1, 320, 0;
-%     1, 1, 320, 0;
-%     1, 1, 0, 240;
-%     1, 2, 320, 480];
-% n = 17; % number of wells
-% gameState.wellCoord = [[210,398] [211,126] [345,247] [572,293] [] [] []];
-% gameState.wellLoc = [30,60,90,135,180,-45,-90,-120,-150];
-% gameState.wellColor = zeros(1,n);
-% for x = 1:4
-% %    centroids(x,1),centroids(x,2)
-%     if (isequal(img(round(centroids(x,1)),round(centroids(x,2))),[255,255,255]))
-%         gameState.wellColor(x) = 1;
-%     end
-% end
