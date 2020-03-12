@@ -7,6 +7,7 @@ function varargout = GUI_Senior_Design(varargin)
 %      the existing singleton*.
 %
 %      GUI_SENIOR_DESIGN('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in GUI_SENIOR_DESIGN.M with the given input arguments.
 %
 %      GUI_SENIOR_DESIGN('Property','Value',...) creates a new GUI_SENIOR_DESIGN or raises the
 %      existing singleton*.  Starting from the left, property value pairs are
