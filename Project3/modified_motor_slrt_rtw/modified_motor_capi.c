@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.135
+ * Model version              : 1.141
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Wed Mar 11 01:12:51 2020
+ * C source code generated on : Wed Mar 11 21:18:23 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -69,13 +69,13 @@ static const rtwCAPI_Signals rtBlockSignals[] = {
   { 7, 0, TARGET_STRING("Logic Block/Selector1"),
     TARGET_STRING("y"), 0, 0, 0, 0, 0 },
 
-  { 8, 0, TARGET_STRING("UI Input/Data Type Conversion"),
+  { 8, 0, TARGET_STRING("UI/Data Type Conversion"),
     TARGET_STRING("id_val"), 0, 0, 0, 0, 0 },
 
-  { 9, 0, TARGET_STRING("UI Input/Data Type Conversion1"),
+  { 9, 0, TARGET_STRING("UI/Data Type Conversion1"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
-  { 10, 0, TARGET_STRING("UI Input/Data Type Conversion2"),
+  { 10, 0, TARGET_STRING("UI/Data Type Conversion2"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
   { 11, 0, TARGET_STRING("motor_subsystem/Derivative"),
@@ -204,13 +204,13 @@ static const rtwCAPI_BlockParameters rtBlockParameters[] = {
   { 49, TARGET_STRING("Logic Block/Rate Transition"),
     TARGET_STRING("X0"), 0, 0, 0 },
 
-  { 50, TARGET_STRING("UI Input/Color"),
+  { 50, TARGET_STRING("UI/Color"),
     TARGET_STRING("Value"), 0, 0, 0 },
 
-  { 51, TARGET_STRING("UI Input/ID"),
+  { 51, TARGET_STRING("UI/ID"),
     TARGET_STRING("Value"), 0, 0, 0 },
 
-  { 52, TARGET_STRING("UI Input/Mode "),
+  { 52, TARGET_STRING("UI/Mode "),
     TARGET_STRING("Value"), 1, 0, 0 },
 
   { 53, TARGET_STRING("motor_subsystem/Gain"),
@@ -575,10 +575,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 1881450807U,
-    3727993589U,
-    2577957431U,
-    3148472767U },
+  { 2070926241U,
+    3272643675U,
+    1742262604U,
+    1804519244U },
   (NULL), 0,
   0
 };

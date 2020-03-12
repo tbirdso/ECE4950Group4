@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.135
+ * Model version              : 1.141
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Wed Mar 11 01:12:51 2020
+ * C source code generated on : Wed Mar 11 21:18:23 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -40,8 +40,16 @@ RT_MODEL_modified_motor_T modified_motor_M_;
 RT_MODEL_modified_motor_T *const modified_motor_M = &modified_motor_M_;
 
 /* Forward declaration for local functions */
-static void modified_motor_rect_to_polar(const real_T rect_coords_data[], const
-  int32_T rect_coords_size[2], real_T angles_data[], int32_T *angles_size);
+static void modified_motor_merge(int32_T idx_data[], real_T x_data[], int32_T
+  offset, int32_T np, int32_T nq, int32_T iwork_data[], real_T xwork_data[]);
+static void modified_motor_merge_block(int32_T idx_data[], real_T x_data[],
+  int32_T n, int32_T iwork_data[], real_T xwork_data[]);
+static void modified_motor_sortIdx(real_T x_data[], int32_T *x_size, int32_T
+  idx_data[], int32_T *idx_size);
+static void modified_motor_sort(real_T x_data[], int32_T *x_size);
+static void modified_motor_rect_to_polar_v2(const real_T center_coords_data[],
+  const int32_T center_coords_size[2], real_T Angles_sorted_data[], int32_T
+  *Angles_sorted_size);
 static void rate_monotonic_scheduler(void);
 time_T rt_SimUpdateDiscreteEvents(
   int_T rtmNumSampTimes, void *rtmTimingData, int_T *rtmSampleHitPtr, int_T
@@ -174,46 +182,387 @@ static void rt_ertODEUpdateContinuousStates(RTWSolverInfo *si )
 }
 
 /* Function for MATLAB Function: '<S2>/Generate Angles List' */
-static void modified_motor_rect_to_polar(const real_T rect_coords_data[], const
-  int32_T rect_coords_size[2], real_T angles_data[], int32_T *angles_size)
+static void modified_motor_merge(int32_T idx_data[], real_T x_data[], int32_T
+  offset, int32_T np, int32_T nq, int32_T iwork_data[], real_T xwork_data[])
 {
-  real_T z_data[100];
-  int32_T k;
-  int32_T z_size_idx_0;
+  int32_T n;
+  int32_T q;
+  int32_T qend;
+  int32_T iout;
+  int32_T exitg1;
+  if (nq != 0) {
+    n = np + nq;
+    for (q = 0; q + 1 <= n; q++) {
+      iwork_data[q] = idx_data[offset + q];
+      xwork_data[q] = x_data[offset + q];
+    }
+
+    n = 0;
+    q = np;
+    qend = np + nq;
+    iout = offset - 1;
+    do {
+      exitg1 = 0;
+      iout++;
+      if (xwork_data[n] <= xwork_data[q]) {
+        idx_data[iout] = iwork_data[n];
+        x_data[iout] = xwork_data[n];
+        if (n + 1 < np) {
+          n++;
+        } else {
+          exitg1 = 1;
+        }
+      } else {
+        idx_data[iout] = iwork_data[q];
+        x_data[iout] = xwork_data[q];
+        if (q + 1 < qend) {
+          q++;
+        } else {
+          q = (iout - n) + 1;
+          while (n + 1 <= np) {
+            idx_data[q + n] = iwork_data[n];
+            x_data[q + n] = xwork_data[n];
+            n++;
+          }
+
+          exitg1 = 1;
+        }
+      }
+    } while (exitg1 == 0);
+  }
+}
+
+/* Function for MATLAB Function: '<S2>/Generate Angles List' */
+static void modified_motor_merge_block(int32_T idx_data[], real_T x_data[],
+  int32_T n, int32_T iwork_data[], real_T xwork_data[])
+{
+  int32_T bLen;
+  int32_T tailOffset;
+  int32_T nTail;
+  int32_T nPairs;
+  nPairs = n >> 2;
+  bLen = 4;
+  while (nPairs > 1) {
+    if ((nPairs & 1) != 0) {
+      nPairs--;
+      tailOffset = bLen * nPairs;
+      nTail = n - tailOffset;
+      if (nTail > bLen) {
+        modified_motor_merge(idx_data, x_data, tailOffset, bLen, nTail - bLen,
+                             iwork_data, xwork_data);
+      }
+    }
+
+    tailOffset = bLen << 1;
+    nPairs >>= 1;
+    for (nTail = 1; nTail <= nPairs; nTail++) {
+      modified_motor_merge(idx_data, x_data, (nTail - 1) * tailOffset, bLen,
+                           bLen, iwork_data, xwork_data);
+    }
+
+    bLen = tailOffset;
+  }
+
+  if (n > bLen) {
+    modified_motor_merge(idx_data, x_data, 0, bLen, n - bLen, iwork_data,
+                         xwork_data);
+  }
+}
+
+/* Function for MATLAB Function: '<S2>/Generate Angles List' */
+static void modified_motor_sortIdx(real_T x_data[], int32_T *x_size, int32_T
+  idx_data[], int32_T *idx_size)
+{
+  real_T b_x_data[100];
+  int32_T nNaNs;
+  int32_T iwork_data[100];
+  real_T xwork_data[100];
+  int32_T n;
+  real_T x4[4];
+  int8_T idx4[4];
+  int32_T ib;
+  int32_T wOffset;
+  int32_T itmp;
+  int8_T perm[4];
+  int32_T i1;
+  int32_T i3;
+  int32_T i4;
+  int32_T b_x_size;
+  int32_T iwork_size;
+  int32_T xwork_size;
+  int8_T b_idx_0;
+  b_idx_0 = (int8_T)*x_size;
+  b_x_size = *x_size;
+  n = *x_size;
+  for (nNaNs = 0; nNaNs < n; nNaNs++) {
+    b_x_data[nNaNs] = x_data[nNaNs];
+  }
+
+  *idx_size = b_idx_0;
+  n = b_idx_0;
+  for (nNaNs = 0; nNaNs < n; nNaNs++) {
+    idx_data[nNaNs] = 0;
+  }
+
+  n = *x_size;
+  x4[0] = 0.0;
+  idx4[0] = 0;
+  x4[1] = 0.0;
+  idx4[1] = 0;
+  x4[2] = 0.0;
+  idx4[2] = 0;
+  x4[3] = 0.0;
+  idx4[3] = 0;
+  iwork_size = b_idx_0;
+  ib = iwork_size;
+  for (nNaNs = 0; nNaNs < ib; nNaNs++) {
+    iwork_data[nNaNs] = 0;
+  }
+
+  b_idx_0 = (int8_T)*x_size;
+  xwork_size = b_idx_0;
+  ib = xwork_size;
+  for (nNaNs = 0; nNaNs < ib; nNaNs++) {
+    xwork_data[nNaNs] = 0.0;
+  }
+
+  nNaNs = 1;
+  ib = 0;
+  for (wOffset = 0; wOffset + 1 <= n; wOffset++) {
+    if (rtIsNaN(b_x_data[wOffset])) {
+      idx_data[n - nNaNs] = wOffset + 1;
+      xwork_data[n - nNaNs] = b_x_data[wOffset];
+      nNaNs++;
+    } else {
+      ib++;
+      idx4[ib - 1] = (int8_T)(wOffset + 1);
+      x4[ib - 1] = b_x_data[wOffset];
+      if (ib == 4) {
+        ib = wOffset - nNaNs;
+        if (x4[0] <= x4[1]) {
+          i1 = 1;
+          itmp = 2;
+        } else {
+          i1 = 2;
+          itmp = 1;
+        }
+
+        if (x4[2] <= x4[3]) {
+          i3 = 3;
+          i4 = 4;
+        } else {
+          i3 = 4;
+          i4 = 3;
+        }
+
+        if (x4[i1 - 1] <= x4[i3 - 1]) {
+          if (x4[itmp - 1] <= x4[i3 - 1]) {
+            perm[0] = (int8_T)i1;
+            perm[1] = (int8_T)itmp;
+            perm[2] = (int8_T)i3;
+            perm[3] = (int8_T)i4;
+          } else if (x4[itmp - 1] <= x4[i4 - 1]) {
+            perm[0] = (int8_T)i1;
+            perm[1] = (int8_T)i3;
+            perm[2] = (int8_T)itmp;
+            perm[3] = (int8_T)i4;
+          } else {
+            perm[0] = (int8_T)i1;
+            perm[1] = (int8_T)i3;
+            perm[2] = (int8_T)i4;
+            perm[3] = (int8_T)itmp;
+          }
+        } else if (x4[i1 - 1] <= x4[i4 - 1]) {
+          if (x4[itmp - 1] <= x4[i4 - 1]) {
+            perm[0] = (int8_T)i3;
+            perm[1] = (int8_T)i1;
+            perm[2] = (int8_T)itmp;
+            perm[3] = (int8_T)i4;
+          } else {
+            perm[0] = (int8_T)i3;
+            perm[1] = (int8_T)i1;
+            perm[2] = (int8_T)i4;
+            perm[3] = (int8_T)itmp;
+          }
+        } else {
+          perm[0] = (int8_T)i3;
+          perm[1] = (int8_T)i4;
+          perm[2] = (int8_T)i1;
+          perm[3] = (int8_T)itmp;
+        }
+
+        idx_data[ib - 2] = idx4[perm[0] - 1];
+        idx_data[ib - 1] = idx4[perm[1] - 1];
+        idx_data[ib] = idx4[perm[2] - 1];
+        idx_data[ib + 1] = idx4[perm[3] - 1];
+        b_x_data[ib - 2] = x4[perm[0] - 1];
+        b_x_data[ib - 1] = x4[perm[1] - 1];
+        b_x_data[ib] = x4[perm[2] - 1];
+        b_x_data[ib + 1] = x4[perm[3] - 1];
+        ib = 0;
+      }
+    }
+  }
+
+  wOffset = *x_size - nNaNs;
+  if (ib > 0) {
+    perm[1] = 0;
+    perm[2] = 0;
+    perm[3] = 0;
+    if (ib == 1) {
+      perm[0] = 1;
+    } else if (ib == 2) {
+      if (x4[0] <= x4[1]) {
+        perm[0] = 1;
+        perm[1] = 2;
+      } else {
+        perm[0] = 2;
+        perm[1] = 1;
+      }
+    } else if (x4[0] <= x4[1]) {
+      if (x4[1] <= x4[2]) {
+        perm[0] = 1;
+        perm[1] = 2;
+        perm[2] = 3;
+      } else if (x4[0] <= x4[2]) {
+        perm[0] = 1;
+        perm[1] = 3;
+        perm[2] = 2;
+      } else {
+        perm[0] = 3;
+        perm[1] = 1;
+        perm[2] = 2;
+      }
+    } else if (x4[0] <= x4[2]) {
+      perm[0] = 2;
+      perm[1] = 1;
+      perm[2] = 3;
+    } else if (x4[1] <= x4[2]) {
+      perm[0] = 2;
+      perm[1] = 3;
+      perm[2] = 1;
+    } else {
+      perm[0] = 3;
+      perm[1] = 2;
+      perm[2] = 1;
+    }
+
+    for (i1 = 1; i1 <= ib; i1++) {
+      idx_data[(wOffset - ib) + i1] = idx4[perm[i1 - 1] - 1];
+      b_x_data[(wOffset - ib) + i1] = x4[perm[i1 - 1] - 1];
+    }
+  }
+
+  ib = ((nNaNs - 1) >> 1) + 1;
+  for (i1 = 1; i1 < ib; i1++) {
+    itmp = idx_data[wOffset + i1];
+    idx_data[wOffset + i1] = idx_data[n - i1];
+    idx_data[n - i1] = itmp;
+    b_x_data[wOffset + i1] = xwork_data[n - i1];
+    b_x_data[n - i1] = xwork_data[wOffset + i1];
+  }
+
+  if (((nNaNs - 1) & 1) != 0) {
+    b_x_data[wOffset + ib] = xwork_data[wOffset + ib];
+  }
+
+  n = (*x_size - nNaNs) + 1;
+  if (n > 1) {
+    modified_motor_merge_block(idx_data, b_x_data, n, iwork_data, xwork_data);
+  }
+
+  *x_size = b_x_size;
+  n = b_x_size;
+  for (nNaNs = 0; nNaNs < n; nNaNs++) {
+    x_data[nNaNs] = b_x_data[nNaNs];
+  }
+}
+
+/* Function for MATLAB Function: '<S2>/Generate Angles List' */
+static void modified_motor_sort(real_T x_data[], int32_T *x_size)
+{
+  real_T vwork_data[100];
+  int32_T vstride;
+  int32_T dim;
+  int32_T b;
+  int32_T c_k;
+  int32_T vwork_size;
+  emxArray_int32_T_100_modified_T vwork_data_0;
+  dim = 2;
+  if (*x_size != 1) {
+    dim = 1;
+  }
+
+  if (dim <= 1) {
+    b = *x_size;
+  } else {
+    b = 1;
+  }
+
+  vwork_size = (int8_T)b;
+  vstride = 1;
+  c_k = 1;
+  while (c_k <= dim - 1) {
+    vstride *= *x_size;
+    c_k = 2;
+  }
+
+  for (dim = 0; dim + 1 <= vstride; dim++) {
+    for (c_k = 0; c_k + 1 <= b; c_k++) {
+      vwork_data[c_k] = x_data[c_k * vstride + dim];
+    }
+
+    modified_motor_sortIdx(vwork_data, &vwork_size, vwork_data_0.data,
+      &vwork_data_0.size);
+    for (c_k = 0; c_k + 1 <= b; c_k++) {
+      x_data[dim + c_k * vstride] = vwork_data[c_k];
+    }
+  }
+}
+
+/* Function for MATLAB Function: '<S2>/Generate Angles List' */
+static void modified_motor_rect_to_polar_v2(const real_T center_coords_data[],
+  const int32_T center_coords_size[2], real_T Angles_sorted_data[], int32_T
+  *Angles_sorted_size)
+{
+  int32_T i;
 
   /*  PURPOSE - Convert rectangular object coordinates to angle for */
   /*            motor position */
   /*  INPUTS */
-  /*    - X, Y coordinates */
+  /*    - X, Y coordinates == center coords of each object */
   /*  OUTPUTS */
-  /*    - Magnitude, angle (rad) */
+  /*    - Vector of angles (radians) ordered ascending */
   /*  NOTES */
   /*    - Theta == 0 is at the bottom of the map */
   /*    - Positive angles are in RH plane */
   /*    - Negative angles are in LH plane */
   /*    - Camera origin (0,0) is at NW corner */
   /*    - Game board origin is at image center */
-  /*  FIXME const values */
-  /*  FIXME this math is probably wrong */
-  /*  Get the game board center so we can calculate relative angles */
-  /*  Get (x,y) relative to the game board center */
-  /*  Find cartesian angles where an eastward object is at theta == 0 */
-  z_size_idx_0 = rect_coords_size[0];
-  for (k = 0; k < z_size_idx_0; k++) {
-    z_data[k] = (200.0 - rect_coords_data[k + rect_coords_size[0]]) / (200.0 -
-      rect_coords_data[k]);
+  /*  Update these to actual frame dimensions */
+  /*  Get the game board center (Approx. Motor Location)  */
+  /*  so we can calculate relative angles */
+  *Angles_sorted_size = center_coords_size[0];
+  for (i = 0; i < center_coords_size[0]; i++) {
+    Angles_sorted_data[i] = atan((center_coords_data[i + center_coords_size[0]]
+      - 296.5) / (center_coords_data[i] - 413.0));
+
+    /*  Quandrant dependent angle math */
+    if ((center_coords_data[i] - 413.0 > 0.0) && (center_coords_data[i +
+         center_coords_size[0]] - 296.5 < 0.0)) {
+      Angles_sorted_data[i] = -Angles_sorted_data[i];
+    } else if ((center_coords_data[i] - 413.0 < 0.0) && (center_coords_data[i +
+                center_coords_size[0]] - 296.5 < 0.0)) {
+      Angles_sorted_data[i] = 3.1415926535897931 - Angles_sorted_data[i];
+    } else if ((center_coords_data[i] - 413.0 < 0.0) && (center_coords_data[i +
+                center_coords_size[0]] - 296.5 > 0.0)) {
+      Angles_sorted_data[i] = 3.1415926535897931 + -Angles_sorted_data[i];
+    } else {
+      /*  may need to fix this, this is 4th quadrant */
+    }
   }
 
-  *angles_size = z_size_idx_0;
-  for (k = 0; k < z_size_idx_0; k++) {
-    angles_data[k] = z_data[k];
-  }
-
-  for (k = 0; k + 1 <= z_size_idx_0; k++) {
-    angles_data[k] = atan(angles_data[k]);
-  }
-
-  /* angles = - (cartesian_angles - pi/2); */
+  modified_motor_sort(Angles_sorted_data, Angles_sorted_size);
 }
 
 /* Model output function for TID0 */
@@ -713,7 +1062,7 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
       tmp_data[i + tmp_size[0]] = tmp_data_0[e_size_idx_0 * 3 + i];
     }
 
-    modified_motor_rect_to_polar(tmp_data, tmp_size, angles_to_visit_data,
+    modified_motor_rect_to_polar_v2(tmp_data, tmp_size, angles_to_visit_data,
       &angles_to_visit_size);
   } else if (modified_motor_B.DataTypeConversion2 == 2.0) {
     /* '<S9>:1:45' */
@@ -824,7 +1173,7 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
       tmp_data[i + tmp_size[0]] = tmp_data_0[(f_size_idx_0 * 3 + g_data[i]) - 1];
     }
 
-    modified_motor_rect_to_polar(tmp_data, tmp_size, angles_to_visit_data,
+    modified_motor_rect_to_polar_v2(tmp_data, tmp_size, angles_to_visit_data,
       &angles_to_visit_size);
   } else if (modified_motor_B.DataTypeConversion2 == 3.0) {
     /* '<S9>:1:49' */

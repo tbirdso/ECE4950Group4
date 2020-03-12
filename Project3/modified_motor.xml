@@ -317,52 +317,52 @@ Read</sigName>
 
 		</SubSystem>
 		<SubSystem>
-		<Name>UI Input</Name>
-		<xPCName>modified_motor/UI Input</xPCName>
+		<Name>UI</Name>
+		<xPCName>modified_motor/UI</xPCName>
 		
 		
             <block>
             <blkName>Color</blkName>
-            <xpcblkName>UI Input/Color</xpcblkName>
-            <SLblockPath>modified_motor/UI Input/Color</SLblockPath>
+            <xpcblkName>UI/Color</xpcblkName>
+            <SLblockPath>modified_motor/UI/Color</SLblockPath>
             <isSrc>[1 0 1]</isSrc>
           <parameter>
           <paramName>Value</paramName>
           <dim>[1, 1]</dim>  
-		  <SubSystemName>modified_motor/UI Input</SubSystemName>
+		  <SubSystemName>modified_motor/UI</SubSystemName>
           </parameter>
           </block>
             <block>
             <blkName>ID</blkName>
-            <xpcblkName>UI Input/ID</xpcblkName>
-            <SLblockPath>modified_motor/UI Input/ID</SLblockPath>
+            <xpcblkName>UI/ID</xpcblkName>
+            <SLblockPath>modified_motor/UI/ID</SLblockPath>
             <isSrc>[1 0 1]</isSrc>
           <parameter>
           <paramName>Value</paramName>
           <dim>[1, 1]</dim>  
-		  <SubSystemName>modified_motor/UI Input</SubSystemName>
+		  <SubSystemName>modified_motor/UI</SubSystemName>
           </parameter>
           </block>
             <block>
             <blkName>Mode
 </blkName>
-            <xpcblkName>UI Input/Mode </xpcblkName>
-            <SLblockPath>modified_motor/UI Input/Mode </SLblockPath>
+            <xpcblkName>UI/Mode </xpcblkName>
+            <SLblockPath>modified_motor/UI/Mode </SLblockPath>
             <isSrc>[1 0 1]</isSrc>
           <parameter>
           <paramName>Value</paramName>
           <dim>[1, 1]</dim>  
-		  <SubSystemName>modified_motor/UI Input</SubSystemName>
+		  <SubSystemName>modified_motor/UI</SubSystemName>
           </parameter>
           </block>
 			  
 			  
               <signal>
               <sigName>Data Type Conversion</sigName>
-              <xpcsigName>UI Input/Data Type Conversion</xpcsigName>
+              <xpcsigName>UI/Data Type Conversion</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/UI Input</SubSystemName>
+			  <SubSystemName>modified_motor/UI</SubSystemName>
                 <sigLabel>id_val</sigLabel>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
@@ -370,20 +370,20 @@ Read</sigName>
 			  
               <signal>
               <sigName>Data Type Conversion1</sigName>
-              <xpcsigName>UI Input/Data Type Conversion1</xpcsigName>
+              <xpcsigName>UI/Data Type Conversion1</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/UI Input</SubSystemName>
+			  <SubSystemName>modified_motor/UI</SubSystemName>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
 			  
 			  
               <signal>
               <sigName>Data Type Conversion2</sigName>
-              <xpcsigName>UI Input/Data Type Conversion2</xpcsigName>
+              <xpcsigName>UI/Data Type Conversion2</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/UI Input</SubSystemName>
+			  <SubSystemName>modified_motor/UI</SubSystemName>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
 

@@ -67,7 +67,7 @@ pt(4).dtname     = 'real_T';
 
 
   
-pt(5).blockname = 'UI Input/Color';
+pt(5).blockname = 'UI/Color';
 pt(5).paramname = 'Value';
 pt(5).class     = 'scalar';
 pt(5).nrows     = 1;
@@ -83,7 +83,7 @@ pt(5).dtname     = 'real_T';
 
 
   
-pt(6).blockname = 'UI Input/ID';
+pt(6).blockname = 'UI/ID';
 pt(6).paramname = 'Value';
 pt(6).class     = 'scalar';
 pt(6).nrows     = 1;
@@ -99,7 +99,7 @@ pt(6).dtname     = 'real_T';
 
 
   
-pt(7).blockname = 'UI Input/Mode ';
+pt(7).blockname = 'UI/Mode ';
 pt(7).paramname = 'Value';
 pt(7).class     = 'scalar';
 pt(7).nrows     = 1;

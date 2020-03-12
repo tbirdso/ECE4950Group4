@@ -81,7 +81,7 @@ bio(8).ndims=2;
 bio(8).size=[];
 bio(8).isStruct=false;
 
-bio(9).blkName='UI Input/Data Type Conversion';
+bio(9).blkName='UI/Data Type Conversion';
 bio(9).sigName='id_val';
 bio(9).portIdx=0;
 bio(9).dim=[1,1];
@@ -91,7 +91,7 @@ bio(9).ndims=2;
 bio(9).size=[];
 bio(9).isStruct=false;
 
-bio(10).blkName='UI Input/Data Type Conversion1';
+bio(10).blkName='UI/Data Type Conversion1';
 bio(10).sigName='';
 bio(10).portIdx=0;
 bio(10).dim=[1,1];
@@ -101,7 +101,7 @@ bio(10).ndims=2;
 bio(10).size=[];
 bio(10).isStruct=false;
 
-bio(11).blkName='UI Input/Data Type Conversion2';
+bio(11).blkName='UI/Data Type Conversion2';
 bio(11).sigName='';
 bio(11).portIdx=0;
 bio(11).dim=[1,1];
