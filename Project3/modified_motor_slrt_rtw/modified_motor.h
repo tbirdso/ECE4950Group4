@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.145
+ * Model version              : 1.148
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Wed Mar 11 23:07:30 2020
+ * C source code generated on : Wed Mar 11 23:38:45 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -841,11 +841,12 @@ typedef struct {
   real_T Sum;                          /* '<S5>/Sum' */
   real_T ReadImage;                    /* '<S1>/Read Image' */
   real_T target_pos;                   /* '<S2>/Rate Transition' */
+  real_T Run;                          /* '<Root>/Run' */
   real_T Gain;                         /* '<S4>/Gain' */
-  real_T theta;                        /* '<S17>/Integrator2' */
-  real_T Positionsteps;                /* '<S14>/Q4 Enc ' */
-  real_T Positionrad;                  /* '<S14>/Invert Sign' */
-  real_T Switch1;                      /* '<S18>/Switch1' */
+  real_T theta;                        /* '<S16>/Integrator2' */
+  real_T Positionsteps;                /* '<S13>/Q4 Enc ' */
+  real_T Positionrad;                  /* '<S13>/Invert Sign' */
+  real_T Switch1;                      /* '<S17>/Switch1' */
   real_T Sig1;                         /* '<S4>/Sum' */
   real_T Kp;                           /* '<S4>/Kp' */
   real_T Derivative;                   /* '<S4>/Derivative' */
@@ -854,44 +855,35 @@ typedef struct {
   real_T KI;                           /* '<S4>/KI' */
   real_T Pos_Input;                    /* '<S4>/Sum1' */
   real_T Voltage_Input;                /* '<S4>/Saturation' */
-  real_T SwitchPosition;               /* '<S13>/Add' */
-  real_T SimulatedMotor;               /* '<S13>/Gate1' */
-  real_T RealMotor;                    /* '<S13>/Gate2' */
-  real_T Saturation;                   /* '<S14>/Saturation' */
-  real_T i;                            /* '<S17>/Integrator' */
-  real_T Resistance;                   /* '<S17>/Resistance' */
-  real_T ddttheta;                     /* '<S17>/Integrator1' */
-  real_T Ke;                           /* '<S17>/Ke' */
-  real_T Add;                          /* '<S17>/Add' */
-  real_T Kt;                           /* '<S17>/Kt' */
-  real_T Damping;                      /* '<S17>/Damping' */
-  real_T Add1;                         /* '<S17>/Add1' */
-  real_T ddti;                         /* '<S17>/Inductance' */
-  real_T d2dt2theta;                   /* '<S17>/Inertia ' */
-  real_T y;                            /* '<S2>/Selector1' */
-  real_T x;                            /* '<S2>/Selector' */
+  real_T SwitchPosition;               /* '<S12>/Add' */
+  real_T SimulatedMotor;               /* '<S12>/Gate1' */
+  real_T RealMotor;                    /* '<S12>/Gate2' */
+  real_T Saturation;                   /* '<S13>/Saturation' */
+  real_T i;                            /* '<S16>/Integrator' */
+  real_T Resistance;                   /* '<S16>/Resistance' */
+  real_T ddttheta;                     /* '<S16>/Integrator1' */
+  real_T Ke;                           /* '<S16>/Ke' */
+  real_T Add;                          /* '<S16>/Add' */
+  real_T Kt;                           /* '<S16>/Kt' */
+  real_T Damping;                      /* '<S16>/Damping' */
+  real_T Add1;                         /* '<S16>/Add1' */
+  real_T ddti;                         /* '<S16>/Inductance' */
+  real_T d2dt2theta;                   /* '<S16>/Inertia ' */
   real_T UnitDelay_i;                  /* '<S8>/Unit Delay' */
   real_T Sum_m;                        /* '<S8>/Sum' */
-  real_T Fcn;                          /* '<S2>/Fcn' */
   real_T DataTypeConversion2;          /* '<S3>/Data Type Conversion2' */
-  real_T TmpRTBAtGenerateAnglesListInpor;
-  real_T color_enum;                   /* '<S3>/Color' */
   real_T DataTypeConversion1;          /* '<S3>/Data Type Conversion1' */
-  real_T TmpRTBAtGenerateAnglesListInp_d;
-  real_T pos_val;                      /* '<S3>/Position' */
   real_T DataTypeConversion;           /* '<S3>/Data Type Conversion' */
-  real_T TmpRTBAtGenerateAnglesListInp_l;
-  real_T y_f;                          /* '<S14>/Convert to Rad' */
-  real_T DataTypeConversion_h;         /* '<S11>/Data Type Conversion' */
-  real_T DataTypeConversion1_i;        /* '<S11>/Data Type Conversion1' */
-  real_T TmpSignalConversionAtsfunxyInpo[2];
+  real_T TmpRTBAtPositionIteratorInport2;
+  real_T y;                            /* '<S13>/Convert to Rad' */
   real_T iter_cur_index;               /* '<S10>/Data Store Read' */
+  real_T DataStoreRead1;               /* '<S10>/Data Store Read1' */
   real_T target_pos_o;                 /* '<S10>/Iterator' */
   real_T next_index;                   /* '<S10>/Iterator' */
+  real_T next_run;                     /* '<S10>/Iterator' */
   real_T angles_vector[100];           /* '<S2>/Generate Angles List' */
   real_T image_data[400];              /* '<S1>/Process Image' */
   real_T image;                        /* '<S1>/Fire Webcam' */
-  int8_T Modescanseek_colorseek_pos;   /* '<S3>/Mode' */
 } B_modified_motor_T;
 
 /* Block states (auto storage) for system '<Root>' */
@@ -904,11 +896,10 @@ typedef struct {
   real_T LastUAtTimeA;                 /* '<S4>/Derivative' */
   real_T TimeStampB;                   /* '<S4>/Derivative' */
   real_T LastUAtTimeB;                 /* '<S4>/Derivative' */
-  volatile real_T TmpRTBAtGenerateAnglesListInpor;/* synthesized block */
-  volatile real_T TmpRTBAtGenerateAnglesListInp_f;/* synthesized block */
-  volatile real_T TmpRTBAtGenerateAnglesListInp_o;/* synthesized block */
+  volatile real_T TmpRTBAtPositionIteratorInport2;/* synthesized block */
   real_T Index;                        /* '<S10>/Store_Index' */
-  real_T Q4DA_RWORK[16];               /* '<S14>/Q4 DA ' */
+  real_T Run_sig;                      /* '<S10>/Store_Index1' */
+  real_T Q4DA_RWORK[16];               /* '<S13>/Q4 DA ' */
   struct {
     void *AQHandles;
     void *SlioLTF;
@@ -922,71 +913,69 @@ typedef struct {
   struct {
     void *AQHandles;
     void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedFo_l;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
   } HiddenToAsyncQueue_InsertedFo_e;   /* synthesized block */
 
   struct {
     void *AQHandles;
     void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedFo_g;   /* synthesized block */
+  } HiddenToAsyncQueue_InsertedF_lr;   /* synthesized block */
 
   struct {
     void *AQHandles;
     void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedF_gn;   /* synthesized block */
+  } HiddenToAsyncQueue_InsertedF_lh;   /* synthesized block */
 
   struct {
     void *AQHandles;
     void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedFo_c;   /* synthesized block */
+  } HiddenToAsyncQueue_InsertedFo_h;   /* synthesized block */
 
   struct {
     void *AQHandles;
     void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedFo_b;   /* synthesized block */
+  } HiddenToAsyncQueue_InsertedF_lu;   /* synthesized block */
 
-  struct {
-    void *AQHandles;
-    void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedF_cy;   /* synthesized block */
-
-  int_T Q4Enc_IWORK[3];                /* '<S14>/Q4 Enc ' */
+  int_T Q4Enc_IWORK[3];                /* '<S13>/Q4 Enc ' */
   struct {
     int_T AcquireOK;
-  } SFunction_IWORK;                   /* '<S15>/S-Function' */
+  } SFunction_IWORK;                   /* '<S14>/S-Function' */
 
   struct {
     int_T AcquireOK;
-  } SFunction_IWORK_m;                 /* '<S16>/S-Function' */
+  } SFunction_IWORK_m;                 /* '<S15>/S-Function' */
 
-  int_T Q4DA_IWORK;                    /* '<S14>/Q4 DA ' */
-  volatile int8_T TmpRTBAtGenerateAnglesListInp_d;/* synthesized block */
-  volatile int8_T TmpRTBAtGenerateAnglesListInp_i;/* synthesized block */
-  volatile int8_T TmpRTBAtGenerateAnglesListInp_c;/* synthesized block */
+  int_T Q4DA_IWORK;                    /* '<S13>/Q4 DA ' */
+  volatile int8_T TmpRTBAtPositionIteratorInpor_a;/* synthesized block */
   int8_T PositionIterator_SubsysRanBC; /* '<S2>/Position Iterator' */
 } DW_modified_motor_T;
 
 /* Continuous states (auto storage) */
 typedef struct {
-  real_T Integrator2_CSTATE;           /* '<S17>/Integrator2' */
+  real_T Integrator2_CSTATE;           /* '<S16>/Integrator2' */
   real_T Integrator_CSTATE;            /* '<S4>/Integrator' */
-  real_T Integrator_CSTATE_g;          /* '<S17>/Integrator' */
-  real_T Integrator1_CSTATE;           /* '<S17>/Integrator1' */
+  real_T Integrator_CSTATE_g;          /* '<S16>/Integrator' */
+  real_T Integrator1_CSTATE;           /* '<S16>/Integrator1' */
 } X_modified_motor_T;
 
 /* State derivatives (auto storage) */
 typedef struct {
-  real_T Integrator2_CSTATE;           /* '<S17>/Integrator2' */
+  real_T Integrator2_CSTATE;           /* '<S16>/Integrator2' */
   real_T Integrator_CSTATE;            /* '<S4>/Integrator' */
-  real_T Integrator_CSTATE_g;          /* '<S17>/Integrator' */
-  real_T Integrator1_CSTATE;           /* '<S17>/Integrator1' */
+  real_T Integrator_CSTATE_g;          /* '<S16>/Integrator' */
+  real_T Integrator1_CSTATE;           /* '<S16>/Integrator1' */
 } XDot_modified_motor_T;
 
 /* State disabled  */
 typedef struct {
-  boolean_T Integrator2_CSTATE;        /* '<S17>/Integrator2' */
+  boolean_T Integrator2_CSTATE;        /* '<S16>/Integrator2' */
   boolean_T Integrator_CSTATE;         /* '<S4>/Integrator' */
-  boolean_T Integrator_CSTATE_g;       /* '<S17>/Integrator' */
-  boolean_T Integrator1_CSTATE;        /* '<S17>/Integrator1' */
+  boolean_T Integrator_CSTATE_g;       /* '<S16>/Integrator' */
+  boolean_T Integrator1_CSTATE;        /* '<S16>/Integrator1' */
 } XDis_modified_motor_T;
 
 /* Zero-crossing (trigger) state */
@@ -1024,28 +1013,31 @@ typedef struct {
 /* Parameters (auto storage) */
 struct P_modified_motor_T_ {
   real_T J;                            /* Variable: J
-                                        * Referenced by: '<S17>/Inertia '
+                                        * Referenced by: '<S16>/Inertia '
                                         */
   real_T Ke;                           /* Variable: Ke
-                                        * Referenced by: '<S17>/Ke'
+                                        * Referenced by: '<S16>/Ke'
                                         */
   real_T Kt;                           /* Variable: Kt
-                                        * Referenced by: '<S17>/Kt'
+                                        * Referenced by: '<S16>/Kt'
                                         */
   real_T L;                            /* Variable: L
-                                        * Referenced by: '<S17>/Inductance'
+                                        * Referenced by: '<S16>/Inductance'
                                         */
   real_T R;                            /* Variable: R
-                                        * Referenced by: '<S17>/Resistance'
+                                        * Referenced by: '<S16>/Resistance'
                                         */
   real_T b;                            /* Variable: b
-                                        * Referenced by: '<S17>/Damping'
+                                        * Referenced by: '<S16>/Damping'
                                         */
   real_T Target_Position_Y0;           /* Computed Parameter: Target_Position_Y0
                                         * Referenced by: '<S10>/Target_Position'
                                         */
   real_T Store_Index_InitialValue;     /* Expression: 0
                                         * Referenced by: '<S10>/Store_Index'
+                                        */
+  real_T Store_Index1_InitialValue;    /* Expression: 0
+                                        * Referenced by: '<S10>/Store_Index1'
                                         */
   real_T Constant_Value;               /* Expression: 1
                                         * Referenced by: '<S5>/Constant'
@@ -1059,89 +1051,92 @@ struct P_modified_motor_T_ {
   real_T RateTransition_X0;            /* Expression: 0
                                         * Referenced by: '<S2>/Rate Transition'
                                         */
+  real_T Run_Value;                    /* Expression: 1
+                                        * Referenced by: '<Root>/Run'
+                                        */
   real_T Gain_Gain;                    /* Expression: 1
                                         * Referenced by: '<S4>/Gain'
                                         */
   real_T Integrator2_IC;               /* Expression: 0
-                                        * Referenced by: '<S17>/Integrator2'
+                                        * Referenced by: '<S16>/Integrator2'
                                         */
   real_T Switch_Value;                 /* Expression: 1
                                         * Referenced by: '<Root>/Switch'
                                         */
   real_T Q4Enc_P1_Size[2];             /* Computed Parameter: Q4Enc_P1_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P1;                     /* Expression: boardtype
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P2_Size[2];             /* Computed Parameter: Q4Enc_P2_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P2;                     /* Expression: channel
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P3_Size[2];             /* Computed Parameter: Q4Enc_P3_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P3;                     /* Expression: initialCount
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P4_Size[2];             /* Computed Parameter: Q4Enc_P4_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P4;                     /* Expression: prescale
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P5_Size[2];             /* Computed Parameter: Q4Enc_P5_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P5;                     /* Expression: quadrature
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P6_Size[2];             /* Computed Parameter: Q4Enc_P6_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P6;                     /* Expression: mode
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P7_Size[2];             /* Computed Parameter: Q4Enc_P7_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P7;                     /* Expression: synchronousIndex
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P8_Size[2];             /* Computed Parameter: Q4Enc_P8_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P8;                     /* Expression: indexPolarity
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P9_Size[2];             /* Computed Parameter: Q4Enc_P9_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P9;                     /* Expression: preserveCounts
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P10_Size[2];            /* Computed Parameter: Q4Enc_P10_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P10;                    /* Expression: sampleTime
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P11_Size[2];            /* Computed Parameter: Q4Enc_P11_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P11;                    /* Expression: pciBus
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P12_Size[2];            /* Computed Parameter: Q4Enc_P12_Size
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Q4Enc_P12;                    /* Expression: pciSlot
-                                        * Referenced by: '<S14>/Q4 Enc '
+                                        * Referenced by: '<S13>/Q4 Enc '
                                         */
   real_T Switch1_Threshold;            /* Expression: 0
-                                        * Referenced by: '<S18>/Switch1'
+                                        * Referenced by: '<S17>/Switch1'
                                         */
   real_T Kp_Gain;                      /* Expression: 10
                                         * Referenced by: '<S4>/Kp'
@@ -1162,79 +1157,79 @@ struct P_modified_motor_T_ {
                                         * Referenced by: '<S4>/Saturation'
                                         */
   real_T Constant_Value_c;             /* Expression: 1
-                                        * Referenced by: '<S13>/Constant'
+                                        * Referenced by: '<S12>/Constant'
                                         */
   real_T Gate1_Threshold;              /* Expression: 0
-                                        * Referenced by: '<S13>/Gate1'
+                                        * Referenced by: '<S12>/Gate1'
                                         */
   real_T Gate2_Threshold;              /* Expression: 0
-                                        * Referenced by: '<S13>/Gate2'
+                                        * Referenced by: '<S12>/Gate2'
                                         */
   real_T Saturation_UpperSat_a;        /* Expression: 5
-                                        * Referenced by: '<S14>/Saturation'
+                                        * Referenced by: '<S13>/Saturation'
                                         */
   real_T Saturation_LowerSat_d;        /* Expression: -5
-                                        * Referenced by: '<S14>/Saturation'
+                                        * Referenced by: '<S13>/Saturation'
                                         */
   real_T Q4DA_P1_Size[2];              /* Computed Parameter: Q4DA_P1_Size
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P1;                      /* Expression: boardtype
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P2_Size[2];              /* Computed Parameter: Q4DA_P2_Size
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P2;                      /* Expression: channel
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P3_Size[2];              /* Computed Parameter: Q4DA_P3_Size
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P3;                      /* Expression: range
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P4_Size[2];              /* Computed Parameter: Q4DA_P4_Size
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P4;                      /* Expression: simul
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P5_Size[2];              /* Computed Parameter: Q4DA_P5_Size
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P5;                      /* Expression: reset
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P6_Size[2];              /* Computed Parameter: Q4DA_P6_Size
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P6;                      /* Expression: initValue
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P7_Size[2];              /* Computed Parameter: Q4DA_P7_Size
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P7;                      /* Expression: sampleTime
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P8_Size[2];              /* Computed Parameter: Q4DA_P8_Size
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P8;                      /* Expression: pciBus
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P9_Size[2];              /* Computed Parameter: Q4DA_P9_Size
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Q4DA_P9;                      /* Expression: pciSlot
-                                        * Referenced by: '<S14>/Q4 DA '
+                                        * Referenced by: '<S13>/Q4 DA '
                                         */
   real_T Integrator_IC_a;              /* Expression: 0
-                                        * Referenced by: '<S17>/Integrator'
+                                        * Referenced by: '<S16>/Integrator'
                                         */
   real_T Integrator1_IC;               /* Expression: 0
-                                        * Referenced by: '<S17>/Integrator1'
+                                        * Referenced by: '<S16>/Integrator1'
                                         */
   real_T Constant_Value_b;             /* Expression: 1
                                         * Referenced by: '<S8>/Constant'
@@ -1242,13 +1237,10 @@ struct P_modified_motor_T_ {
   real_T UnitDelay_InitialCondition_b; /* Expression: 0
                                         * Referenced by: '<S8>/Unit Delay'
                                         */
-  real_T Run_Value;                    /* Expression: 1
-                                        * Referenced by: '<Root>/Run'
-                                        */
-  real_T Color_Value;                  /* Expression: 2
+  real_T Color_Value;                  /* Expression: 3
                                         * Referenced by: '<S3>/Color'
                                         */
-  real_T Position_Value;               /* Expression: 1
+  real_T Position_Value;               /* Expression: -3.1416
                                         * Referenced by: '<S3>/Position'
                                         */
   int8_T Mode_Value;                   /* Computed Parameter: Mode_Value
@@ -1496,14 +1488,13 @@ extern RT_MODEL_modified_motor_T *const modified_motor_M;
  * '<S8>'   : 'modified_motor/Logic Block/Clock'
  * '<S9>'   : 'modified_motor/Logic Block/Generate Angles List'
  * '<S10>'  : 'modified_motor/Logic Block/Position Iterator'
- * '<S11>'  : 'modified_motor/Logic Block/XY Graph'
- * '<S12>'  : 'modified_motor/Logic Block/Position Iterator/Iterator'
- * '<S13>'  : 'modified_motor/motor_subsystem/Motor Selector'
- * '<S14>'  : 'modified_motor/motor_subsystem/Real motor'
- * '<S15>'  : 'modified_motor/motor_subsystem/Scope 1'
- * '<S16>'  : 'modified_motor/motor_subsystem/Scope 3'
- * '<S17>'  : 'modified_motor/motor_subsystem/Simulated Motor'
- * '<S18>'  : 'modified_motor/motor_subsystem/Switching Logic'
- * '<S19>'  : 'modified_motor/motor_subsystem/Real motor/Convert to Rad'
+ * '<S11>'  : 'modified_motor/Logic Block/Position Iterator/Iterator'
+ * '<S12>'  : 'modified_motor/motor_subsystem/Motor Selector'
+ * '<S13>'  : 'modified_motor/motor_subsystem/Real motor'
+ * '<S14>'  : 'modified_motor/motor_subsystem/Scope 1'
+ * '<S15>'  : 'modified_motor/motor_subsystem/Scope 3'
+ * '<S16>'  : 'modified_motor/motor_subsystem/Simulated Motor'
+ * '<S17>'  : 'modified_motor/motor_subsystem/Switching Logic'
+ * '<S18>'  : 'modified_motor/motor_subsystem/Real motor/Convert to Rad'
  */
 #endif                                 /* RTW_HEADER_modified_motor_h_ */

@@ -198,6 +198,17 @@ Data</blkName>
 		  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
           </parameter>
           </block>
+            <block>
+            <blkName>Store_Index1</blkName>
+            <xpcblkName>Logic Block/Position Iterator/Store_Index1</xpcblkName>
+            <SLblockPath>modified_motor/Logic Block/Position Iterator/Store_Index1</SLblockPath>
+            <isSrc>[0 0 0]</isSrc>
+          <parameter>
+          <paramName>InitialValue</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
+          </parameter>
+          </block>
 			  
 			  
               <signal>
@@ -223,6 +234,16 @@ Data</blkName>
 			  
 			  
               <signal>
+              <sigName>Iterator/p3</sigName>
+              <xpcsigName>Logic Block/Position Iterator/Iterator/p3</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
               <sigName>Data Store
 Read</sigName>
               <xpcsigName>Logic Block/Position Iterator/Data Store Read</xpcsigName>
@@ -232,13 +253,17 @@ Read</sigName>
                 <sigLabel>iter_cur_index</sigLabel>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
-
-		</SubSystem>
-		<SubSystem>
-		<Name>XY Graph</Name>
-		<xPCName>modified_motor/Logic Block/XY Graph</xPCName>
-		
-		
+			  
+			  
+              <signal>
+              <sigName>Data Store
+Read1</sigName>
+              <xpcsigName>Logic Block/Position Iterator/Data Store Read1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
 
 		</SubSystem>
 		<SubSystem>
@@ -274,44 +299,12 @@ Read</sigName>
 			  
 			  
               <signal>
-              <sigName>Fcn</sigName>
-              <xpcsigName>Logic Block/Fcn</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
               <sigName>Rate Transition</sigName>
               <xpcsigName>Logic Block/Rate Transition</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
 			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
                 
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
-              <sigName>Selector</sigName>
-              <xpcsigName>Logic Block/Selector</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
-                <sigLabel>x</sigLabel>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
-              <sigName>Selector1</sigName>
-              <xpcsigName>Logic Block/Selector1</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
-                <sigLabel>y</sigLabel>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
 
@@ -354,39 +347,6 @@ Read</sigName>
 		  <SubSystemName>modified_motor/UI</SubSystemName>
           </parameter>
           </block>
-			  
-			  
-              <signal>
-              <sigName>Color</sigName>
-              <xpcsigName>UI/Color</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/UI</SubSystemName>
-                <sigLabel>color_enum</sigLabel>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
-              <sigName>Mode</sigName>
-              <xpcsigName>UI/Mode</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/UI</SubSystemName>
-                <sigLabel>Mode (scan, seek_color, seek_pos)</sigLabel>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
-              <sigName>Position</sigName>
-              <xpcsigName>UI/Position</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/UI</SubSystemName>
-                <sigLabel>pos_val</sigLabel>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
 			  
 			  
               <signal>
@@ -1074,6 +1034,16 @@ Read</sigName>
 		  <SubSystemName>modified_motor</SubSystemName>
           </parameter>
           </block>
+			  
+			  
+              <signal>
+              <sigName>Run</sigName>
+              <xpcsigName>Run</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
 
 <block>
    <blkName>Model Parameters</blkName>

@@ -79,10 +79,12 @@ function push_run_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of push_run
-run = get(hObject,'Value');
-set_param('modified_motor/Run', 'Value', '1');
-
+cur_index = get_param('modified_motor/Run', 'Value');
+if cur_index == '0'
+    set_param('modified_motor/Run', 'Value', '1');
+else
+    set_param('modified_motor/Run', 'Value', '0');
+end
 
 % --- Executes on selection change in menu_color.
 function menu_color_Callback(hObject, eventdata, handles)
@@ -196,4 +198,5 @@ function push_take_picture_Callback(hObject, eventdata, handles)
 % hObject    handle to push_take_picture (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-take_picture = get(hObject,'Value');
+
+

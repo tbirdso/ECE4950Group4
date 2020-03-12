@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.145
+ * Model version              : 1.148
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Wed Mar 11 23:07:30 2020
+ * C source code generated on : Wed Mar 11 23:38:45 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
