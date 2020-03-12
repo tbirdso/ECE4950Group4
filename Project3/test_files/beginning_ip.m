@@ -1,46 +1,53 @@
-%A brief tutorial to using Image Processing Functions in MATLAB.
-%This code loads an image and processes it using regionprops and connected
-%components.
-%Many lines of code have been commented out, you can uncomment them to see
-%the output. 
-%When in doubt, MATLAB Help files will come in handy. 
-%Written for ECE 4950 Senior Design at Clemson University
-%Author: Venkataraman Ganesh  
-%10 October 2014
+%% ECE 4950 Group Fore Image Processing
 
+%% Init
 clc; clear; close all;
 
-%load the image: 
-img = imread('test_img.jpg');
-figure, imshow(img);
-grayimg = rgb2gray(img);
+%% Load the images
+imgStruct = load("img_with_lamp.mat");
+background = imgStruct.background_img;
+newImg = imgStruct.img4;
+% figure, imshow(background);
+% figure, imshow(newImg);
 
-%Convert to a binary image from the intensity image
-compbinimg = imbinarize(grayimg,0.5);
-binimg = imcomplement(compbinimg);
-% figure, imshow(binimg);
+%% Convert to gray images
+grayBackground = rgb2gray(background);
+grayNewImg = rgb2gray(newImg);
+% figure, imhist(grayBackground,256);
+% figure, imhist(grayNewImg,256);
 
-%Use CC to identify connected components
-CC = bwconncomp(binimg);
+%% Convert to binary images
+binaryBackground = imbinarize(grayBackground,0.8);
+binaryNewImg = imbinarize(grayNewImg,0.8);
+% figure, imshow(binaryBackground);
+% figure, imshow(binaryNewImg);
 
-%Use regionprops to compute area/ find centroids
-S = regionprops(CC,'Area');
+%% Isolate foreground
+foreground = bitxor(binaryNewImg, binaryBackground);
+% figure, imshow(foreground);
+se = strel('disk', 2);
+isolatedForeground = imerode(foreground, se);
+% figure, imshow(isolatedForeground);
 
-%g= S(1).Area; %Values stored in a struct
+%% Identify connected components
+connectedComponents = bwconncomp(isolatedForeground);
 
-%Use regionprops to find centroid
-cent = regionprops(binimg, 'centroid');
-centroids = cat(1, cent.Centroid); %struct holds the centroids
+%% Use regionprops to compute area/ find centroids
+regProps = regionprops(connectedComponents);
 
-% figure, imshow(grayimg)
+%% Use regionprops to find centroid
+regCentroids = regionprops(connectedComponents, 'centroid');
+centroids = cat(1, regCentroids.Centroid);
+
+%% Plot x on objects
 % hold on
 % for x = 1:numel(S)
 %     plot(centroids(x,1),centroids(x,2),'rx');
 % end
 % hold off
 
-%label image regions
-L = bwlabel(binimg);
+%% Label image regions
+% L = bwlabel(binaryImg);
 % figure,imshow(binimg)
 % hold on
 % for i = 1:numel(cent)
@@ -55,13 +62,13 @@ L = bwlabel(binimg);
 % empty = 0, red = 1, green = 2, blue = 3
 % centroids: [[210,398],[211,126],[345,247],[572,293]]
 % centroids colors: [green,purple,red,blue]
-n = 17; % number of wells
-gameState.wellCoord = [[210,398] [211,126] [345,247] [572,293] [] [] []];
-gameState.wellLoc = [30,60,90,135,180,-45,-90,-120,-150];
-gameState.wellColor = zeros(1,n);
-for x = 1:4
-%    centroids(x,1),centroids(x,2)
-    if (isequal(img(round(centroids(x,1)),round(centroids(x,2))),[255,255,255]))
-        gameState.wellColor(x) = 1;
-    end
-end
+% n = 17; % number of wells
+% gameState.wellCoord = [[210,398] [211,126] [345,247] [572,293] [] [] []];
+% gameState.wellLoc = [30,60,90,135,180,-45,-90,-120,-150];
+% gameState.wellColor = zeros(1,n);
+% for x = 1:4
+% %    centroids(x,1),centroids(x,2)
+%     if (isequal(img(round(centroids(x,1)),round(centroids(x,2))),[255,255,255]))
+%         gameState.wellColor(x) = 1;
+%     end
+% end
