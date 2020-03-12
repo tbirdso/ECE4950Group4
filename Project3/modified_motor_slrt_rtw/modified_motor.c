@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.195
+ * Model version              : 1.197
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 18:15:12 2020
+ * C source code generated on : Thu Mar 12 18:34:34 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -845,18 +845,10 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
     /*  Can only send fixed-length matrices so specify max 100 regions */
     /*  FIXME do processing */
     /* '<S6>:1:7' */
-    memset(&modified_motor_B.image_data[0], 0, 400U * sizeof(real_T));
-
     /*  ex. pass back [shape; color; x_pos; y_pos] */
     /* '<S6>:1:10' */
-    for (b_trueCount = 0; b_trueCount < 4; b_trueCount++) {
-      for (f_size_idx_0 = 0; f_size_idx_0 < 5; f_size_idx_0++) {
-        modified_motor_B.image_data[f_size_idx_0 + 100 * b_trueCount] =
-          modified_motor_P.img_rgns[5 * b_trueCount + f_size_idx_0];
-      }
-    }
-
-    /* End of MATLAB Function: '<S1>/Process Image' */
+    memcpy(&modified_motor_B.image_data[0], &modified_motor_P.img_rgns[0], 400U *
+           sizeof(real_T));
 
     /* DataTypeConversion: '<S4>/Data Type Conversion2' incorporates:
      *  Constant: '<S4>/Mode'
@@ -2087,7 +2079,7 @@ RT_MODEL_modified_motor_T *modified_motor(void)
   modified_motor_M->Sizes.numSampTimes = (3);/* Number of sample times */
   modified_motor_M->Sizes.numBlocks = (67);/* Number of blocks */
   modified_motor_M->Sizes.numBlockIO = (44);/* Number of block outputs */
-  modified_motor_M->Sizes.numBlockPrms = (116);/* Sum of parameter "widths" */
+  modified_motor_M->Sizes.numBlockPrms = (496);/* Sum of parameter "widths" */
   return modified_motor_M;
 }
 

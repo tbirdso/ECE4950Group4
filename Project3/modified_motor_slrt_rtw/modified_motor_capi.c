@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.195
+ * Model version              : 1.197
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 18:15:12 2020
+ * C source code generated on : Thu Mar 12 18:34:34 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -347,7 +347,7 @@ static const rtwCAPI_ModelParameters rtModelParameters[] = {
 
   { 96, TARGET_STRING("b"), 0, 0, 0 },
 
-  { 97, TARGET_STRING("img_rgns"), 0, 3, 0 },
+  { 97, TARGET_STRING("img_rgns"), 0, 1, 0 },
 
   { 0, (NULL), 0, 0, 0 }
 };
@@ -489,9 +489,7 @@ static const rtwCAPI_DimensionMap rtDimensionMap[] = {
 
   { rtwCAPI_MATRIX_COL_MAJOR, 2, 2, 0 },
 
-  { rtwCAPI_VECTOR, 4, 2, 0 },
-
-  { rtwCAPI_MATRIX_COL_MAJOR, 6, 2, 0 }
+  { rtwCAPI_VECTOR, 4, 2, 0 }
 };
 
 /* Dimension Array- use dimArrayIndex to access elements of this array */
@@ -501,9 +499,7 @@ static const uint_T rtDimensionArray[] = {
   100,                                 /* 2 */
   4,                                   /* 3 */
   100,                                 /* 4 */
-  1,                                   /* 5 */
-  5,                                   /* 6 */
-  4                                    /* 7 */
+  1                                    /* 5 */
 };
 
 /* C-API stores floating point values in an array. The elements of this  *
@@ -562,10 +558,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 1331296555U,
-    3047053559U,
-    3468611936U,
-    3615631146U },
+  { 3380822300U,
+    356858364U,
+    165446041U,
+    2969498295U },
   (NULL), 0,
   0
 };

@@ -1018,7 +1018,7 @@ Read1</sigName>
    </parameter>
    <parameter>
       <paramName>img_rgns</paramName>
-          <dim>[5,4]</dim>
+          <dim>[100,4]</dim>
 		 <SubSystemName>modified_motor</SubSystemName>
    </parameter>
 </block>
