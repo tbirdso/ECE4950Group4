@@ -1,113 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?><Root>
       		<SubSystem>
-		<Name>Image Deconstructor</Name>
-		<xPCName>modified_motor/Image Deconstructor</xPCName>
+		<Name>Imager</Name>
+		<xPCName>modified_motor/Imager</xPCName>
 				<SubSystem>
-		<Name>Clock</Name>
-		<xPCName>modified_motor/Image Deconstructor/Clock</xPCName>
-		
-		
-            <block>
-            <blkName>Constant</blkName>
-            <xpcblkName>Image Deconstructor/Clock/Constant</xpcblkName>
-            <SLblockPath>modified_motor/Image Deconstructor/Clock/Constant</SLblockPath>
-            <isSrc>[1 0 1]</isSrc>
-          <parameter>
-          <paramName>Value</paramName>
-          <dim>[1, 1]</dim>  
-		  <SubSystemName>modified_motor/Image Deconstructor/Clock</SubSystemName>
-          </parameter>
-          </block>
-            <block>
-            <blkName>Unit Delay</blkName>
-            <xpcblkName>Image Deconstructor/Clock/Unit Delay</xpcblkName>
-            <SLblockPath>modified_motor/Image Deconstructor/Clock/Unit Delay</SLblockPath>
-            <isSrc>[0 1 1]</isSrc>
-          <parameter>
-          <paramName>InitialCondition</paramName>
-          <dim>[1, 1]</dim>  
-		  <SubSystemName>modified_motor/Image Deconstructor/Clock</SubSystemName>
-          </parameter>
-          </block>
-			  
-			  
-              <signal>
-              <sigName>Sum</sigName>
-              <xpcsigName>Image Deconstructor/Clock/Sum</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/Image Deconstructor/Clock</SubSystemName>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
-              <sigName>Unit Delay</sigName>
-              <xpcsigName>Image Deconstructor/Clock/Unit Delay</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/Image Deconstructor/Clock</SubSystemName>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-
-		</SubSystem>
-		<SubSystem>
-		<Name>Fire Webcam</Name>
-		<xPCName>modified_motor/Image Deconstructor/Fire Webcam</xPCName>
-		
-		
-
-		</SubSystem>
-		<SubSystem>
 		<Name>Process Image</Name>
-		<xPCName>modified_motor/Image Deconstructor/Process Image</xPCName>
+		<xPCName>modified_motor/Imager/Process Image</xPCName>
 		
 		
 
 		</SubSystem>
 
 		
-            <block>
-            <blkName>Store Image
-Data</blkName>
-            <xpcblkName>Image Deconstructor/Store Image Data</xpcblkName>
-            <SLblockPath>modified_motor/Image Deconstructor/Store Image Data</SLblockPath>
-            <isSrc>[0 0 0]</isSrc>
-          <parameter>
-          <paramName>InitialValue</paramName>
-          <dim>[1, 1]</dim>  
-		  <SubSystemName>modified_motor/Image Deconstructor</SubSystemName>
-          </parameter>
-          </block>
-			  
-			  
-              <signal>
-              <sigName>Fire Webcam</sigName>
-              <xpcsigName>Image Deconstructor/Fire Webcam</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/Image Deconstructor</SubSystemName>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
 			  
 			  
               <signal>
               <sigName>Process Image</sigName>
-              <xpcsigName>Image Deconstructor/Process Image</xpcsigName>
+              <xpcsigName>Imager/Process Image</xpcsigName>
               <sigWidth>400</sigWidth>
               <sigDim>[100, 4]</sigDim>
-			  <SubSystemName>modified_motor/Image Deconstructor</SubSystemName>
+			  <SubSystemName>modified_motor/Imager</SubSystemName>
                 <sigLabel>image_data_sig</sigLabel>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
-              <sigName>Read Image</sigName>
-              <xpcsigName>Image Deconstructor/Read Image</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/Image Deconstructor</SubSystemName>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
 

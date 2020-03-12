@@ -198,5 +198,13 @@ function push_take_picture_Callback(hObject, eventdata, handles)
 % hObject    handle to push_take_picture (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+WEBCAM_NAME = 'HP USB Webcam';
+camera = webcam(WEBCAM_NAME);
+
+img = snapshot(camera);
+
+clear camera;
+
+%set_param('modified_motor/Imager/Image','Value','');
 
 

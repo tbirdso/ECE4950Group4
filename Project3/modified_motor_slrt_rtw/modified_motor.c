@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.148
+ * Model version              : 1.154
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Wed Mar 11 23:38:45 2020
+ * C source code generated on : Thu Mar 12 00:14:41 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -613,30 +613,30 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
 
   /* End of RateTransition: '<S2>/Rate Transition' */
 
-  /* Integrator: '<S16>/Integrator2' */
+  /* Integrator: '<S14>/Integrator2' */
   modified_motor_B.theta = modified_motor_X.Integrator2_CSTATE;
   if (rtmIsMajorTimeStep(modified_motor_M)) {
-    /* S-Function (encquanserq8): '<S13>/Q4 Enc ' */
+    /* S-Function (encquanserq8): '<S11>/Q4 Enc ' */
 
-    /* Level2 S-Function Block: '<S13>/Q4 Enc ' (encquanserq8) */
+    /* Level2 S-Function Block: '<S11>/Q4 Enc ' (encquanserq8) */
     {
       SimStruct *rts = modified_motor_M->childSfunctions[0];
       sfcnOutputs(rts,0);
     }
 
-    /* MATLAB Function: '<S13>/Convert to Rad' */
-    /* MATLAB Function 'motor_subsystem/Real motor/Convert to Rad': '<S18>:1' */
+    /* MATLAB Function: '<S11>/Convert to Rad' */
+    /* MATLAB Function 'motor_subsystem/Real motor/Convert to Rad': '<S16>:1' */
     /*  Observed experimentally */
-    /* '<S18>:1:6' */
-    /* '<S18>:1:8' */
+    /* '<S16>:1:6' */
+    /* '<S16>:1:8' */
     modified_motor_B.y = modified_motor_B.Positionsteps * 2.0 *
       3.1415926535897931 / 400.0 - 3.1415926535897931;
 
-    /* Fcn: '<S13>/Invert Sign' */
+    /* Fcn: '<S11>/Invert Sign' */
     modified_motor_B.Positionrad = -modified_motor_B.y;
   }
 
-  /* Switch: '<S17>/Switch1' incorporates:
+  /* Switch: '<S15>/Switch1' incorporates:
    *  Constant: '<Root>/Switch'
    */
   if (modified_motor_P.Switch_Value > modified_motor_P.Switch1_Threshold) {
@@ -645,7 +645,7 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
     modified_motor_B.Switch1 = modified_motor_B.Positionrad;
   }
 
-  /* End of Switch: '<S17>/Switch1' */
+  /* End of Switch: '<S15>/Switch1' */
 
   /* Sum: '<S4>/Sum' */
   modified_motor_B.Sig1 = modified_motor_B.Gain - modified_motor_B.Switch1;
@@ -707,23 +707,23 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
   if (rtmIsMajorTimeStep(modified_motor_M)) {
   }
 
-  /* S-Function (scblock): '<S14>/S-Function' */
-  /* ok to acquire for <S14>/S-Function */
+  /* S-Function (scblock): '<S12>/S-Function' */
+  /* ok to acquire for <S12>/S-Function */
   modified_motor_DW.SFunction_IWORK.AcquireOK = 1;
   if (rtmIsMajorTimeStep(modified_motor_M)) {
-    /* S-Function (scblock): '<S15>/S-Function' */
-    /* ok to acquire for <S15>/S-Function */
+    /* S-Function (scblock): '<S13>/S-Function' */
+    /* ok to acquire for <S13>/S-Function */
     modified_motor_DW.SFunction_IWORK_m.AcquireOK = 1;
 
-    /* Sum: '<S12>/Add' incorporates:
+    /* Sum: '<S10>/Add' incorporates:
      *  Constant: '<Root>/Switch'
-     *  Constant: '<S12>/Constant'
+     *  Constant: '<S10>/Constant'
      */
-    modified_motor_B.SwitchPosition = modified_motor_P.Constant_Value_c -
+    modified_motor_B.SwitchPosition = modified_motor_P.Constant_Value -
       modified_motor_P.Switch_Value;
   }
 
-  /* Switch: '<S12>/Gate1' incorporates:
+  /* Switch: '<S10>/Gate1' incorporates:
    *  Constant: '<Root>/Switch'
    */
   if (modified_motor_P.Switch_Value > modified_motor_P.Gate1_Threshold) {
@@ -732,18 +732,18 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
     modified_motor_B.SimulatedMotor = 0.0;
   }
 
-  /* End of Switch: '<S12>/Gate1' */
+  /* End of Switch: '<S10>/Gate1' */
 
-  /* Switch: '<S12>/Gate2' */
+  /* Switch: '<S10>/Gate2' */
   if (modified_motor_B.SwitchPosition > modified_motor_P.Gate2_Threshold) {
     modified_motor_B.RealMotor = modified_motor_B.Voltage_Input;
   } else {
     modified_motor_B.RealMotor = 0.0;
   }
 
-  /* End of Switch: '<S12>/Gate2' */
+  /* End of Switch: '<S10>/Gate2' */
 
-  /* Saturate: '<S13>/Saturation' */
+  /* Saturate: '<S11>/Saturation' */
   lastTime = modified_motor_B.RealMotor;
   u1 = modified_motor_P.Saturation_LowerSat_d;
   u2 = modified_motor_P.Saturation_UpperSat_a;
@@ -755,48 +755,48 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
     modified_motor_B.Saturation = lastTime;
   }
 
-  /* End of Saturate: '<S13>/Saturation' */
+  /* End of Saturate: '<S11>/Saturation' */
   if (rtmIsMajorTimeStep(modified_motor_M)) {
-    /* S-Function (daquanserq8): '<S13>/Q4 DA ' */
+    /* S-Function (daquanserq8): '<S11>/Q4 DA ' */
 
-    /* Level2 S-Function Block: '<S13>/Q4 DA ' (daquanserq8) */
+    /* Level2 S-Function Block: '<S11>/Q4 DA ' (daquanserq8) */
     {
       SimStruct *rts = modified_motor_M->childSfunctions[1];
       sfcnOutputs(rts,0);
     }
   }
 
-  /* Integrator: '<S16>/Integrator' */
+  /* Integrator: '<S14>/Integrator' */
   modified_motor_B.i = modified_motor_X.Integrator_CSTATE_g;
 
-  /* Gain: '<S16>/Resistance' */
+  /* Gain: '<S14>/Resistance' */
   modified_motor_B.Resistance = modified_motor_P.R * modified_motor_B.i;
 
-  /* Integrator: '<S16>/Integrator1' */
+  /* Integrator: '<S14>/Integrator1' */
   modified_motor_B.ddttheta = modified_motor_X.Integrator1_CSTATE;
 
-  /* Gain: '<S16>/Ke' */
+  /* Gain: '<S14>/Ke' */
   modified_motor_B.Ke = modified_motor_P.Ke * modified_motor_B.ddttheta;
 
-  /* Sum: '<S16>/Add' */
+  /* Sum: '<S14>/Add' */
   modified_motor_B.Add = (modified_motor_B.SimulatedMotor -
     modified_motor_B.Resistance) - modified_motor_B.Ke;
 
-  /* Gain: '<S16>/Kt' */
+  /* Gain: '<S14>/Kt' */
   modified_motor_B.Kt = modified_motor_P.Kt * modified_motor_B.i;
 
-  /* Gain: '<S16>/Damping' */
+  /* Gain: '<S14>/Damping' */
   modified_motor_B.Damping = modified_motor_P.b * modified_motor_B.ddttheta;
 
-  /* Sum: '<S16>/Add1' */
+  /* Sum: '<S14>/Add1' */
   modified_motor_B.Add1 = modified_motor_B.Kt - modified_motor_B.Damping;
 
-  /* Gain: '<S16>/Inductance' */
+  /* Gain: '<S14>/Inductance' */
   lastTime = modified_motor_P.L;
   lastTime = 1.0 / lastTime;
   modified_motor_B.ddti = lastTime * modified_motor_B.Add;
 
-  /* Gain: '<S16>/Inertia ' */
+  /* Gain: '<S14>/Inertia ' */
   lastTime = modified_motor_P.J;
   lastTime = 1.0 / lastTime;
   modified_motor_B.d2dt2theta = lastTime * modified_motor_B.Add1;
@@ -877,16 +877,16 @@ void modified_motor_derivatives(void)
   XDot_modified_motor_T *_rtXdot;
   _rtXdot = ((XDot_modified_motor_T *) modified_motor_M->derivs);
 
-  /* Derivatives for Integrator: '<S16>/Integrator2' */
+  /* Derivatives for Integrator: '<S14>/Integrator2' */
   _rtXdot->Integrator2_CSTATE = modified_motor_B.ddttheta;
 
   /* Derivatives for Integrator: '<S4>/Integrator' */
   _rtXdot->Integrator_CSTATE = modified_motor_B.Sig1;
 
-  /* Derivatives for Integrator: '<S16>/Integrator' */
+  /* Derivatives for Integrator: '<S14>/Integrator' */
   _rtXdot->Integrator_CSTATE_g = modified_motor_B.ddti;
 
-  /* Derivatives for Integrator: '<S16>/Integrator1' */
+  /* Derivatives for Integrator: '<S14>/Integrator1' */
   _rtXdot->Integrator1_CSTATE = modified_motor_B.d2dt2theta;
 }
 
@@ -914,61 +914,34 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
   /* Reset subsysRan breadcrumbs */
   srClearBC(modified_motor_DW.PositionIterator_SubsysRanBC);
 
-  /* UnitDelay: '<S5>/Unit Delay' */
-  modified_motor_B.UnitDelay = modified_motor_DW.UnitDelay_DSTATE;
-
-  /* Sum: '<S5>/Sum' incorporates:
-   *  Constant: '<S5>/Constant'
-   */
-  modified_motor_B.Sum = modified_motor_P.Constant_Value -
-    modified_motor_B.UnitDelay;
-
-  /* DataStoreRead: '<S1>/Read Image' */
-  modified_motor_B.ReadImage = modified_motor_DW.Image;
-
-  /* MATLAB Function: '<S1>/Fire Webcam' */
-  /* MATLAB Function 'Image Deconstructor/Fire Webcam': '<S6>:1' */
-  if (modified_motor_B.Sum != 0.0) {
-    /* '<S6>:1:4' */
-    modified_motor_B.image = modified_motor_B.ReadImage + 1.0;
-  } else {
-    /* '<S6>:1:6' */
-    modified_motor_B.image = modified_motor_B.ReadImage;
-  }
-
-  /* End of MATLAB Function: '<S1>/Fire Webcam' */
-
-  /* DataStoreWrite: '<S1>/Write Image' */
-  modified_motor_DW.Image = modified_motor_B.image;
-
   /* MATLAB Function: '<S1>/Process Image' */
-  /* MATLAB Function 'Image Deconstructor/Process Image': '<S7>:1' */
+  /* MATLAB Function 'Imager/Process Image': '<S5>:1' */
   /*  Can only send fixed-length matrices so specify max 100 regions */
   /*  FIXME do processing */
-  /* '<S7>:1:7' */
+  /* '<S5>:1:7' */
   memset(&modified_motor_B.image_data[0], 0, 400U * sizeof(real_T));
 
   /*  ex. pass back [shape; color; x_pos; y_pos] */
-  /* '<S7>:1:10' */
+  /* '<S5>:1:10' */
   for (i = 0; i < 10; i++) {
-    /* '<S7>:1:10' */
-    /* '<S7>:1:11' */
+    /* '<S5>:1:10' */
+    /* '<S5>:1:11' */
     modified_motor_B.image_data[i] = 1.0 + (real_T)i;
     modified_motor_B.image_data[100 + i] = 1.0;
-    modified_motor_B.image_data[200 + i] = modified_motor_B.image * 10.0;
-    modified_motor_B.image_data[300 + i] = modified_motor_B.image * 10.0 + 20.0;
+    modified_motor_B.image_data[200 + i] = 0.0;
+    modified_motor_B.image_data[300 + i] = 20.0;
   }
 
   /* End of MATLAB Function: '<S1>/Process Image' */
 
-  /* UnitDelay: '<S8>/Unit Delay' */
-  modified_motor_B.UnitDelay_i = modified_motor_DW.UnitDelay_DSTATE_m;
+  /* UnitDelay: '<S6>/Unit Delay' */
+  modified_motor_B.UnitDelay = modified_motor_DW.UnitDelay_DSTATE;
 
-  /* Sum: '<S8>/Sum' incorporates:
-   *  Constant: '<S8>/Constant'
+  /* Sum: '<S6>/Sum' incorporates:
+   *  Constant: '<S6>/Constant'
    */
-  modified_motor_B.Sum_m = modified_motor_P.Constant_Value_b -
-    modified_motor_B.UnitDelay_i;
+  modified_motor_B.Sum = modified_motor_P.Constant_Value_b -
+    modified_motor_B.UnitDelay;
 
   /* DataTypeConversion: '<S3>/Data Type Conversion2' incorporates:
    *  Constant: '<S3>/Mode'
@@ -986,7 +959,7 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
   modified_motor_B.DataTypeConversion = modified_motor_P.Position_Value;
 
   /* MATLAB Function: '<S2>/Generate Angles List' */
-  /* MATLAB Function 'Logic Block/Generate Angles List': '<S9>:1' */
+  /* MATLAB Function 'Logic Block/Generate Angles List': '<S7>:1' */
   /*  PURPOSE - Parser to set  */
   /*  INPUTS */
   /*    - Mode: What should the system do in response to the user selection */
@@ -1009,11 +982,11 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
   /*    - If mode = 3 then the function ignores requested color. */
   /*  MATLAB expects a fixed-size output matrix so allow up to 100 angles */
   /*  to be propagated */
-  /* '<S9>:1:39' */
+  /* '<S7>:1:39' */
   memset(&modified_motor_B.angles_vector[0], 0, 100U * sizeof(real_T));
   if (modified_motor_B.DataTypeConversion2 == 1.0) {
-    /* '<S9>:1:41' */
-    /* '<S9>:1:38' */
+    /* '<S7>:1:41' */
+    /* '<S7>:1:38' */
     c_i = 0;
     for (i = 0; i < 100; i++) {
       c_0 = (modified_motor_B.image_data[i] != 0.0);
@@ -1033,8 +1006,8 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
       }
     }
 
-    /* '<S9>:1:42' */
-    /* '<S9>:1:43' */
+    /* '<S7>:1:42' */
+    /* '<S7>:1:43' */
     for (i = 0; i < e_size_idx_0; i++) {
       tmp_data_0[i] = modified_motor_B.image_data[e_data[i] - 1];
     }
@@ -1066,8 +1039,8 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
     modified_motor_rect_to_polar_v2(tmp_data, tmp_size, angles_to_visit_data,
       &angles_to_visit_size);
   } else if (modified_motor_B.DataTypeConversion2 == 2.0) {
-    /* '<S9>:1:45' */
-    /* '<S9>:1:38' */
+    /* '<S7>:1:45' */
+    /* '<S7>:1:38' */
     i = 0;
     for (c_i = 0; c_i < 100; c_i++) {
       c_0 = (modified_motor_B.image_data[c_i] != 0.0);
@@ -1087,7 +1060,7 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
       }
     }
 
-    /* '<S9>:1:46' */
+    /* '<S7>:1:46' */
     for (i = 0; i < e_size_idx_0; i++) {
       tmp_data_0[i] = modified_motor_B.image_data[e_data[i] - 1];
     }
@@ -1144,8 +1117,8 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
       }
     }
 
-    /* '<S9>:1:46' */
-    /* '<S9>:1:47' */
+    /* '<S7>:1:46' */
+    /* '<S7>:1:47' */
     for (i = 0; i < f_size_idx_0; i++) {
       tmp_data_0[i] = modified_motor_B.image_data[f_data[i] - 1];
     }
@@ -1177,12 +1150,12 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
     modified_motor_rect_to_polar_v2(tmp_data, tmp_size, angles_to_visit_data,
       &angles_to_visit_size);
   } else if (modified_motor_B.DataTypeConversion2 == 3.0) {
-    /* '<S9>:1:49' */
-    /* '<S9>:1:50' */
+    /* '<S7>:1:49' */
+    /* '<S7>:1:50' */
     angles_to_visit_size = 1;
     angles_to_visit_data[0] = modified_motor_B.DataTypeConversion;
   } else {
-    /* '<S9>:1:53' */
+    /* '<S7>:1:53' */
     angles_to_visit_size = 4;
     angles_to_visit_data[0] = 3.1415926535897931;
     angles_to_visit_data[1] = -3.1415926535897931;
@@ -1191,7 +1164,7 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
   }
 
   /*  Package variable-length vector into fixed-length vector */
-  /* '<S9>:1:57' */
+  /* '<S7>:1:57' */
   f_size_idx_0 = angles_to_visit_size;
   for (i = 0; i < f_size_idx_0; i++) {
     modified_motor_B.angles_vector[i] = angles_to_visit_data[i];
@@ -1206,21 +1179,21 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
   modified_motor_DW.TmpRTBAtPositionIteratorInpor_a = 0;
 
   /* Outputs for Triggered SubSystem: '<S2>/Position Iterator' incorporates:
-   *  TriggerPort: '<S10>/Increment'
+   *  TriggerPort: '<S8>/Increment'
    */
   if (rtmIsMajorTimeStep(modified_motor_M)) {
     zcEvent = rt_ZCFcn(RISING_ZERO_CROSSING,
                        &modified_motor_PrevZCX.PositionIterator_Trig_ZCE,
-                       (modified_motor_B.Sum_m));
+                       (modified_motor_B.Sum));
     if (zcEvent != NO_ZCEVENT) {
-      /* DataStoreRead: '<S10>/Data Store Read' */
+      /* DataStoreRead: '<S8>/Data Store Read' */
       modified_motor_B.iter_cur_index = modified_motor_DW.Index;
 
-      /* DataStoreRead: '<S10>/Data Store Read1' */
+      /* DataStoreRead: '<S8>/Data Store Read1' */
       modified_motor_B.DataStoreRead1 = modified_motor_DW.Run_sig;
 
-      /* MATLAB Function: '<S10>/Iterator' */
-      /* MATLAB Function 'Logic Block/Position Iterator/Iterator': '<S11>:1' */
+      /* MATLAB Function: '<S8>/Iterator' */
+      /* MATLAB Function 'Logic Block/Position Iterator/Iterator': '<S9>:1' */
       /*  PURPOSE - Iterate over list of positions to visit */
       /*  INPUTS */
       /*    - Position List: Vector of target positions for the motor to turn to */
@@ -1236,49 +1209,49 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
       /*    - Else if the index is at the end of the list then output 0 */
       /*    - Else increment the index and output the next position */
       /*  PRECONDITION: pos_list is a column vector */
-      /* '<S11>:1:21' */
-      /* '<S11>:1:22' */
+      /* '<S9>:1:21' */
+      /* '<S9>:1:22' */
       /*  This is a very hack-y edge trigger */
       if (modified_motor_B.TmpRTBAtPositionIteratorInport2 !=
           modified_motor_B.DataStoreRead1) {
-        /* '<S11>:1:25' */
-        /* '<S11>:1:26' */
+        /* '<S9>:1:25' */
+        /* '<S9>:1:26' */
         modified_motor_B.next_index = 1.0;
 
-        /* '<S11>:1:27' */
+        /* '<S9>:1:27' */
         modified_motor_B.target_pos_o = modified_motor_B.angles_vector[0];
       } else {
         /*  If we can increment then do that */
         if ((-1.0 < modified_motor_B.iter_cur_index) &&
             (modified_motor_B.iter_cur_index < 100.0)) {
-          /* '<S11>:1:30' */
-          /* '<S11>:1:31' */
+          /* '<S9>:1:30' */
+          /* '<S9>:1:31' */
           modified_motor_B.next_index = modified_motor_B.iter_cur_index + 1.0;
 
-          /* '<S11>:1:32' */
+          /* '<S9>:1:32' */
           modified_motor_B.target_pos_o = modified_motor_B.angles_vector
             [(int32_T)(modified_motor_B.iter_cur_index + 1.0) - 1];
 
           /*  Otherwise maintain current state */
         } else {
-          /* '<S11>:1:35' */
+          /* '<S9>:1:35' */
           modified_motor_B.next_index = modified_motor_B.iter_cur_index;
 
-          /* '<S11>:1:36' */
+          /* '<S9>:1:36' */
           modified_motor_B.target_pos_o = 0.0;
         }
       }
 
-      /* '<S11>:1:40' */
+      /* '<S9>:1:40' */
       modified_motor_B.next_run =
         modified_motor_B.TmpRTBAtPositionIteratorInport2;
 
-      /* End of MATLAB Function: '<S10>/Iterator' */
+      /* End of MATLAB Function: '<S8>/Iterator' */
 
-      /* DataStoreWrite: '<S10>/Data Store Write' */
+      /* DataStoreWrite: '<S8>/Data Store Write' */
       modified_motor_DW.Index = modified_motor_B.next_index;
 
-      /* DataStoreWrite: '<S10>/Data Store Write1' */
+      /* DataStoreWrite: '<S8>/Data Store Write1' */
       modified_motor_DW.Run_sig = modified_motor_B.next_run;
       modified_motor_DW.PositionIterator_SubsysRanBC = 4;
     }
@@ -1290,14 +1263,11 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
 /* Model update function for TID2 */
 void modified_motor_update2(void)      /* Sample time: [1.0s, 0.0s] */
 {
-  /* Update for UnitDelay: '<S5>/Unit Delay' */
-  modified_motor_DW.UnitDelay_DSTATE = modified_motor_B.Sum;
-
   /* Update for RateTransition: '<S2>/Rate Transition' */
   modified_motor_DW.RateTransition_Buffer0 = modified_motor_B.target_pos_o;
 
-  /* Update for UnitDelay: '<S8>/Unit Delay' */
-  modified_motor_DW.UnitDelay_DSTATE_m = modified_motor_B.Sum_m;
+  /* Update for UnitDelay: '<S6>/Unit Delay' */
+  modified_motor_DW.UnitDelay_DSTATE = modified_motor_B.Sum;
 
   /* Update absolute time */
   /* The "clockTick2" counts the number of times the code of this task has
@@ -1354,14 +1324,11 @@ void modified_motor_update(int_T tid)
 /* Model initialize function */
 void modified_motor_initialize(void)
 {
-  /* Start for DataStoreMemory: '<S1>/Store Image Data' */
-  modified_motor_DW.Image = modified_motor_P.StoreImageData_InitialValue;
-
   /* Start for RateTransition: '<S2>/Rate Transition' */
   modified_motor_B.target_pos = modified_motor_P.RateTransition_X0;
 
-  /* Start for S-Function (encquanserq8): '<S13>/Q4 Enc ' */
-  /* Level2 S-Function Block: '<S13>/Q4 Enc ' (encquanserq8) */
+  /* Start for S-Function (encquanserq8): '<S11>/Q4 Enc ' */
+  /* Level2 S-Function Block: '<S11>/Q4 Enc ' (encquanserq8) */
   {
     SimStruct *rts = modified_motor_M->childSfunctions[0];
     sfcnStart(rts);
@@ -1369,9 +1336,9 @@ void modified_motor_initialize(void)
       return;
   }
 
-  /* Start for S-Function (scblock): '<S14>/S-Function' */
+  /* Start for S-Function (scblock): '<S12>/S-Function' */
 
-  /* S-Function Block: <S14>/S-Function (scblock) */
+  /* S-Function Block: <S12>/S-Function (scblock) */
   {
     int i;
     if ((i = rl32eScopeExists(2)) == 0) {
@@ -1398,9 +1365,9 @@ void modified_motor_initialize(void)
     }
   }
 
-  /* Start for S-Function (scblock): '<S15>/S-Function' */
+  /* Start for S-Function (scblock): '<S13>/S-Function' */
 
-  /* S-Function Block: <S15>/S-Function (scblock) */
+  /* S-Function Block: <S13>/S-Function (scblock) */
   {
     int i;
     if ((i = rl32eScopeExists(4)) == 0) {
@@ -1431,8 +1398,8 @@ void modified_motor_initialize(void)
     }
   }
 
-  /* Start for S-Function (daquanserq8): '<S13>/Q4 DA ' */
-  /* Level2 S-Function Block: '<S13>/Q4 DA ' (daquanserq8) */
+  /* Start for S-Function (daquanserq8): '<S11>/Q4 DA ' */
+  /* Level2 S-Function Block: '<S11>/Q4 DA ' (daquanserq8) */
   {
     SimStruct *rts = modified_motor_M->childSfunctions[1];
     sfcnStart(rts);
@@ -1440,22 +1407,18 @@ void modified_motor_initialize(void)
       return;
   }
 
-  /* Start for DataStoreMemory: '<S10>/Store_Index' */
+  /* Start for DataStoreMemory: '<S8>/Store_Index' */
   modified_motor_DW.Index = modified_motor_P.Store_Index_InitialValue;
 
-  /* Start for DataStoreMemory: '<S10>/Store_Index1' */
+  /* Start for DataStoreMemory: '<S8>/Store_Index1' */
   modified_motor_DW.Run_sig = modified_motor_P.Store_Index1_InitialValue;
 
   /* End of Start for SubSystem: '<S2>/Position Iterator' */
 
-  /* InitializeConditions for UnitDelay: '<S5>/Unit Delay' */
-  modified_motor_DW.UnitDelay_DSTATE =
-    modified_motor_P.UnitDelay_InitialCondition;
-
   /* InitializeConditions for RateTransition: '<S2>/Rate Transition' */
   modified_motor_DW.RateTransition_Buffer0 = modified_motor_P.RateTransition_X0;
 
-  /* InitializeConditions for Integrator: '<S16>/Integrator2' */
+  /* InitializeConditions for Integrator: '<S14>/Integrator2' */
   modified_motor_X.Integrator2_CSTATE = modified_motor_P.Integrator2_IC;
 
   /* InitializeConditions for Derivative: '<S4>/Derivative' */
@@ -1465,18 +1428,18 @@ void modified_motor_initialize(void)
   /* InitializeConditions for Integrator: '<S4>/Integrator' */
   modified_motor_X.Integrator_CSTATE = modified_motor_P.Integrator_IC;
 
-  /* InitializeConditions for Integrator: '<S16>/Integrator' */
+  /* InitializeConditions for Integrator: '<S14>/Integrator' */
   modified_motor_X.Integrator_CSTATE_g = modified_motor_P.Integrator_IC_a;
 
-  /* InitializeConditions for Integrator: '<S16>/Integrator1' */
+  /* InitializeConditions for Integrator: '<S14>/Integrator1' */
   modified_motor_X.Integrator1_CSTATE = modified_motor_P.Integrator1_IC;
 
-  /* InitializeConditions for UnitDelay: '<S8>/Unit Delay' */
-  modified_motor_DW.UnitDelay_DSTATE_m =
-    modified_motor_P.UnitDelay_InitialCondition_b;
+  /* InitializeConditions for UnitDelay: '<S6>/Unit Delay' */
+  modified_motor_DW.UnitDelay_DSTATE =
+    modified_motor_P.UnitDelay_InitialCondition;
 
   /* SystemInitialize for Triggered SubSystem: '<S2>/Position Iterator' */
-  /* SystemInitialize for Outport: '<S10>/Target_Position' */
+  /* SystemInitialize for Outport: '<S8>/Target_Position' */
   modified_motor_B.target_pos_o = modified_motor_P.Target_Position_Y0;
   modified_motor_PrevZCX.PositionIterator_Trig_ZCE = ZERO_ZCSIG;
 
@@ -1486,15 +1449,15 @@ void modified_motor_initialize(void)
 /* Model terminate function */
 void modified_motor_terminate(void)
 {
-  /* Terminate for S-Function (encquanserq8): '<S13>/Q4 Enc ' */
-  /* Level2 S-Function Block: '<S13>/Q4 Enc ' (encquanserq8) */
+  /* Terminate for S-Function (encquanserq8): '<S11>/Q4 Enc ' */
+  /* Level2 S-Function Block: '<S11>/Q4 Enc ' (encquanserq8) */
   {
     SimStruct *rts = modified_motor_M->childSfunctions[0];
     sfcnTerminate(rts);
   }
 
-  /* Terminate for S-Function (daquanserq8): '<S13>/Q4 DA ' */
-  /* Level2 S-Function Block: '<S13>/Q4 DA ' (daquanserq8) */
+  /* Terminate for S-Function (daquanserq8): '<S11>/Q4 DA ' */
+  /* Level2 S-Function Block: '<S11>/Q4 DA ' (daquanserq8) */
   {
     SimStruct *rts = modified_motor_M->childSfunctions[1];
     sfcnTerminate(rts);
@@ -1745,7 +1708,7 @@ RT_MODEL_modified_motor_T *modified_motor(void)
     modified_motor_M->childSfunctions[1] =
       (&modified_motor_M->NonInlinedSFcns.childSFunctions[1]);
 
-    /* Level2 S-Function Block: modified_motor/<S13>/Q4 Enc  (encquanserq8) */
+    /* Level2 S-Function Block: modified_motor/<S11>/Q4 Enc  (encquanserq8) */
     {
       SimStruct *rts = modified_motor_M->childSfunctions[0];
 
@@ -1872,7 +1835,7 @@ RT_MODEL_modified_motor_T *modified_motor(void)
       /* Update the BufferDstPort flags for each input port */
     }
 
-    /* Level2 S-Function Block: modified_motor/<S13>/Q4 DA  (daquanserq8) */
+    /* Level2 S-Function Block: modified_motor/<S11>/Q4 DA  (daquanserq8) */
     {
       SimStruct *rts = modified_motor_M->childSfunctions[1];
 
@@ -2013,9 +1976,9 @@ RT_MODEL_modified_motor_T *modified_motor(void)
   modified_motor_M->Sizes.numU = (0);  /* Number of model inputs */
   modified_motor_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   modified_motor_M->Sizes.numSampTimes = (3);/* Number of sample times */
-  modified_motor_M->Sizes.numBlocks = (75);/* Number of blocks */
-  modified_motor_M->Sizes.numBlockIO = (47);/* Number of block outputs */
-  modified_motor_M->Sizes.numBlockPrms = (99);/* Sum of parameter "widths" */
+  modified_motor_M->Sizes.numBlocks = (66);/* Number of blocks */
+  modified_motor_M->Sizes.numBlockIO = (43);/* Number of block outputs */
+  modified_motor_M->Sizes.numBlockPrms = (96);/* Sum of parameter "widths" */
   return modified_motor_M;
 }
 
