@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.154
+ * Model version              : 1.171
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 00:14:41 2020
+ * C source code generated on : Thu Mar 12 01:55:07 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -909,26 +909,6 @@ typedef struct {
     void *SlioLTF;
   } HiddenToAsyncQueue_InsertedFo_e;   /* synthesized block */
 
-  struct {
-    void *AQHandles;
-    void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedF_lr;   /* synthesized block */
-
-  struct {
-    void *AQHandles;
-    void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedF_lh;   /* synthesized block */
-
-  struct {
-    void *AQHandles;
-    void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedFo_h;   /* synthesized block */
-
-  struct {
-    void *AQHandles;
-    void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedF_lu;   /* synthesized block */
-
   int_T Q4Enc_IWORK[3];                /* '<S11>/Q4 Enc ' */
   struct {
     int_T AcquireOK;
@@ -1040,7 +1020,7 @@ struct P_modified_motor_T_ {
   real_T Integrator2_IC;               /* Expression: 0
                                         * Referenced by: '<S14>/Integrator2'
                                         */
-  real_T Switch_Value;                 /* Expression: 1
+  real_T Switch_Value;                 /* Expression: 0
                                         * Referenced by: '<Root>/Switch'
                                         */
   real_T Q4Enc_P1_Size[2];             /* Computed Parameter: Q4Enc_P1_Size
@@ -1217,7 +1197,7 @@ struct P_modified_motor_T_ {
   real_T UnitDelay_InitialCondition;   /* Expression: 0
                                         * Referenced by: '<S6>/Unit Delay'
                                         */
-  real_T Color_Value;                  /* Expression: 3
+  real_T Color_Value;                  /* Expression: 1
                                         * Referenced by: '<S3>/Color'
                                         */
   real_T Position_Value;               /* Expression: -3.1416

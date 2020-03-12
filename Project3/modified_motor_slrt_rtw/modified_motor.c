@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.154
+ * Model version              : 1.171
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 00:14:41 2020
+ * C source code generated on : Thu Mar 12 01:55:07 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -534,31 +534,40 @@ static void modified_motor_rect_to_polar_v2(const real_T center_coords_data[],
   /*  OUTPUTS */
   /*    - Vector of angles (radians) ordered ascending */
   /*  NOTES */
-  /*    - Theta == 0 is at the bottom of the map */
-  /*    - Positive angles are in RH plane */
-  /*    - Negative angles are in LH plane */
+  /*    - Theta == 0 is at the east of the map */
+  /*    - Positive angles are in south plane */
+  /*    - Negative angles are in north plane */
   /*    - Camera origin (0,0) is at NW corner */
   /*    - Game board origin is at image center */
-  /*  Update these to actual frame dimensions */
+  /*  TODO: confirm actual frame dimensions */
   /*  Get the game board center (Approx. Motor Location)  */
   /*  so we can calculate relative angles */
   *Angles_sorted_size = center_coords_size[0];
   for (i = 0; i < center_coords_size[0]; i++) {
     Angles_sorted_data[i] = atan((center_coords_data[i + center_coords_size[0]]
-      - 296.5) / (center_coords_data[i] - 413.0));
+      - 240.0) / (center_coords_data[i] - 320.0));
 
     /*  Quandrant dependent angle math */
-    if ((center_coords_data[i] - 413.0 > 0.0) && (center_coords_data[i +
-         center_coords_size[0]] - 296.5 < 0.0)) {
-      Angles_sorted_data[i] = -Angles_sorted_data[i];
-    } else if ((center_coords_data[i] - 413.0 < 0.0) && (center_coords_data[i +
-                center_coords_size[0]] - 296.5 < 0.0)) {
-      Angles_sorted_data[i] = 3.1415926535897931 - Angles_sorted_data[i];
-    } else if ((center_coords_data[i] - 413.0 < 0.0) && (center_coords_data[i +
-                center_coords_size[0]] - 296.5 > 0.0)) {
-      Angles_sorted_data[i] = 3.1415926535897931 + -Angles_sorted_data[i];
-    } else {
+    /*  Q4 */
+    if ((center_coords_data[i] - 320.0 > 0.0) && (center_coords_data[i +
+         center_coords_size[0]] - 240.0 < 0.0)) {
+      /*  Q3 */
+    } else if ((center_coords_data[i] - 320.0 < 0.0) && (center_coords_data[i +
+                center_coords_size[0]] - 240.0 < 0.0)) {
+      Angles_sorted_data[i] -= 3.1415926535897931;
+
+      /*  Q2 */
+    } else if ((center_coords_data[i] - 320.0 < 0.0) && (center_coords_data[i +
+                center_coords_size[0]] - 240.0 > 0.0)) {
+      Angles_sorted_data[i] += 3.1415926535897931;
+    } else if (((center_coords_data[i] - 320.0 > 0.0) && (center_coords_data[i +
+      center_coords_size[0]] - 240.0 > 0.0)) || (!(center_coords_data[i +
+                 center_coords_size[0]] - 240.0 == 0.0)) ||
+               (!(center_coords_data[i] - 320.0 < 0.0))) {
       /*  may need to fix this, this is 4th quadrant */
+      /*  Special case: angle is at -pi */
+    } else {
+      Angles_sorted_data[i] = -3.1415926535897931;
     }
   }
 
@@ -893,20 +902,22 @@ void modified_motor_derivatives(void)
 /* Model output function for TID2 */
 void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
 {
-  int32_T i;
+  static const int16_T b[16] = { 1, 1, 1, 1, 1, 1, 1, 1, 320, 320, 0, 320, 0, 0,
+    240, 480 };
+
+  real_T img_regions_data[400];
   real_T angles_to_visit_data[100];
   boolean_T c[100];
   boolean_T d_data[100];
   int8_T e_data[100];
-  int8_T f_data[100];
-  int32_T g_data[100];
-  int32_T g_i;
-  ZCEventType zcEvent;
-  real_T tmp_data[200];
+  int32_T f_data[100];
+  int32_T trueCount;
   int32_T c_i;
-  real_T tmp_data_0[400];
+  ZCEventType zcEvent;
+  real_T img_regions_data_0[200];
+  int32_T i;
   int32_T angles_to_visit_size;
-  int32_T tmp_size[2];
+  int32_T img_regions_size[2];
   boolean_T c_0;
   int32_T e_size_idx_0;
   int32_T f_size_idx_0;
@@ -923,13 +934,11 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
 
   /*  ex. pass back [shape; color; x_pos; y_pos] */
   /* '<S5>:1:10' */
-  for (i = 0; i < 10; i++) {
-    /* '<S5>:1:10' */
-    /* '<S5>:1:11' */
-    modified_motor_B.image_data[i] = 1.0 + (real_T)i;
-    modified_motor_B.image_data[100 + i] = 1.0;
-    modified_motor_B.image_data[200 + i] = 0.0;
-    modified_motor_B.image_data[300 + i] = 20.0;
+  for (trueCount = 0; trueCount < 4; trueCount++) {
+    modified_motor_B.image_data[100 * trueCount] = b[trueCount << 2];
+    modified_motor_B.image_data[1 + 100 * trueCount] = b[(trueCount << 2) + 1];
+    modified_motor_B.image_data[2 + 100 * trueCount] = b[(trueCount << 2) + 2];
+    modified_motor_B.image_data[3 + 100 * trueCount] = b[(trueCount << 2) + 3];
   }
 
   /* End of MATLAB Function: '<S1>/Process Image' */
@@ -960,6 +969,8 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
 
   /* MATLAB Function: '<S2>/Generate Angles List' */
   /* MATLAB Function 'Logic Block/Generate Angles List': '<S7>:1' */
+  /* '<S7>:1:41' */
+  /* '<S7>:1:42' */
   /*  PURPOSE - Parser to set  */
   /*  INPUTS */
   /*    - Mode: What should the system do in response to the user selection */
@@ -982,180 +993,129 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
   /*    - If mode = 3 then the function ignores requested color. */
   /*  MATLAB expects a fixed-size output matrix so allow up to 100 angles */
   /*  to be propagated */
-  /* '<S7>:1:39' */
+  /* '<S7>:1:38' */
+  trueCount = 0;
+  for (i = 0; i < 100; i++) {
+    c_0 = (modified_motor_B.image_data[i] != 0.0);
+    if (c_0) {
+      trueCount++;
+    }
+
+    c[i] = c_0;
+  }
+
+  e_size_idx_0 = trueCount;
+  trueCount = 0;
+  for (i = 0; i < 100; i++) {
+    if (c[i]) {
+      e_data[trueCount] = (int8_T)(i + 1);
+      trueCount++;
+    }
+  }
+
+  /* '<S7>:1:38' */
+  for (trueCount = 0; trueCount < e_size_idx_0; trueCount++) {
+    img_regions_data[trueCount] = modified_motor_B.image_data[e_data[trueCount]
+      - 1];
+  }
+
+  for (trueCount = 0; trueCount < e_size_idx_0; trueCount++) {
+    img_regions_data[trueCount + e_size_idx_0] =
+      modified_motor_B.image_data[e_data[trueCount] + 99];
+  }
+
+  for (trueCount = 0; trueCount < e_size_idx_0; trueCount++) {
+    img_regions_data[trueCount + (e_size_idx_0 << 1)] =
+      modified_motor_B.image_data[e_data[trueCount] + 199];
+  }
+
+  for (trueCount = 0; trueCount < e_size_idx_0; trueCount++) {
+    img_regions_data[trueCount + e_size_idx_0 * 3] =
+      modified_motor_B.image_data[e_data[trueCount] + 299];
+  }
+
+  /*  FIXME */
+  /* '<S7>:1:38' */
+  /* '<S7>:1:41' */
+  img_regions_data[-1] = 1.0;
+  img_regions_data[e_size_idx_0 - 1] = 1.0;
+  img_regions_data[(e_size_idx_0 << 1) - 1] = 0.0;
+  img_regions_data[e_size_idx_0 * 3 - 1] = 0.0;
+
+  /* '<S7>:1:42' */
+  img_regions_data[0] = 1.0;
+  img_regions_data[e_size_idx_0] = 2.0;
+  img_regions_data[e_size_idx_0 << 1] = 640.0;
+  img_regions_data[e_size_idx_0 * 3] = 480.0;
+
+  /* '<S7>:1:45' */
   memset(&modified_motor_B.angles_vector[0], 0, 100U * sizeof(real_T));
   if (modified_motor_B.DataTypeConversion2 == 1.0) {
-    /* '<S7>:1:41' */
-    /* '<S7>:1:38' */
-    c_i = 0;
-    for (i = 0; i < 100; i++) {
-      c_0 = (modified_motor_B.image_data[i] != 0.0);
-      if (c_0) {
-        c_i++;
-      }
-
-      c[i] = c_0;
+    /* '<S7>:1:47' */
+    /* '<S7>:1:48' */
+    /* '<S7>:1:49' */
+    img_regions_size[0] = e_size_idx_0;
+    img_regions_size[1] = 2;
+    for (trueCount = 0; trueCount < e_size_idx_0; trueCount++) {
+      img_regions_data_0[trueCount] = img_regions_data[(e_size_idx_0 << 1) +
+        trueCount];
     }
 
-    e_size_idx_0 = c_i;
-    i = 0;
-    for (c_i = 0; c_i < 100; c_i++) {
-      if (c[c_i]) {
-        e_data[i] = (int8_T)(c_i + 1);
-        i++;
-      }
+    for (trueCount = 0; trueCount < e_size_idx_0; trueCount++) {
+      img_regions_data_0[trueCount + img_regions_size[0]] =
+        img_regions_data[e_size_idx_0 * 3 + trueCount];
     }
 
-    /* '<S7>:1:42' */
-    /* '<S7>:1:43' */
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data_0[i] = modified_motor_B.image_data[e_data[i] - 1];
-    }
-
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data_0[i + e_size_idx_0] = modified_motor_B.image_data[e_data[i] + 99];
-    }
-
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data_0[i + (e_size_idx_0 << 1)] = modified_motor_B.image_data[e_data[i]
-        + 199];
-    }
-
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data_0[i + e_size_idx_0 * 3] = modified_motor_B.image_data[e_data[i] +
-        299];
-    }
-
-    tmp_size[0] = e_size_idx_0;
-    tmp_size[1] = 2;
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data[i] = tmp_data_0[(e_size_idx_0 << 1) + i];
-    }
-
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data[i + tmp_size[0]] = tmp_data_0[e_size_idx_0 * 3 + i];
-    }
-
-    modified_motor_rect_to_polar_v2(tmp_data, tmp_size, angles_to_visit_data,
-      &angles_to_visit_size);
+    modified_motor_rect_to_polar_v2(img_regions_data_0, img_regions_size,
+      angles_to_visit_data, &angles_to_visit_size);
   } else if (modified_motor_B.DataTypeConversion2 == 2.0) {
-    /* '<S7>:1:45' */
-    /* '<S7>:1:38' */
+    /* '<S7>:1:51' */
+    /* '<S7>:1:52' */
+    for (trueCount = 0; trueCount < e_size_idx_0; trueCount++) {
+      d_data[trueCount] = (img_regions_data[trueCount + e_size_idx_0] ==
+                           modified_motor_B.DataTypeConversion1);
+    }
+
+    trueCount = e_size_idx_0 - 1;
     i = 0;
-    for (c_i = 0; c_i < 100; c_i++) {
-      c_0 = (modified_motor_B.image_data[c_i] != 0.0);
-      if (c_0) {
-        i++;
-      }
-
-      c[c_i] = c_0;
-    }
-
-    e_size_idx_0 = i;
-    i = 0;
-    for (c_i = 0; c_i < 100; c_i++) {
-      if (c[c_i]) {
-        e_data[i] = (int8_T)(c_i + 1);
-        i++;
-      }
-    }
-
-    /* '<S7>:1:46' */
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data_0[i] = modified_motor_B.image_data[e_data[i] - 1];
-    }
-
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data_0[i + e_size_idx_0] = modified_motor_B.image_data[e_data[i] + 99];
-    }
-
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data_0[i + (e_size_idx_0 << 1)] = modified_motor_B.image_data[e_data[i]
-        + 199];
-    }
-
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data_0[i + e_size_idx_0 * 3] = modified_motor_B.image_data[e_data[i] +
-        299];
-    }
-
-    for (i = 0; i < e_size_idx_0; i++) {
-      d_data[i] = (tmp_data_0[i + e_size_idx_0] ==
-                   modified_motor_B.DataTypeConversion1);
-    }
-
-    i = 0;
-    for (c_i = 0; c_i < 100; c_i++) {
-      if (c[c_i]) {
+    for (c_i = 0; c_i <= trueCount; c_i++) {
+      if (d_data[c_i]) {
         i++;
       }
     }
 
     f_size_idx_0 = i;
     i = 0;
-    for (c_i = 0; c_i < 100; c_i++) {
-      if (c[c_i]) {
-        f_data[i] = (int8_T)(c_i + 1);
+    for (c_i = 0; c_i <= trueCount; c_i++) {
+      if (d_data[c_i]) {
+        f_data[i] = c_i + 1;
         i++;
       }
     }
 
-    i = e_size_idx_0 - 1;
-    c_i = 0;
-    for (g_i = 0; g_i <= i; g_i++) {
-      if (d_data[g_i]) {
-        c_i++;
-      }
+    /* '<S7>:1:52' */
+    /* '<S7>:1:53' */
+    img_regions_size[0] = f_size_idx_0;
+    img_regions_size[1] = 2;
+    for (trueCount = 0; trueCount < f_size_idx_0; trueCount++) {
+      img_regions_data_0[trueCount] = img_regions_data[((e_size_idx_0 << 1) +
+        f_data[trueCount]) - 1];
     }
 
-    e_size_idx_0 = c_i;
-    c_i = 0;
-    for (g_i = 0; g_i <= i; g_i++) {
-      if (d_data[g_i]) {
-        g_data[c_i] = g_i + 1;
-        c_i++;
-      }
+    for (trueCount = 0; trueCount < f_size_idx_0; trueCount++) {
+      img_regions_data_0[trueCount + img_regions_size[0]] = img_regions_data
+        [(e_size_idx_0 * 3 + f_data[trueCount]) - 1];
     }
 
-    /* '<S7>:1:46' */
-    /* '<S7>:1:47' */
-    for (i = 0; i < f_size_idx_0; i++) {
-      tmp_data_0[i] = modified_motor_B.image_data[f_data[i] - 1];
-    }
-
-    for (i = 0; i < f_size_idx_0; i++) {
-      tmp_data_0[i + f_size_idx_0] = modified_motor_B.image_data[f_data[i] + 99];
-    }
-
-    for (i = 0; i < f_size_idx_0; i++) {
-      tmp_data_0[i + (f_size_idx_0 << 1)] = modified_motor_B.image_data[f_data[i]
-        + 199];
-    }
-
-    for (i = 0; i < f_size_idx_0; i++) {
-      tmp_data_0[i + f_size_idx_0 * 3] = modified_motor_B.image_data[f_data[i] +
-        299];
-    }
-
-    tmp_size[0] = e_size_idx_0;
-    tmp_size[1] = 2;
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data[i] = tmp_data_0[((f_size_idx_0 << 1) + g_data[i]) - 1];
-    }
-
-    for (i = 0; i < e_size_idx_0; i++) {
-      tmp_data[i + tmp_size[0]] = tmp_data_0[(f_size_idx_0 * 3 + g_data[i]) - 1];
-    }
-
-    modified_motor_rect_to_polar_v2(tmp_data, tmp_size, angles_to_visit_data,
-      &angles_to_visit_size);
+    modified_motor_rect_to_polar_v2(img_regions_data_0, img_regions_size,
+      angles_to_visit_data, &angles_to_visit_size);
   } else if (modified_motor_B.DataTypeConversion2 == 3.0) {
-    /* '<S7>:1:49' */
-    /* '<S7>:1:50' */
+    /* '<S7>:1:55' */
+    /* '<S7>:1:56' */
     angles_to_visit_size = 1;
     angles_to_visit_data[0] = modified_motor_B.DataTypeConversion;
   } else {
-    /* '<S7>:1:53' */
+    /* '<S7>:1:59' */
     angles_to_visit_size = 4;
     angles_to_visit_data[0] = 3.1415926535897931;
     angles_to_visit_data[1] = -3.1415926535897931;
@@ -1164,10 +1124,10 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
   }
 
   /*  Package variable-length vector into fixed-length vector */
-  /* '<S7>:1:57' */
-  f_size_idx_0 = angles_to_visit_size;
-  for (i = 0; i < f_size_idx_0; i++) {
-    modified_motor_B.angles_vector[i] = angles_to_visit_data[i];
+  /* '<S7>:1:63' */
+  e_size_idx_0 = angles_to_visit_size;
+  for (trueCount = 0; trueCount < e_size_idx_0; trueCount++) {
+    modified_motor_B.angles_vector[trueCount] = angles_to_visit_data[trueCount];
   }
 
   /* End of MATLAB Function: '<S2>/Generate Angles List' */
@@ -1407,6 +1367,7 @@ void modified_motor_initialize(void)
       return;
   }
 
+  /* Start for Triggered SubSystem: '<S2>/Position Iterator' */
   /* Start for DataStoreMemory: '<S8>/Store_Index' */
   modified_motor_DW.Index = modified_motor_P.Store_Index_InitialValue;
 
@@ -1976,7 +1937,7 @@ RT_MODEL_modified_motor_T *modified_motor(void)
   modified_motor_M->Sizes.numU = (0);  /* Number of model inputs */
   modified_motor_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   modified_motor_M->Sizes.numSampTimes = (3);/* Number of sample times */
-  modified_motor_M->Sizes.numBlocks = (66);/* Number of blocks */
+  modified_motor_M->Sizes.numBlocks = (62);/* Number of blocks */
   modified_motor_M->Sizes.numBlockIO = (43);/* Number of block outputs */
   modified_motor_M->Sizes.numBlockPrms = (96);/* Sum of parameter "widths" */
   return modified_motor_M;

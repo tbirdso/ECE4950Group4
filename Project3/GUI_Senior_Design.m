@@ -205,6 +205,4 @@ img = snapshot(camera);
 
 clear camera;
 
-%set_param('modified_motor/Imager/Image','Value','');
-
-
+imwrite(img, 'img1.png');
