@@ -81,6 +81,7 @@ function push_run_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of push_run
 run = get(hObject,'Value');
+set_param('modified_motor/Run', 'Value', '1');
 
 
 % --- Executes on selection change in menu_color.
@@ -103,7 +104,7 @@ switch color
     otherwise
         color_choice = 0;
 end
-set_param('modified_motor/UI/Color', 'Value', color_choice);
+set_param('modified_motor/UI/Color', 'Value', int2str(color_choice));
 % Hints: contents = cellstr(get(hObject,'String')) returns menu_color contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from menu_color
 
@@ -119,8 +120,6 @@ function menu_color_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-set_param('modified_motor/UI/Position', 'Value', color_choice);
 
 
 % Hints: contents = cellstr(get(hObject,'String')) returns menu_shape contents as cell array
@@ -146,6 +145,7 @@ switch mode
     otherwise
         mode_choice = 0;
 end
+set_param('modified_motor/UI/Mode', 'Value', int2str(mode_choice));
 
 % Hints: contents = cellstr(get(hObject,'String')) returns menu_mode contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from menu_mode
@@ -171,6 +171,8 @@ function sticker_location_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 sticker_location_degrees = str2double(get(hObject,'String'));
 sticker_location_radians = sticker_location_degrees*pi/180;
+
+set_param('modified_motor/UI/Position', 'Value', num2str(sticker_location_radians));
 
 % Hints: get(hObject,'String') returns contents of sticker_location as text
 %        str2double(get(hObject,'String')) returns contents of sticker_location as a double

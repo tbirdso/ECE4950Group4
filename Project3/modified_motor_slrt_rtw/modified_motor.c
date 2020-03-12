@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.141
+ * Model version              : 1.145
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Wed Mar 11 21:18:23 2020
+ * C source code generated on : Wed Mar 11 23:07:30 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -796,6 +796,50 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
   lastTime = modified_motor_P.J;
   lastTime = 1.0 / lastTime;
   modified_motor_B.d2dt2theta = lastTime * modified_motor_B.Add1;
+  if (rtmIsMajorTimeStep(modified_motor_M)) {
+    /* Constant: '<S3>/Mode' */
+    modified_motor_B.Modescanseek_colorseek_pos = modified_motor_P.Mode_Value;
+
+    /* DataTypeConversion: '<S3>/Data Type Conversion2' */
+    modified_motor_B.DataTypeConversion2 =
+      modified_motor_B.Modescanseek_colorseek_pos;
+
+    /* RateTransition: '<S2>/TmpRTBAtGenerate Angles ListInport1' */
+    if (!(modified_motor_DW.TmpRTBAtGenerateAnglesListInp_d != 0)) {
+      modified_motor_DW.TmpRTBAtGenerateAnglesListInpor =
+        modified_motor_B.DataTypeConversion2;
+    }
+
+    /* End of RateTransition: '<S2>/TmpRTBAtGenerate Angles ListInport1' */
+
+    /* Constant: '<S3>/Color' */
+    modified_motor_B.color_enum = modified_motor_P.Color_Value;
+
+    /* DataTypeConversion: '<S3>/Data Type Conversion1' */
+    modified_motor_B.DataTypeConversion1 = modified_motor_B.color_enum;
+
+    /* RateTransition: '<S2>/TmpRTBAtGenerate Angles ListInport2' */
+    if (!(modified_motor_DW.TmpRTBAtGenerateAnglesListInp_i != 0)) {
+      modified_motor_DW.TmpRTBAtGenerateAnglesListInp_f =
+        modified_motor_B.DataTypeConversion1;
+    }
+
+    /* End of RateTransition: '<S2>/TmpRTBAtGenerate Angles ListInport2' */
+
+    /* Constant: '<S3>/Position' */
+    modified_motor_B.pos_val = modified_motor_P.Position_Value;
+
+    /* DataTypeConversion: '<S3>/Data Type Conversion' */
+    modified_motor_B.DataTypeConversion = modified_motor_B.pos_val;
+
+    /* RateTransition: '<S2>/TmpRTBAtGenerate Angles ListInport3' */
+    if (!(modified_motor_DW.TmpRTBAtGenerateAnglesListInp_c != 0)) {
+      modified_motor_DW.TmpRTBAtGenerateAnglesListInp_o =
+        modified_motor_B.DataTypeConversion;
+    }
+
+    /* End of RateTransition: '<S2>/TmpRTBAtGenerate Angles ListInport3' */
+  }
 }
 
 /* Model update function for TID0 */
@@ -969,20 +1013,23 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
    */
   modified_motor_B.Fcn = 1.0 - modified_motor_P.Run_Value;
 
-  /* DataTypeConversion: '<S3>/Data Type Conversion2' incorporates:
-   *  Constant: '<S3>/Mode '
-   */
-  modified_motor_B.DataTypeConversion2 = modified_motor_P.Mode_Value;
+  /* RateTransition: '<S2>/TmpRTBAtGenerate Angles ListInport1' */
+  modified_motor_DW.TmpRTBAtGenerateAnglesListInp_d = 1;
+  modified_motor_B.TmpRTBAtGenerateAnglesListInpor =
+    modified_motor_DW.TmpRTBAtGenerateAnglesListInpor;
+  modified_motor_DW.TmpRTBAtGenerateAnglesListInp_d = 0;
 
-  /* DataTypeConversion: '<S3>/Data Type Conversion1' incorporates:
-   *  Constant: '<S3>/Color'
-   */
-  modified_motor_B.DataTypeConversion1 = modified_motor_P.Color_Value;
+  /* RateTransition: '<S2>/TmpRTBAtGenerate Angles ListInport2' */
+  modified_motor_DW.TmpRTBAtGenerateAnglesListInp_i = 1;
+  modified_motor_B.TmpRTBAtGenerateAnglesListInp_d =
+    modified_motor_DW.TmpRTBAtGenerateAnglesListInp_f;
+  modified_motor_DW.TmpRTBAtGenerateAnglesListInp_i = 0;
 
-  /* DataTypeConversion: '<S3>/Data Type Conversion' incorporates:
-   *  Constant: '<S3>/ID'
-   */
-  modified_motor_B.id_val = modified_motor_P.ID_Value;
+  /* RateTransition: '<S2>/TmpRTBAtGenerate Angles ListInport3' */
+  modified_motor_DW.TmpRTBAtGenerateAnglesListInp_c = 1;
+  modified_motor_B.TmpRTBAtGenerateAnglesListInp_l =
+    modified_motor_DW.TmpRTBAtGenerateAnglesListInp_o;
+  modified_motor_DW.TmpRTBAtGenerateAnglesListInp_c = 0;
 
   /* MATLAB Function: '<S2>/Generate Angles List' */
   /* MATLAB Function 'Logic Block/Generate Angles List': '<S9>:1' */
@@ -1010,7 +1057,7 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
   /*  to be propagated */
   /* '<S9>:1:39' */
   memset(&modified_motor_B.angles_vector[0], 0, 100U * sizeof(real_T));
-  if (modified_motor_B.DataTypeConversion2 == 1.0) {
+  if (modified_motor_B.TmpRTBAtGenerateAnglesListInpor == 1.0) {
     /* '<S9>:1:41' */
     /* '<S9>:1:38' */
     c_i = 0;
@@ -1064,7 +1111,7 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
 
     modified_motor_rect_to_polar_v2(tmp_data, tmp_size, angles_to_visit_data,
       &angles_to_visit_size);
-  } else if (modified_motor_B.DataTypeConversion2 == 2.0) {
+  } else if (modified_motor_B.TmpRTBAtGenerateAnglesListInpor == 2.0) {
     /* '<S9>:1:45' */
     /* '<S9>:1:38' */
     i = 0;
@@ -1107,7 +1154,7 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
 
     for (i = 0; i < e_size_idx_0; i++) {
       d_data[i] = (tmp_data_0[i + e_size_idx_0] ==
-                   modified_motor_B.DataTypeConversion1);
+                   modified_motor_B.TmpRTBAtGenerateAnglesListInp_d);
     }
 
     i = 0;
@@ -1175,11 +1222,11 @@ void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
 
     modified_motor_rect_to_polar_v2(tmp_data, tmp_size, angles_to_visit_data,
       &angles_to_visit_size);
-  } else if (modified_motor_B.DataTypeConversion2 == 3.0) {
+  } else if (modified_motor_B.TmpRTBAtGenerateAnglesListInpor == 3.0) {
     /* '<S9>:1:49' */
     /* '<S9>:1:50' */
     angles_to_visit_size = 1;
-    angles_to_visit_data[0] = modified_motor_B.id_val;
+    angles_to_visit_data[0] = modified_motor_B.TmpRTBAtGenerateAnglesListInp_l;
   } else {
     /* '<S9>:1:53' */
     angles_to_visit_size = 4;
@@ -1993,8 +2040,8 @@ RT_MODEL_modified_motor_T *modified_motor(void)
   modified_motor_M->Sizes.numU = (0);  /* Number of model inputs */
   modified_motor_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   modified_motor_M->Sizes.numSampTimes = (3);/* Number of sample times */
-  modified_motor_M->Sizes.numBlocks = (76);/* Number of blocks */
-  modified_motor_M->Sizes.numBlockIO = (49);/* Number of block outputs */
+  modified_motor_M->Sizes.numBlocks = (82);/* Number of blocks */
+  modified_motor_M->Sizes.numBlockIO = (55);/* Number of block outputs */
   modified_motor_M->Sizes.numBlockPrms = (98);/* Sum of parameter "widths" */
   return modified_motor_M;
 }

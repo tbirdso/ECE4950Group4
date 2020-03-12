@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.141
+ * Model version              : 1.145
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Wed Mar 11 21:18:23 2020
+ * C source code generated on : Wed Mar 11 23:07:30 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -284,16 +284,16 @@ P_modified_motor_T modified_motor_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S8>/Unit Delay'
                                         */
-  0.0,                                 /* Expression: 0
+  1.0,                                 /* Expression: 1
                                         * Referenced by: '<Root>/Run'
                                         */
-  1.0,                                 /* Expression: 1
+  2.0,                                 /* Expression: 2
                                         * Referenced by: '<S3>/Color'
                                         */
   1.0,                                 /* Expression: 1
-                                        * Referenced by: '<S3>/ID'
+                                        * Referenced by: '<S3>/Position'
                                         */
   1                                    /* Computed Parameter: Mode_Value
-                                        * Referenced by: '<S3>/Mode '
+                                        * Referenced by: '<S3>/Mode'
                                         */
 };

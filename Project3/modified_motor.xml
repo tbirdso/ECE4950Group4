@@ -333,9 +333,9 @@ Read</sigName>
           </parameter>
           </block>
             <block>
-            <blkName>ID</blkName>
-            <xpcblkName>UI/ID</xpcblkName>
-            <SLblockPath>modified_motor/UI/ID</SLblockPath>
+            <blkName>Mode</blkName>
+            <xpcblkName>UI/Mode</xpcblkName>
+            <SLblockPath>modified_motor/UI/Mode</SLblockPath>
             <isSrc>[1 0 1]</isSrc>
           <parameter>
           <paramName>Value</paramName>
@@ -344,10 +344,9 @@ Read</sigName>
           </parameter>
           </block>
             <block>
-            <blkName>Mode
-</blkName>
-            <xpcblkName>UI/Mode </xpcblkName>
-            <SLblockPath>modified_motor/UI/Mode </SLblockPath>
+            <blkName>Position</blkName>
+            <xpcblkName>UI/Position</xpcblkName>
+            <SLblockPath>modified_motor/UI/Position</SLblockPath>
             <isSrc>[1 0 1]</isSrc>
           <parameter>
           <paramName>Value</paramName>
@@ -358,12 +357,44 @@ Read</sigName>
 			  
 			  
               <signal>
+              <sigName>Color</sigName>
+              <xpcsigName>UI/Color</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/UI</SubSystemName>
+                <sigLabel>color_enum</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Mode</sigName>
+              <xpcsigName>UI/Mode</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/UI</SubSystemName>
+                <sigLabel>Mode (scan, seek_color, seek_pos)</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Position</sigName>
+              <xpcsigName>UI/Position</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/UI</SubSystemName>
+                <sigLabel>pos_val</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
               <sigName>Data Type Conversion</sigName>
               <xpcsigName>UI/Data Type Conversion</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
 			  <SubSystemName>modified_motor/UI</SubSystemName>
-                <sigLabel>id_val</sigLabel>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
 			  

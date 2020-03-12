@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.141
+ * Model version              : 1.145
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Wed Mar 11 21:18:23 2020
+ * C source code generated on : Wed Mar 11 23:07:30 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -874,10 +874,15 @@ typedef struct {
   real_T Sum_m;                        /* '<S8>/Sum' */
   real_T Fcn;                          /* '<S2>/Fcn' */
   real_T DataTypeConversion2;          /* '<S3>/Data Type Conversion2' */
+  real_T TmpRTBAtGenerateAnglesListInpor;
+  real_T color_enum;                   /* '<S3>/Color' */
   real_T DataTypeConversion1;          /* '<S3>/Data Type Conversion1' */
-  real_T id_val;                       /* '<S3>/Data Type Conversion' */
+  real_T TmpRTBAtGenerateAnglesListInp_d;
+  real_T pos_val;                      /* '<S3>/Position' */
+  real_T DataTypeConversion;           /* '<S3>/Data Type Conversion' */
+  real_T TmpRTBAtGenerateAnglesListInp_l;
   real_T y_f;                          /* '<S14>/Convert to Rad' */
-  real_T DataTypeConversion;           /* '<S11>/Data Type Conversion' */
+  real_T DataTypeConversion_h;         /* '<S11>/Data Type Conversion' */
   real_T DataTypeConversion1_i;        /* '<S11>/Data Type Conversion1' */
   real_T TmpSignalConversionAtsfunxyInpo[2];
   real_T iter_cur_index;               /* '<S10>/Data Store Read' */
@@ -886,6 +891,7 @@ typedef struct {
   real_T angles_vector[100];           /* '<S2>/Generate Angles List' */
   real_T image_data[400];              /* '<S1>/Process Image' */
   real_T image;                        /* '<S1>/Fire Webcam' */
+  int8_T Modescanseek_colorseek_pos;   /* '<S3>/Mode' */
 } B_modified_motor_T;
 
 /* Block states (auto storage) for system '<Root>' */
@@ -898,6 +904,9 @@ typedef struct {
   real_T LastUAtTimeA;                 /* '<S4>/Derivative' */
   real_T TimeStampB;                   /* '<S4>/Derivative' */
   real_T LastUAtTimeB;                 /* '<S4>/Derivative' */
+  volatile real_T TmpRTBAtGenerateAnglesListInpor;/* synthesized block */
+  volatile real_T TmpRTBAtGenerateAnglesListInp_f;/* synthesized block */
+  volatile real_T TmpRTBAtGenerateAnglesListInp_o;/* synthesized block */
   real_T Index;                        /* '<S10>/Store_Index' */
   real_T Q4DA_RWORK[16];               /* '<S14>/Q4 DA ' */
   struct {
@@ -925,6 +934,21 @@ typedef struct {
     void *SlioLTF;
   } HiddenToAsyncQueue_InsertedF_gn;   /* synthesized block */
 
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedFo_c;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedFo_b;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedF_cy;   /* synthesized block */
+
   int_T Q4Enc_IWORK[3];                /* '<S14>/Q4 Enc ' */
   struct {
     int_T AcquireOK;
@@ -935,6 +959,9 @@ typedef struct {
   } SFunction_IWORK_m;                 /* '<S16>/S-Function' */
 
   int_T Q4DA_IWORK;                    /* '<S14>/Q4 DA ' */
+  volatile int8_T TmpRTBAtGenerateAnglesListInp_d;/* synthesized block */
+  volatile int8_T TmpRTBAtGenerateAnglesListInp_i;/* synthesized block */
+  volatile int8_T TmpRTBAtGenerateAnglesListInp_c;/* synthesized block */
   int8_T PositionIterator_SubsysRanBC; /* '<S2>/Position Iterator' */
 } DW_modified_motor_T;
 
@@ -1215,17 +1242,17 @@ struct P_modified_motor_T_ {
   real_T UnitDelay_InitialCondition_b; /* Expression: 0
                                         * Referenced by: '<S8>/Unit Delay'
                                         */
-  real_T Run_Value;                    /* Expression: 0
+  real_T Run_Value;                    /* Expression: 1
                                         * Referenced by: '<Root>/Run'
                                         */
-  real_T Color_Value;                  /* Expression: 1
+  real_T Color_Value;                  /* Expression: 2
                                         * Referenced by: '<S3>/Color'
                                         */
-  real_T ID_Value;                     /* Expression: 1
-                                        * Referenced by: '<S3>/ID'
+  real_T Position_Value;               /* Expression: 1
+                                        * Referenced by: '<S3>/Position'
                                         */
   int8_T Mode_Value;                   /* Computed Parameter: Mode_Value
-                                        * Referenced by: '<S3>/Mode '
+                                        * Referenced by: '<S3>/Mode'
                                         */
 };
 

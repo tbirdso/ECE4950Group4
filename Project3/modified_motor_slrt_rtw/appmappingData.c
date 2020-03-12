@@ -12,8 +12,8 @@ const AppMapInfo appInfo[] =
 			modified_motor_SIDMAP,
 			modified_motor_SBIO,
 			modified_motor_SLBL,
-			{0,543},
-			46,
+			{0,546},
+			49,
 		},
 		{ /* ParamMapInfo */
 			modified_motor_PTIDSMAP,

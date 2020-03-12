@@ -83,34 +83,34 @@ pt(5).dtname     = 'real_T';
 
 
   
-pt(6).blockname = 'UI/ID';
+pt(6).blockname = 'UI/Mode';
 pt(6).paramname = 'Value';
 pt(6).class     = 'scalar';
 pt(6).nrows     = 1;
 pt(6).ncols     = 1;
-pt(6).subsource = 'SS_DOUBLE';
+pt(6).subsource = 'SS_INT8';
 pt(6).ndims     = '2';
 pt(6).size      = '[]';
 pt(6).isStruct  = false;
-pt(6).symbol     = 'modified_motor_P.ID_Value';
-pt(6).baseaddr   = '&modified_motor_P.ID_Value';
-pt(6).dtname     = 'real_T';
+pt(6).symbol     = 'modified_motor_P.Mode_Value';
+pt(6).baseaddr   = '&modified_motor_P.Mode_Value';
+pt(6).dtname     = 'int8_T';
 
 
 
   
-pt(7).blockname = 'UI/Mode ';
+pt(7).blockname = 'UI/Position';
 pt(7).paramname = 'Value';
 pt(7).class     = 'scalar';
 pt(7).nrows     = 1;
 pt(7).ncols     = 1;
-pt(7).subsource = 'SS_INT8';
+pt(7).subsource = 'SS_DOUBLE';
 pt(7).ndims     = '2';
 pt(7).size      = '[]';
 pt(7).isStruct  = false;
-pt(7).symbol     = 'modified_motor_P.Mode_Value';
-pt(7).baseaddr   = '&modified_motor_P.Mode_Value';
-pt(7).dtname     = 'int8_T';
+pt(7).symbol     = 'modified_motor_P.Position_Value';
+pt(7).baseaddr   = '&modified_motor_P.Position_Value';
+pt(7).dtname     = 'real_T';
 
 
 
