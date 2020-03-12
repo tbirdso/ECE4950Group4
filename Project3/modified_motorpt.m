@@ -865,6 +865,22 @@ pt(54).baseaddr   = '&modified_motor_P.b';
 pt(54).dtname     = 'real_T';
 
 
+
+  
+pt(55).blockname = '';
+pt(55).paramname = 'img_rgns';
+pt(55).class     = 'col-mat';
+pt(55).nrows     = 5;
+pt(55).ncols     = 4;
+pt(55).subsource = 'SS_DOUBLE';
+pt(55).ndims     = '2';
+pt(55).size      = '[]';
+pt(55).isStruct  = false;
+pt(55).symbol     = 'modified_motor_P.img_rgns';
+pt(55).baseaddr   = '&modified_motor_P.img_rgns[0]';
+pt(55).dtname     = 'real_T';
+
+
 function len = getlenPT
-len = 54;
+len = 55;
 

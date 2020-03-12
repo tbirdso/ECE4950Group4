@@ -219,6 +219,23 @@ Read1</sigName>
                 
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
+			  
+			  
+              <signal>
+              <sigName>Rate Transition1</sigName>
+              <xpcsigName>Logic Block/Rate Transition1</xpcsigName>
+              <sigWidth>100</sigWidth>
+              <sigDim>[100, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Scope </Name>
+		<xPCName>modified_motor/Scope </xPCName>
+		
+		
 
 		</SubSystem>
 		<SubSystem>
@@ -913,7 +930,7 @@ Read1</sigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
 			  <SubSystemName>modified_motor/motor_subsystem</SubSystemName>
-                <sigLabel>Sig1</sigLabel>
+                <sigLabel>DTheta</sigLabel>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
 			  
@@ -997,6 +1014,11 @@ Read1</sigName>
    <parameter>
       <paramName>b</paramName>
           <dim>[1,1]</dim>
+		 <SubSystemName>modified_motor</SubSystemName>
+   </parameter>
+   <parameter>
+      <paramName>img_rgns</paramName>
+          <dim>[5,4]</dim>
 		 <SubSystemName>modified_motor</SubSystemName>
    </parameter>
 </block>

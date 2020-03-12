@@ -51,6 +51,8 @@ for i = 1:numObjects
     % Special case: angle is at -pi
     elseif((Ydiff == 0) && (Xdiff < 0))
         Angles(i) = -pi;
+    elseif((Xdiff == 0) && (Ydiff == 0))
+        Angles(i) = 0;
     end
 end
 

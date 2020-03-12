@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.179
+ * Model version              : 1.195
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 02:42:53 2020
+ * C source code generated on : Thu Mar 12 18:15:12 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -24,270 +24,276 @@
 /* Block parameters (auto storage) */
 P_modified_motor_T modified_motor_P = {
   3.2284E-6,                           /* Variable: J
-                                        * Referenced by: '<S15>/Inertia '
+                                        * Referenced by: '<S16>/Inertia '
                                         */
   0.0274,                              /* Variable: Ke
-                                        * Referenced by: '<S15>/Ke'
+                                        * Referenced by: '<S16>/Ke'
                                         */
   0.0274,                              /* Variable: Kt
-                                        * Referenced by: '<S15>/Kt'
+                                        * Referenced by: '<S16>/Kt'
                                         */
   0.01,                                /* Variable: L
-                                        * Referenced by: '<S15>/Inductance'
+                                        * Referenced by: '<S16>/Inductance'
                                         */
   4.0,                                 /* Variable: R
-                                        * Referenced by: '<S15>/Resistance'
+                                        * Referenced by: '<S16>/Resistance'
                                         */
   3.5077E-6,                           /* Variable: b
-                                        * Referenced by: '<S15>/Damping'
+                                        * Referenced by: '<S16>/Damping'
                                         */
+
+  /*  Variable: img_rgns
+   * Referenced by: '<S1>/Constant'
+   */
+  { 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 320.0, 0.0, 100.0, 100.0,
+    250.0, 240.0, 0.0, 100.0, 200.0, 150.0 },
   0.0,                                 /* Computed Parameter: Target_Position_Y0
-                                        * Referenced by: '<S8>/Target_Position'
+                                        * Referenced by: '<S9>/Target_Position'
                                         */
   99.0,                                /* Expression: 99
-                                        * Referenced by: '<S8>/Store_Index'
+                                        * Referenced by: '<S9>/Store_Index'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S8>/Store_run_pulse'
+                                        * Referenced by: '<S9>/Store_run_pulse'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S2>/Rate Transition'
                                         */
-  0.0,                                 /* Expression: 0
+  1.0,                                 /* Expression: 1
                                         * Referenced by: '<Root>/Run'
                                         */
   1.0,                                 /* Expression: 1
-                                        * Referenced by: '<S4>/Gain'
+                                        * Referenced by: '<S5>/Gain'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S15>/Integrator2'
+                                        * Referenced by: '<S16>/Integrator2'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<Root>/Switch'
                                         */
 
   /*  Computed Parameter: Q4Enc_P1_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   2.0,                                 /* Expression: boardtype
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P2_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   1.0,                                 /* Expression: channel
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P3_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   0.0,                                 /* Expression: initialCount
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P4_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   1.0,                                 /* Expression: prescale
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P5_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   1.0,                                 /* Expression: quadrature
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P6_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   0.0,                                 /* Expression: mode
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P7_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   0.0,                                 /* Expression: synchronousIndex
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P8_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   0.0,                                 /* Expression: indexPolarity
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P9_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   0.0,                                 /* Expression: preserveCounts
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P10_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   0.001,                               /* Expression: sampleTime
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P11_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   0.0,                                 /* Expression: pciBus
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
 
   /*  Computed Parameter: Q4Enc_P12_Size
-   * Referenced by: '<S11>/Q4 Enc '
+   * Referenced by: '<S12>/Q4 Enc '
    */
   { 1.0, 1.0 },
   -1.0,                                /* Expression: pciSlot
-                                        * Referenced by: '<S11>/Q4 Enc '
+                                        * Referenced by: '<S12>/Q4 Enc '
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S16>/Switch1'
+                                        * Referenced by: '<S17>/Switch1'
                                         */
   10.0,                                /* Expression: 10
-                                        * Referenced by: '<S4>/Kp'
+                                        * Referenced by: '<S5>/Kp'
                                         */
   0.2,                                 /* Expression: 0.2
-                                        * Referenced by: '<S4>/Kd'
+                                        * Referenced by: '<S5>/Kd'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S4>/Integrator'
+                                        * Referenced by: '<S5>/Integrator'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S4>/KI'
+                                        * Referenced by: '<S5>/KI'
                                         */
   5.0,                                 /* Expression: 5
-                                        * Referenced by: '<S4>/Saturation'
+                                        * Referenced by: '<S5>/Saturation'
                                         */
   -5.0,                                /* Expression: -5
-                                        * Referenced by: '<S4>/Saturation'
+                                        * Referenced by: '<S5>/Saturation'
                                         */
   1.0,                                 /* Expression: 1
-                                        * Referenced by: '<S10>/Constant'
+                                        * Referenced by: '<S11>/Constant'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S10>/Gate1'
+                                        * Referenced by: '<S11>/Gate1'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S10>/Gate2'
+                                        * Referenced by: '<S11>/Gate2'
                                         */
   5.0,                                 /* Expression: 5
-                                        * Referenced by: '<S11>/Saturation'
+                                        * Referenced by: '<S12>/Saturation'
                                         */
   -5.0,                                /* Expression: -5
-                                        * Referenced by: '<S11>/Saturation'
+                                        * Referenced by: '<S12>/Saturation'
                                         */
 
   /*  Computed Parameter: Q4DA_P1_Size
-   * Referenced by: '<S11>/Q4 DA '
+   * Referenced by: '<S12>/Q4 DA '
    */
   { 1.0, 1.0 },
   2.0,                                 /* Expression: boardtype
-                                        * Referenced by: '<S11>/Q4 DA '
+                                        * Referenced by: '<S12>/Q4 DA '
                                         */
 
   /*  Computed Parameter: Q4DA_P2_Size
-   * Referenced by: '<S11>/Q4 DA '
+   * Referenced by: '<S12>/Q4 DA '
    */
   { 1.0, 1.0 },
   1.0,                                 /* Expression: channel
-                                        * Referenced by: '<S11>/Q4 DA '
+                                        * Referenced by: '<S12>/Q4 DA '
                                         */
 
   /*  Computed Parameter: Q4DA_P3_Size
-   * Referenced by: '<S11>/Q4 DA '
+   * Referenced by: '<S12>/Q4 DA '
    */
   { 1.0, 1.0 },
   -5.0,                                /* Expression: range
-                                        * Referenced by: '<S11>/Q4 DA '
+                                        * Referenced by: '<S12>/Q4 DA '
                                         */
 
   /*  Computed Parameter: Q4DA_P4_Size
-   * Referenced by: '<S11>/Q4 DA '
+   * Referenced by: '<S12>/Q4 DA '
    */
   { 1.0, 1.0 },
   0.0,                                 /* Expression: simul
-                                        * Referenced by: '<S11>/Q4 DA '
+                                        * Referenced by: '<S12>/Q4 DA '
                                         */
 
   /*  Computed Parameter: Q4DA_P5_Size
-   * Referenced by: '<S11>/Q4 DA '
+   * Referenced by: '<S12>/Q4 DA '
    */
   { 1.0, 1.0 },
   1.0,                                 /* Expression: reset
-                                        * Referenced by: '<S11>/Q4 DA '
+                                        * Referenced by: '<S12>/Q4 DA '
                                         */
 
   /*  Computed Parameter: Q4DA_P6_Size
-   * Referenced by: '<S11>/Q4 DA '
+   * Referenced by: '<S12>/Q4 DA '
    */
   { 1.0, 1.0 },
   0.0,                                 /* Expression: initValue
-                                        * Referenced by: '<S11>/Q4 DA '
+                                        * Referenced by: '<S12>/Q4 DA '
                                         */
 
   /*  Computed Parameter: Q4DA_P7_Size
-   * Referenced by: '<S11>/Q4 DA '
+   * Referenced by: '<S12>/Q4 DA '
    */
   { 1.0, 1.0 },
   0.001,                               /* Expression: sampleTime
-                                        * Referenced by: '<S11>/Q4 DA '
+                                        * Referenced by: '<S12>/Q4 DA '
                                         */
 
   /*  Computed Parameter: Q4DA_P8_Size
-   * Referenced by: '<S11>/Q4 DA '
+   * Referenced by: '<S12>/Q4 DA '
    */
   { 1.0, 1.0 },
   0.0,                                 /* Expression: pciBus
-                                        * Referenced by: '<S11>/Q4 DA '
+                                        * Referenced by: '<S12>/Q4 DA '
                                         */
 
   /*  Computed Parameter: Q4DA_P9_Size
-   * Referenced by: '<S11>/Q4 DA '
+   * Referenced by: '<S12>/Q4 DA '
    */
   { 1.0, 1.0 },
   -1.0,                                /* Expression: pciSlot
-                                        * Referenced by: '<S11>/Q4 DA '
+                                        * Referenced by: '<S12>/Q4 DA '
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S15>/Integrator'
+                                        * Referenced by: '<S16>/Integrator'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S15>/Integrator1'
+                                        * Referenced by: '<S16>/Integrator1'
                                         */
   1.0,                                 /* Expression: 1
-                                        * Referenced by: '<S6>/Constant'
+                                        * Referenced by: '<S7>/Constant'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S6>/Unit Delay'
+                                        * Referenced by: '<S7>/Unit Delay'
                                         */
-  2.0,                                 /* Expression: 2
-                                        * Referenced by: '<S3>/Color'
+  1.0,                                 /* Expression: 1
+                                        * Referenced by: '<S4>/Color'
                                         */
-  0.0,                                 /* Expression: NaN
-                                        * Referenced by: '<S3>/Position'
+  -1.0472,                             /* Expression: -1.0472
+                                        * Referenced by: '<S4>/Position'
                                         */
   2                                    /* Computed Parameter: Mode_Value
-                                        * Referenced by: '<S3>/Mode'
+                                        * Referenced by: '<S4>/Mode'
                                         */
 };
