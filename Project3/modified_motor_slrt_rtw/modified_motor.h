@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.135
+ * Model version              : 1.141
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Wed Mar 11 01:12:51 2020
+ * C source code generated on : Wed Mar 11 21:18:23 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -1461,7 +1461,7 @@ extern RT_MODEL_modified_motor_T *const modified_motor_M;
  * '<Root>' : 'modified_motor'
  * '<S1>'   : 'modified_motor/Image Deconstructor'
  * '<S2>'   : 'modified_motor/Logic Block'
- * '<S3>'   : 'modified_motor/UI Input'
+ * '<S3>'   : 'modified_motor/UI'
  * '<S4>'   : 'modified_motor/motor_subsystem'
  * '<S5>'   : 'modified_motor/Image Deconstructor/Clock'
  * '<S6>'   : 'modified_motor/Image Deconstructor/Fire Webcam'

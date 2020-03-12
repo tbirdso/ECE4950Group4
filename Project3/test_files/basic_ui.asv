@@ -1,0 +1,20 @@
+% GUI for Project 3
+%
+% Reference: https://www.mathworks.com/matlabcentral/fileexchange/24294-simulink-signal-viewing-using-event-listeners-and-a-matlab-ui
+% Reference project by Phil Goddard
+
+clear; clc;
+
+load('motor_params.mat');
+
+modes = {'scan'; 'seek_color'; 'seek_position'}
+colors = {'none'; 'red'; 'blue'}
+
+mode_choice = menu('What to do?','scan', 'Find all instances of a color', 'Find a specific sticker');
+fprintf('%d: %s', mode_choice, modes{mode_choice,:});
+
+if mode_choice == 2
+    color_choice = menu('What color to seek?', 'red', 'blue') + 1;
+end
+
+set
