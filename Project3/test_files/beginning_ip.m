@@ -27,38 +27,34 @@ foreground = bitxor(binaryNewImg, binaryBackground);
 % figure, imshow(foreground);
 se = strel('disk', 2);
 isolatedForeground = imerode(foreground, se);
-% figure, imshow(isolatedForeground);
+figure, imshow(isolatedForeground);
 
-%% Identify connected components
+%% Use regionprops to find centroids
 connectedComponents = bwconncomp(isolatedForeground);
-
-%% Use regionprops to compute area/ find centroids
 regProps = regionprops(connectedComponents);
-
-%% Use regionprops to find centroid
 regCentroids = regionprops(connectedComponents, 'centroid');
 centroids = cat(1, regCentroids.Centroid);
 
 %% Plot x on objects
 % hold on
-% for x = 1:numel(S)
+% for x = 1:numel(regCentroids)
 %     plot(centroids(x,1),centroids(x,2),'rx');
 % end
 % hold off
 
 %% Label image regions
-% L = bwlabel(binaryImg);
-% figure,imshow(binimg)
+% labeledImg = bwlabel(isolatedForeground);
+% figure, imshow(isolatedForeground)
 % hold on
-% for i = 1:numel(cent)
-%     c = cent(i).Centroid;
+% for i = 1:numel(regCentroids)
+%     c = regCentroids(i).Centroid;
 %     text(c(1), c(2), sprintf('%d', i), ...
 %         'HorizontalAlignment', 'center', ...
 %         'VerticalAlignment', 'middle');
 % end
 % hold off
 
-% create colors matrix
+%% Create img_data matrix
 % empty = 0, red = 1, green = 2, blue = 3
 % centroids: [[210,398],[211,126],[345,247],[572,293]]
 % centroids colors: [green,purple,red,blue]
