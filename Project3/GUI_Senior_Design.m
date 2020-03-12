@@ -143,7 +143,7 @@ switch mode
     case 'Stickers By Color'
         mode_choice = 2;
     case 'Specific Sticker'
-        mode_choice = 3
+        mode_choice = 3;
     otherwise
         mode_choice = 0;
 end
@@ -172,7 +172,11 @@ function sticker_location_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 sticker_location_degrees = str2double(get(hObject,'String'));
-sticker_location_radians = sticker_location_degrees*pi/180;
+stick_location_deg_capped = mod(sticker_location_degrees, 360);
+if stick_location_deg_capped > 180
+    stick_location_deg_capped = stick_location_deg_capped - 360;
+end
+sticker_location_radians = stick_location_deg_capped * pi/180;
 
 set_param('modified_motor/UI/Position', 'Value', num2str(sticker_location_radians));
 

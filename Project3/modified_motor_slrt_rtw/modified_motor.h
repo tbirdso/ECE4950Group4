@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.171
+ * Model version              : 1.179
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 01:55:07 2020
+ * C source code generated on : Thu Mar 12 02:42:53 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -43,6 +43,7 @@
 #include "rtGetInf.h"
 #include "rt_nonfinite.h"
 #include "rt_zcfcn.h"
+#include "rtGetNaN.h"
 #include "rt_defines.h"
 
 /* Macros for accessing real-time model data structure */
@@ -840,10 +841,10 @@ typedef struct {
   real_T target_pos;                   /* '<S2>/Rate Transition' */
   real_T Run;                          /* '<Root>/Run' */
   real_T Gain;                         /* '<S4>/Gain' */
-  real_T theta;                        /* '<S14>/Integrator2' */
+  real_T theta;                        /* '<S15>/Integrator2' */
   real_T Positionsteps;                /* '<S11>/Q4 Enc ' */
   real_T Positionrad;                  /* '<S11>/Invert Sign' */
-  real_T Switch1;                      /* '<S15>/Switch1' */
+  real_T Switch1;                      /* '<S16>/Switch1' */
   real_T Sig1;                         /* '<S4>/Sum' */
   real_T Kp;                           /* '<S4>/Kp' */
   real_T Derivative;                   /* '<S4>/Derivative' */
@@ -856,16 +857,16 @@ typedef struct {
   real_T SimulatedMotor;               /* '<S10>/Gate1' */
   real_T RealMotor;                    /* '<S10>/Gate2' */
   real_T Saturation;                   /* '<S11>/Saturation' */
-  real_T i;                            /* '<S14>/Integrator' */
-  real_T Resistance;                   /* '<S14>/Resistance' */
-  real_T ddttheta;                     /* '<S14>/Integrator1' */
-  real_T Ke;                           /* '<S14>/Ke' */
-  real_T Add;                          /* '<S14>/Add' */
-  real_T Kt;                           /* '<S14>/Kt' */
-  real_T Damping;                      /* '<S14>/Damping' */
-  real_T Add1;                         /* '<S14>/Add1' */
-  real_T ddti;                         /* '<S14>/Inductance' */
-  real_T d2dt2theta;                   /* '<S14>/Inertia ' */
+  real_T i;                            /* '<S15>/Integrator' */
+  real_T Resistance;                   /* '<S15>/Resistance' */
+  real_T ddttheta;                     /* '<S15>/Integrator1' */
+  real_T Ke;                           /* '<S15>/Ke' */
+  real_T Add;                          /* '<S15>/Add' */
+  real_T Kt;                           /* '<S15>/Kt' */
+  real_T Damping;                      /* '<S15>/Damping' */
+  real_T Add1;                         /* '<S15>/Add1' */
+  real_T ddti;                         /* '<S15>/Inductance' */
+  real_T d2dt2theta;                   /* '<S15>/Inertia ' */
   real_T UnitDelay;                    /* '<S6>/Unit Delay' */
   real_T Sum;                          /* '<S6>/Sum' */
   real_T DataTypeConversion2;          /* '<S3>/Data Type Conversion2' */
@@ -892,7 +893,7 @@ typedef struct {
   real_T LastUAtTimeB;                 /* '<S4>/Derivative' */
   volatile real_T TmpRTBAtPositionIteratorInport2;/* synthesized block */
   real_T Index;                        /* '<S8>/Store_Index' */
-  real_T Run_sig;                      /* '<S8>/Store_Index1' */
+  real_T Run_sig;                      /* '<S8>/Store_run_pulse' */
   real_T Q4DA_RWORK[16];               /* '<S11>/Q4 DA ' */
   struct {
     void *AQHandles;
@@ -909,6 +910,11 @@ typedef struct {
     void *SlioLTF;
   } HiddenToAsyncQueue_InsertedFo_e;   /* synthesized block */
 
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedFo_i;   /* synthesized block */
+
   int_T Q4Enc_IWORK[3];                /* '<S11>/Q4 Enc ' */
   struct {
     int_T AcquireOK;
@@ -916,7 +922,11 @@ typedef struct {
 
   struct {
     int_T AcquireOK;
-  } SFunction_IWORK_m;                 /* '<S13>/S-Function' */
+  } SFunction_IWORK_n;                 /* '<S13>/S-Function' */
+
+  struct {
+    int_T AcquireOK;
+  } SFunction_IWORK_m;                 /* '<S14>/S-Function' */
 
   int_T Q4DA_IWORK;                    /* '<S11>/Q4 DA ' */
   volatile int8_T TmpRTBAtPositionIteratorInpor_a;/* synthesized block */
@@ -925,26 +935,26 @@ typedef struct {
 
 /* Continuous states (auto storage) */
 typedef struct {
-  real_T Integrator2_CSTATE;           /* '<S14>/Integrator2' */
+  real_T Integrator2_CSTATE;           /* '<S15>/Integrator2' */
   real_T Integrator_CSTATE;            /* '<S4>/Integrator' */
-  real_T Integrator_CSTATE_g;          /* '<S14>/Integrator' */
-  real_T Integrator1_CSTATE;           /* '<S14>/Integrator1' */
+  real_T Integrator_CSTATE_g;          /* '<S15>/Integrator' */
+  real_T Integrator1_CSTATE;           /* '<S15>/Integrator1' */
 } X_modified_motor_T;
 
 /* State derivatives (auto storage) */
 typedef struct {
-  real_T Integrator2_CSTATE;           /* '<S14>/Integrator2' */
+  real_T Integrator2_CSTATE;           /* '<S15>/Integrator2' */
   real_T Integrator_CSTATE;            /* '<S4>/Integrator' */
-  real_T Integrator_CSTATE_g;          /* '<S14>/Integrator' */
-  real_T Integrator1_CSTATE;           /* '<S14>/Integrator1' */
+  real_T Integrator_CSTATE_g;          /* '<S15>/Integrator' */
+  real_T Integrator1_CSTATE;           /* '<S15>/Integrator1' */
 } XDot_modified_motor_T;
 
 /* State disabled  */
 typedef struct {
-  boolean_T Integrator2_CSTATE;        /* '<S14>/Integrator2' */
+  boolean_T Integrator2_CSTATE;        /* '<S15>/Integrator2' */
   boolean_T Integrator_CSTATE;         /* '<S4>/Integrator' */
-  boolean_T Integrator_CSTATE_g;       /* '<S14>/Integrator' */
-  boolean_T Integrator1_CSTATE;        /* '<S14>/Integrator1' */
+  boolean_T Integrator_CSTATE_g;       /* '<S15>/Integrator' */
+  boolean_T Integrator1_CSTATE;        /* '<S15>/Integrator1' */
 } XDis_modified_motor_T;
 
 /* Zero-crossing (trigger) state */
@@ -982,31 +992,31 @@ typedef struct {
 /* Parameters (auto storage) */
 struct P_modified_motor_T_ {
   real_T J;                            /* Variable: J
-                                        * Referenced by: '<S14>/Inertia '
+                                        * Referenced by: '<S15>/Inertia '
                                         */
   real_T Ke;                           /* Variable: Ke
-                                        * Referenced by: '<S14>/Ke'
+                                        * Referenced by: '<S15>/Ke'
                                         */
   real_T Kt;                           /* Variable: Kt
-                                        * Referenced by: '<S14>/Kt'
+                                        * Referenced by: '<S15>/Kt'
                                         */
   real_T L;                            /* Variable: L
-                                        * Referenced by: '<S14>/Inductance'
+                                        * Referenced by: '<S15>/Inductance'
                                         */
   real_T R;                            /* Variable: R
-                                        * Referenced by: '<S14>/Resistance'
+                                        * Referenced by: '<S15>/Resistance'
                                         */
   real_T b;                            /* Variable: b
-                                        * Referenced by: '<S14>/Damping'
+                                        * Referenced by: '<S15>/Damping'
                                         */
   real_T Target_Position_Y0;           /* Computed Parameter: Target_Position_Y0
                                         * Referenced by: '<S8>/Target_Position'
                                         */
-  real_T Store_Index_InitialValue;     /* Expression: 0
+  real_T Store_Index_InitialValue;     /* Expression: 99
                                         * Referenced by: '<S8>/Store_Index'
                                         */
-  real_T Store_Index1_InitialValue;    /* Expression: 0
-                                        * Referenced by: '<S8>/Store_Index1'
+  real_T Store_run_pulse_InitialValue; /* Expression: 0
+                                        * Referenced by: '<S8>/Store_run_pulse'
                                         */
   real_T RateTransition_X0;            /* Expression: 0
                                         * Referenced by: '<S2>/Rate Transition'
@@ -1018,7 +1028,7 @@ struct P_modified_motor_T_ {
                                         * Referenced by: '<S4>/Gain'
                                         */
   real_T Integrator2_IC;               /* Expression: 0
-                                        * Referenced by: '<S14>/Integrator2'
+                                        * Referenced by: '<S15>/Integrator2'
                                         */
   real_T Switch_Value;                 /* Expression: 0
                                         * Referenced by: '<Root>/Switch'
@@ -1096,7 +1106,7 @@ struct P_modified_motor_T_ {
                                         * Referenced by: '<S11>/Q4 Enc '
                                         */
   real_T Switch1_Threshold;            /* Expression: 0
-                                        * Referenced by: '<S15>/Switch1'
+                                        * Referenced by: '<S16>/Switch1'
                                         */
   real_T Kp_Gain;                      /* Expression: 10
                                         * Referenced by: '<S4>/Kp'
@@ -1186,10 +1196,10 @@ struct P_modified_motor_T_ {
                                         * Referenced by: '<S11>/Q4 DA '
                                         */
   real_T Integrator_IC_a;              /* Expression: 0
-                                        * Referenced by: '<S14>/Integrator'
+                                        * Referenced by: '<S15>/Integrator'
                                         */
   real_T Integrator1_IC;               /* Expression: 0
-                                        * Referenced by: '<S14>/Integrator1'
+                                        * Referenced by: '<S15>/Integrator1'
                                         */
   real_T Constant_Value_b;             /* Expression: 1
                                         * Referenced by: '<S6>/Constant'
@@ -1197,10 +1207,10 @@ struct P_modified_motor_T_ {
   real_T UnitDelay_InitialCondition;   /* Expression: 0
                                         * Referenced by: '<S6>/Unit Delay'
                                         */
-  real_T Color_Value;                  /* Expression: 1
+  real_T Color_Value;                  /* Expression: 2
                                         * Referenced by: '<S3>/Color'
                                         */
-  real_T Position_Value;               /* Expression: -3.1416
+  real_T Position_Value;               /* Expression: NaN
                                         * Referenced by: '<S3>/Position'
                                         */
   int8_T Mode_Value;                   /* Computed Parameter: Mode_Value
@@ -1450,9 +1460,10 @@ extern RT_MODEL_modified_motor_T *const modified_motor_M;
  * '<S10>'  : 'modified_motor/motor_subsystem/Motor Selector'
  * '<S11>'  : 'modified_motor/motor_subsystem/Real motor'
  * '<S12>'  : 'modified_motor/motor_subsystem/Scope 1'
- * '<S13>'  : 'modified_motor/motor_subsystem/Scope 3'
- * '<S14>'  : 'modified_motor/motor_subsystem/Simulated Motor'
- * '<S15>'  : 'modified_motor/motor_subsystem/Switching Logic'
- * '<S16>'  : 'modified_motor/motor_subsystem/Real motor/Convert to Rad'
+ * '<S13>'  : 'modified_motor/motor_subsystem/Scope 2'
+ * '<S14>'  : 'modified_motor/motor_subsystem/Scope 3'
+ * '<S15>'  : 'modified_motor/motor_subsystem/Simulated Motor'
+ * '<S16>'  : 'modified_motor/motor_subsystem/Switching Logic'
+ * '<S17>'  : 'modified_motor/motor_subsystem/Real motor/Convert to Rad'
  */
 #endif                                 /* RTW_HEADER_modified_motor_h_ */

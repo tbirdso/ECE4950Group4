@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.171
+ * Model version              : 1.179
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 01:55:07 2020
+ * C source code generated on : Thu Mar 12 02:42:53 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -231,7 +231,7 @@ static const rtwCAPI_BlockParameters rtBlockParameters[] = {
   { 58, TARGET_STRING("Logic Block/Position Iterator/Store_Index"),
     TARGET_STRING("InitialValue"), 0, 0, 0 },
 
-  { 59, TARGET_STRING("Logic Block/Position Iterator/Store_Index1"),
+  { 59, TARGET_STRING("Logic Block/Position Iterator/Store_run_pulse"),
     TARGET_STRING("InitialValue"), 0, 0, 0 },
 
   { 60, TARGET_STRING("motor_subsystem/Motor Selector/Constant"),
@@ -410,7 +410,7 @@ static void* rtDataAddrMap[] = {
   &modified_motor_P.UnitDelay_InitialCondition,/* 56: Block Parameter */
   &modified_motor_P.Target_Position_Y0,/* 57: Block Parameter */
   &modified_motor_P.Store_Index_InitialValue,/* 58: Block Parameter */
-  &modified_motor_P.Store_Index1_InitialValue,/* 59: Block Parameter */
+  &modified_motor_P.Store_run_pulse_InitialValue,/* 59: Block Parameter */
   &modified_motor_P.Constant_Value,    /* 60: Block Parameter */
   &modified_motor_P.Gate1_Threshold,   /* 61: Block Parameter */
   &modified_motor_P.Gate2_Threshold,   /* 62: Block Parameter */
@@ -551,10 +551,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 2716362673U,
-    2728057772U,
-    208617979U,
-    4280177584U },
+  { 464225412U,
+    3757850684U,
+    2299242938U,
+    930001749U },
   (NULL), 0,
   0
 };

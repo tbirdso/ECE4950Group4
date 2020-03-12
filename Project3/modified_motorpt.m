@@ -275,7 +275,7 @@ pt(17).dtname     = 'real_T';
 
 
   
-pt(18).blockname = 'Logic Block/Position Iterator/Store_Index1';
+pt(18).blockname = 'Logic Block/Position Iterator/Store_run_pulse';
 pt(18).paramname = 'InitialValue';
 pt(18).class     = 'scalar';
 pt(18).nrows     = 1;
@@ -284,8 +284,8 @@ pt(18).subsource = 'SS_DOUBLE';
 pt(18).ndims     = '2';
 pt(18).size      = '[]';
 pt(18).isStruct  = false;
-pt(18).symbol     = 'modified_motor_P.Store_Index1_InitialValue';
-pt(18).baseaddr   = '&modified_motor_P.Store_Index1_InitialValue';
+pt(18).symbol     = 'modified_motor_P.Store_run_pulse_InitialValue';
+pt(18).baseaddr   = '&modified_motor_P.Store_run_pulse_InitialValue';
 pt(18).dtname     = 'real_T';
 
 

@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.171
+ * Model version              : 1.179
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 01:55:07 2020
+ * C source code generated on : Thu Mar 12 02:42:53 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -622,7 +622,7 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
 
   /* End of RateTransition: '<S2>/Rate Transition' */
 
-  /* Integrator: '<S14>/Integrator2' */
+  /* Integrator: '<S15>/Integrator2' */
   modified_motor_B.theta = modified_motor_X.Integrator2_CSTATE;
   if (rtmIsMajorTimeStep(modified_motor_M)) {
     /* S-Function (encquanserq8): '<S11>/Q4 Enc ' */
@@ -634,18 +634,18 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
     }
 
     /* MATLAB Function: '<S11>/Convert to Rad' */
-    /* MATLAB Function 'motor_subsystem/Real motor/Convert to Rad': '<S16>:1' */
+    /* MATLAB Function 'motor_subsystem/Real motor/Convert to Rad': '<S17>:1' */
     /*  Observed experimentally */
-    /* '<S16>:1:6' */
-    /* '<S16>:1:8' */
+    /* '<S17>:1:6' */
+    /* '<S17>:1:8' */
     modified_motor_B.y = modified_motor_B.Positionsteps * 2.0 *
-      3.1415926535897931 / 400.0 - 3.1415926535897931;
+      3.1415926535897931 / 400.0;
 
     /* Fcn: '<S11>/Invert Sign' */
     modified_motor_B.Positionrad = -modified_motor_B.y;
   }
 
-  /* Switch: '<S15>/Switch1' incorporates:
+  /* Switch: '<S16>/Switch1' incorporates:
    *  Constant: '<Root>/Switch'
    */
   if (modified_motor_P.Switch_Value > modified_motor_P.Switch1_Threshold) {
@@ -654,7 +654,7 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
     modified_motor_B.Switch1 = modified_motor_B.Positionrad;
   }
 
-  /* End of Switch: '<S15>/Switch1' */
+  /* End of Switch: '<S16>/Switch1' */
 
   /* Sum: '<S4>/Sum' */
   modified_motor_B.Sig1 = modified_motor_B.Gain - modified_motor_B.Switch1;
@@ -719,9 +719,13 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
   /* S-Function (scblock): '<S12>/S-Function' */
   /* ok to acquire for <S12>/S-Function */
   modified_motor_DW.SFunction_IWORK.AcquireOK = 1;
+
+  /* S-Function (scblock): '<S13>/S-Function' */
+  /* ok to acquire for <S13>/S-Function */
+  modified_motor_DW.SFunction_IWORK_n.AcquireOK = 1;
   if (rtmIsMajorTimeStep(modified_motor_M)) {
-    /* S-Function (scblock): '<S13>/S-Function' */
-    /* ok to acquire for <S13>/S-Function */
+    /* S-Function (scblock): '<S14>/S-Function' */
+    /* ok to acquire for <S14>/S-Function */
     modified_motor_DW.SFunction_IWORK_m.AcquireOK = 1;
 
     /* Sum: '<S10>/Add' incorporates:
@@ -775,37 +779,37 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
     }
   }
 
-  /* Integrator: '<S14>/Integrator' */
+  /* Integrator: '<S15>/Integrator' */
   modified_motor_B.i = modified_motor_X.Integrator_CSTATE_g;
 
-  /* Gain: '<S14>/Resistance' */
+  /* Gain: '<S15>/Resistance' */
   modified_motor_B.Resistance = modified_motor_P.R * modified_motor_B.i;
 
-  /* Integrator: '<S14>/Integrator1' */
+  /* Integrator: '<S15>/Integrator1' */
   modified_motor_B.ddttheta = modified_motor_X.Integrator1_CSTATE;
 
-  /* Gain: '<S14>/Ke' */
+  /* Gain: '<S15>/Ke' */
   modified_motor_B.Ke = modified_motor_P.Ke * modified_motor_B.ddttheta;
 
-  /* Sum: '<S14>/Add' */
+  /* Sum: '<S15>/Add' */
   modified_motor_B.Add = (modified_motor_B.SimulatedMotor -
     modified_motor_B.Resistance) - modified_motor_B.Ke;
 
-  /* Gain: '<S14>/Kt' */
+  /* Gain: '<S15>/Kt' */
   modified_motor_B.Kt = modified_motor_P.Kt * modified_motor_B.i;
 
-  /* Gain: '<S14>/Damping' */
+  /* Gain: '<S15>/Damping' */
   modified_motor_B.Damping = modified_motor_P.b * modified_motor_B.ddttheta;
 
-  /* Sum: '<S14>/Add1' */
+  /* Sum: '<S15>/Add1' */
   modified_motor_B.Add1 = modified_motor_B.Kt - modified_motor_B.Damping;
 
-  /* Gain: '<S14>/Inductance' */
+  /* Gain: '<S15>/Inductance' */
   lastTime = modified_motor_P.L;
   lastTime = 1.0 / lastTime;
   modified_motor_B.ddti = lastTime * modified_motor_B.Add;
 
-  /* Gain: '<S14>/Inertia ' */
+  /* Gain: '<S15>/Inertia ' */
   lastTime = modified_motor_P.J;
   lastTime = 1.0 / lastTime;
   modified_motor_B.d2dt2theta = lastTime * modified_motor_B.Add1;
@@ -886,23 +890,23 @@ void modified_motor_derivatives(void)
   XDot_modified_motor_T *_rtXdot;
   _rtXdot = ((XDot_modified_motor_T *) modified_motor_M->derivs);
 
-  /* Derivatives for Integrator: '<S14>/Integrator2' */
+  /* Derivatives for Integrator: '<S15>/Integrator2' */
   _rtXdot->Integrator2_CSTATE = modified_motor_B.ddttheta;
 
   /* Derivatives for Integrator: '<S4>/Integrator' */
   _rtXdot->Integrator_CSTATE = modified_motor_B.Sig1;
 
-  /* Derivatives for Integrator: '<S14>/Integrator' */
+  /* Derivatives for Integrator: '<S15>/Integrator' */
   _rtXdot->Integrator_CSTATE_g = modified_motor_B.ddti;
 
-  /* Derivatives for Integrator: '<S14>/Integrator1' */
+  /* Derivatives for Integrator: '<S15>/Integrator1' */
   _rtXdot->Integrator1_CSTATE = modified_motor_B.d2dt2theta;
 }
 
 /* Model output function for TID2 */
 void modified_motor_output2(void)      /* Sample time: [1.0s, 0.0s] */
 {
-  static const int16_T b[16] = { 1, 1, 1, 1, 1, 1, 1, 1, 320, 320, 0, 320, 0, 0,
+  static const int16_T b[16] = { 1, 1, 1, 1, 1, 1, 1, 2, 320, 320, 0, 320, 0, 0,
     240, 480 };
 
   real_T img_regions_data[400];
@@ -1330,6 +1334,40 @@ void modified_motor_initialize(void)
   /* S-Function Block: <S13>/S-Function (scblock) */
   {
     int i;
+    if ((i = rl32eScopeExists(1)) == 0) {
+      if ((i = rl32eDefScope(1,2)) != 0) {
+        printf("Error creating scope 1\n");
+      } else {
+        rl32eAddSignal(1, rl32eGetSignalNo(
+          "motor_subsystem/Switching Logic/Switch1"));
+        rl32eSetTargetScopeSigFt(1,rl32eGetSignalNo(
+          "motor_subsystem/Switching Logic/Switch1"),"%15.6f");
+        rl32eSetScope(1, 4, 250);
+        rl32eSetScope(1, 5, 0);
+        rl32eSetScope(1, 6, 1);
+        rl32eSetScope(1, 0, 0);
+        rl32eSetScope(1, 3, rl32eGetSignalNo(
+          "motor_subsystem/Switching Logic/Switch1"));
+        rl32eSetScope(1, 1, 0.0);
+        rl32eSetScope(1, 2, 0);
+        rl32eSetScope(1, 9, 0);
+        rl32eSetTargetScope(1, 1, 0.0);
+        rl32eSetTargetScope(1, 11, 0.0);
+        rl32eSetTargetScope(1, 10, 2.0);
+        xpceScopeAcqOK(1, &modified_motor_DW.SFunction_IWORK_n.AcquireOK);
+      }
+    }
+
+    if (i) {
+      rl32eRestartAcquisition(1);
+    }
+  }
+
+  /* Start for S-Function (scblock): '<S14>/S-Function' */
+
+  /* S-Function Block: <S14>/S-Function (scblock) */
+  {
+    int i;
     if ((i = rl32eScopeExists(4)) == 0) {
       if ((i = rl32eDefScope(4,2)) != 0) {
         printf("Error creating scope 4\n");
@@ -1371,15 +1409,15 @@ void modified_motor_initialize(void)
   /* Start for DataStoreMemory: '<S8>/Store_Index' */
   modified_motor_DW.Index = modified_motor_P.Store_Index_InitialValue;
 
-  /* Start for DataStoreMemory: '<S8>/Store_Index1' */
-  modified_motor_DW.Run_sig = modified_motor_P.Store_Index1_InitialValue;
+  /* Start for DataStoreMemory: '<S8>/Store_run_pulse' */
+  modified_motor_DW.Run_sig = modified_motor_P.Store_run_pulse_InitialValue;
 
   /* End of Start for SubSystem: '<S2>/Position Iterator' */
 
   /* InitializeConditions for RateTransition: '<S2>/Rate Transition' */
   modified_motor_DW.RateTransition_Buffer0 = modified_motor_P.RateTransition_X0;
 
-  /* InitializeConditions for Integrator: '<S14>/Integrator2' */
+  /* InitializeConditions for Integrator: '<S15>/Integrator2' */
   modified_motor_X.Integrator2_CSTATE = modified_motor_P.Integrator2_IC;
 
   /* InitializeConditions for Derivative: '<S4>/Derivative' */
@@ -1389,10 +1427,10 @@ void modified_motor_initialize(void)
   /* InitializeConditions for Integrator: '<S4>/Integrator' */
   modified_motor_X.Integrator_CSTATE = modified_motor_P.Integrator_IC;
 
-  /* InitializeConditions for Integrator: '<S14>/Integrator' */
+  /* InitializeConditions for Integrator: '<S15>/Integrator' */
   modified_motor_X.Integrator_CSTATE_g = modified_motor_P.Integrator_IC_a;
 
-  /* InitializeConditions for Integrator: '<S14>/Integrator1' */
+  /* InitializeConditions for Integrator: '<S15>/Integrator1' */
   modified_motor_X.Integrator1_CSTATE = modified_motor_P.Integrator1_IC;
 
   /* InitializeConditions for UnitDelay: '<S6>/Unit Delay' */
@@ -1495,6 +1533,9 @@ RT_MODEL_modified_motor_T *modified_motor(void)
 
   /* initialize non-finites */
   rt_InitInfAndNaN(sizeof(real_T));
+
+  /* non-finite (run-time) assignments */
+  modified_motor_P.Position_Value = rtNaN;
 
   /* initialize real-time model */
   (void) memset((void *)modified_motor_M, 0,
@@ -1937,7 +1978,7 @@ RT_MODEL_modified_motor_T *modified_motor(void)
   modified_motor_M->Sizes.numU = (0);  /* Number of model inputs */
   modified_motor_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   modified_motor_M->Sizes.numSampTimes = (3);/* Number of sample times */
-  modified_motor_M->Sizes.numBlocks = (62);/* Number of blocks */
+  modified_motor_M->Sizes.numBlocks = (64);/* Number of blocks */
   modified_motor_M->Sizes.numBlockIO = (43);/* Number of block outputs */
   modified_motor_M->Sizes.numBlockPrms = (96);/* Sum of parameter "widths" */
   return modified_motor_M;

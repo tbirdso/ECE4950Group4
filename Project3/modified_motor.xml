@@ -111,9 +111,9 @@
           </parameter>
           </block>
             <block>
-            <blkName>Store_Index1</blkName>
-            <xpcblkName>Logic Block/Position Iterator/Store_Index1</xpcblkName>
-            <SLblockPath>modified_motor/Logic Block/Position Iterator/Store_Index1</SLblockPath>
+            <blkName>Store_run_pulse</blkName>
+            <xpcblkName>Logic Block/Position Iterator/Store_run_pulse</xpcblkName>
+            <SLblockPath>modified_motor/Logic Block/Position Iterator/Store_run_pulse</SLblockPath>
             <isSrc>[0 0 0]</isSrc>
           <parameter>
           <paramName>InitialValue</paramName>
@@ -559,6 +559,13 @@ Read1</sigName>
 		<SubSystem>
 		<Name>Scope 1</Name>
 		<xPCName>modified_motor/motor_subsystem/Scope 1</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Scope 2</Name>
+		<xPCName>modified_motor/motor_subsystem/Scope 2</xPCName>
 		
 		
 
