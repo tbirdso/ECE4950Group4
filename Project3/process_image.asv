@@ -36,10 +36,31 @@ connectedComponents = bwconncomp(isolatedForeground);
 regProps = regionprops(connectedComponents);
 regCentroids = regionprops(connectedComponents, 'centroid');
 centroids = cat(1, regCentroids.Centroid);
-areas = cat
+regAreas = regionprops(connectedComponents, 'Area');
 
+%% Filter out bad connected components
+filteredCents1 = zeros(100,2);
+numObj = length(regAreas);
+if (numObj > 100)
+    numObj = 100;
+end
+count = 0;
+for i = 1:numObj
+    if ((regAreas(i) > 1150) && (regAreas(i) < 1425))
+        count = count + 1;
+        filteredCents1(count, 1) = regCentroids(i, 1);
+        filteredCents1(count, 2) = regCentroids(i, 2);
+    end
+end
+
+numCents = nnz(filteredCents1) / 2;
+filteredCents = zeros(numCents, 2);
+for i = 1:numCents
+    filteredCents(i,1) = filteredCents1(i,1);
+    filteredCents(i,2) = filteredCents1(i,2);
+end
 %% Get coordinates and colors of centroids
-numCentroids = numel(regCentroids);
+numCentroids = numel(filt);
 hsvImg = rgb2hsv(newImg);
 coords = zeros(numCentroids,2);
 colors = zeros(numCentroids,1);
