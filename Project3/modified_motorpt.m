@@ -868,16 +868,16 @@ pt(54).dtname     = 'real_T';
 
   
 pt(55).blockname = '';
-pt(55).paramname = 'img_rgns';
+pt(55).paramname = 'image_data';
 pt(55).class     = 'col-mat';
 pt(55).nrows     = 100;
-pt(55).ncols     = 4;
+pt(55).ncols     = 3;
 pt(55).subsource = 'SS_DOUBLE';
 pt(55).ndims     = '2';
 pt(55).size      = '[]';
 pt(55).isStruct  = false;
-pt(55).symbol     = 'modified_motor_P.img_rgns';
-pt(55).baseaddr   = '&modified_motor_P.img_rgns[0]';
+pt(55).symbol     = 'modified_motor_P.image_data';
+pt(55).baseaddr   = '&modified_motor_P.image_data[0]';
 pt(55).dtname     = 'real_T';
 
 

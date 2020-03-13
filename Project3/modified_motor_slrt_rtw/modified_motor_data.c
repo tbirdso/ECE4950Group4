@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.197
+ * Model version              : 1.222
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 18:34:34 2020
+ * C source code generated on : Thu Mar 12 19:59:54 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -42,7 +42,7 @@ P_modified_motor_T modified_motor_P = {
                                         * Referenced by: '<S16>/Damping'
                                         */
 
-  /*  Variable: img_rgns
+  /*  Variable: image_data
    * Referenced by: '<S1>/Constant'
    */
   { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -64,14 +64,7 @@ P_modified_motor_T modified_motor_P = {
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
   0.0,                                 /* Computed Parameter: Target_Position_Y0
                                         * Referenced by: '<S9>/Target_Position'
                                         */
@@ -84,7 +77,7 @@ P_modified_motor_T modified_motor_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S2>/Rate Transition'
                                         */
-  1.0,                                 /* Expression: 1
+  0.0,                                 /* Expression: 0
                                         * Referenced by: '<Root>/Run'
                                         */
   1.0,                                 /* Expression: 1
@@ -306,19 +299,19 @@ P_modified_motor_T modified_motor_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S16>/Integrator1'
                                         */
+  4.0,                                 /* Expression: 4
+                                        * Referenced by: '<S4>/Color'
+                                        */
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<S4>/Position'
+                                        */
   1.0,                                 /* Expression: 1
                                         * Referenced by: '<S7>/Constant'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S7>/Unit Delay'
                                         */
-  4.0,                                 /* Expression: 4
-                                        * Referenced by: '<S4>/Color'
-                                        */
-  -2.3562,                             /* Expression: -2.3562
-                                        * Referenced by: '<S4>/Position'
-                                        */
-  3                                    /* Computed Parameter: Mode_Value
+  1                                    /* Computed Parameter: Mode_Value
                                         * Referenced by: '<S4>/Mode'
                                         */
 };

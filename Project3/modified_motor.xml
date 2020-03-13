@@ -16,8 +16,8 @@
               <signal>
               <sigName>Process Image</sigName>
               <xpcsigName>Imager/Process Image</xpcsigName>
-              <sigWidth>400</sigWidth>
-              <sigDim>[100, 4]</sigDim>
+              <sigWidth>300</sigWidth>
+              <sigDim>[100, 3]</sigDim>
 			  <SubSystemName>modified_motor/Imager</SubSystemName>
                 <sigLabel>image_data_sig</sigLabel>
 			  <sigTestPoint>false</sigTestPoint>
@@ -227,6 +227,7 @@ Read1</sigName>
               <sigWidth>100</sigWidth>
               <sigDim>[100, 1]</sigDim>
 			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
+                <sigLabel>a_v</sigLabel>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
 
@@ -1017,8 +1018,8 @@ Read1</sigName>
 		 <SubSystemName>modified_motor</SubSystemName>
    </parameter>
    <parameter>
-      <paramName>img_rgns</paramName>
-          <dim>[100,4]</dim>
+      <paramName>image_data</paramName>
+          <dim>[100,3]</dim>
 		 <SubSystemName>modified_motor</SubSystemName>
    </parameter>
 </block>

@@ -58,6 +58,10 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 
+set_param('modified_motor/UI/Mode', 'Value', '1');
+set_param('modified_motor/UI/Color', 'Value', '1');
+set_param('modified_motor/UI/Position', 'Value', '0');
+
 % UIWAIT makes GUI_Senior_Design wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
@@ -141,18 +145,23 @@ function menu_mode_Callback(hObject, eventdata, handles)
 % hObject    handle to menu_mode (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+MODE_SCAN = 1;
+MODE_SEEK_COLOR = 2;
+MODE_SEEK_POSITION = 3;
+
 mode_choice = 0;
 mode_contents = cellstr(get(hObject,'String'));
 mode = num2str(mode_contents{get(hObject,'Value')});
 switch mode
     case 'All Stickers'
-        mode_choice = 1;
+        mode_choice = MODE_SCAN;
     case 'Stickers By Color'
-        mode_choice = 2;
+        mode_choice = MODE_SEEK_COLOR;
     case 'Specific Sticker'
-        mode_choice = 3;
+        mode_choice = MODE_SEEK_POSITION;
     otherwise
-        mode_choice = 0;
+        mode_choice = MODE_SCAN;
 end
 set_param('modified_motor/UI/Mode', 'Value', int2str(mode_choice));
 
@@ -209,7 +218,8 @@ function push_take_picture_Callback(hObject, eventdata, handles)
 % hObject    handle to push_take_picture (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-evalin('base','img_foreground = snapshot(cam)');
+evalin('base','img_foreground = snapshot(camera)');
+
 
 
 % --- Executes on button press in push_backgroundpicture.
@@ -219,5 +229,5 @@ function push_backgroundpicture_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-evalin('base','img_background = snapshot(cam)');
+evalin('base','img_background = snapshot(camera)');
 

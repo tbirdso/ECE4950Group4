@@ -1,7 +1,6 @@
 %% ECE 4950 Group Fore Image Processing
 
 %% Init
-clc; clear; close all;
 
 % Define enums
 BLUE = 1;

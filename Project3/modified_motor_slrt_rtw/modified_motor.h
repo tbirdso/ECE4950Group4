@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.197
+ * Model version              : 1.222
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 18:34:34 2020
+ * C source code generated on : Thu Mar 12 19:59:54 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -866,13 +866,13 @@ typedef struct {
   real_T Add1;                         /* '<S16>/Add1' */
   real_T ddti;                         /* '<S16>/Inductance' */
   real_T d2dt2theta;                   /* '<S16>/Inertia ' */
-  real_T UnitDelay;                    /* '<S7>/Unit Delay' */
-  real_T Sum;                          /* '<S7>/Sum' */
   real_T DataTypeConversion2;          /* '<S4>/Data Type Conversion2' */
   real_T DataTypeConversion1;          /* '<S4>/Data Type Conversion1' */
   real_T DataTypeConversion;           /* '<S4>/Data Type Conversion' */
-  real_T RateTransition1[100];         /* '<S2>/Rate Transition1' */
+  real_T a_v[100];                     /* '<S2>/Rate Transition1' */
   real_T TmpRTBAtPositionIteratorInport2;
+  real_T UnitDelay;                    /* '<S7>/Unit Delay' */
+  real_T Sum;                          /* '<S7>/Sum' */
   real_T y;                            /* '<S12>/Convert to Rad' */
   real_T iter_cur_index;               /* '<S9>/Data Store Read' */
   real_T DataStoreRead1;               /* '<S9>/Data Store Read1' */
@@ -880,7 +880,7 @@ typedef struct {
   real_T next_index;                   /* '<S9>/Iterator' */
   real_T next_run;                     /* '<S9>/Iterator' */
   real_T angles_vector[100];           /* '<S2>/Generate Angles List' */
-  real_T image_data[400];              /* '<S1>/Process Image' */
+  real_T image_data_fixed[300];        /* '<S1>/Process Image' */
 } B_modified_motor_T;
 
 /* Block states (auto storage) for system '<Root>' */
@@ -914,6 +914,21 @@ typedef struct {
     void *AQHandles;
     void *SlioLTF;
   } HiddenToAsyncQueue_InsertedFo_i;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedFo_a;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedFo_d;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedF_eg;   /* synthesized block */
 
   struct {
     int_T AcquireOK;
@@ -1013,7 +1028,7 @@ struct P_modified_motor_T_ {
   real_T b;                            /* Variable: b
                                         * Referenced by: '<S16>/Damping'
                                         */
-  real_T img_rgns[400];                /* Variable: img_rgns
+  real_T image_data[300];              /* Variable: image_data
                                         * Referenced by: '<S1>/Constant'
                                         */
   real_T Target_Position_Y0;           /* Computed Parameter: Target_Position_Y0
@@ -1028,7 +1043,7 @@ struct P_modified_motor_T_ {
   real_T RateTransition_X0;            /* Expression: 0
                                         * Referenced by: '<S2>/Rate Transition'
                                         */
-  real_T Run_Value;                    /* Expression: 1
+  real_T Run_Value;                    /* Expression: 0
                                         * Referenced by: '<Root>/Run'
                                         */
   real_T Gain_Gain;                    /* Expression: 1
@@ -1208,17 +1223,17 @@ struct P_modified_motor_T_ {
   real_T Integrator1_IC;               /* Expression: 0
                                         * Referenced by: '<S16>/Integrator1'
                                         */
+  real_T Color_Value;                  /* Expression: 4
+                                        * Referenced by: '<S4>/Color'
+                                        */
+  real_T Position_Value;               /* Expression: 0
+                                        * Referenced by: '<S4>/Position'
+                                        */
   real_T Constant_Value_b;             /* Expression: 1
                                         * Referenced by: '<S7>/Constant'
                                         */
   real_T UnitDelay_InitialCondition;   /* Expression: 0
                                         * Referenced by: '<S7>/Unit Delay'
-                                        */
-  real_T Color_Value;                  /* Expression: 4
-                                        * Referenced by: '<S4>/Color'
-                                        */
-  real_T Position_Value;               /* Expression: -2.3562
-                                        * Referenced by: '<S4>/Position'
                                         */
   int8_T Mode_Value;                   /* Computed Parameter: Mode_Value
                                         * Referenced by: '<S4>/Mode'

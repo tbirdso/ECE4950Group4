@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.197
+ * Model version              : 1.222
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 18:34:34 2020
+ * C source code generated on : Thu Mar 12 19:59:54 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -58,7 +58,7 @@ static const rtwCAPI_Signals rtBlockSignals[] = {
     TARGET_STRING("target_pos"), 0, 0, 0, 0, 0 },
 
   { 4, 0, TARGET_STRING("Logic Block/Rate Transition1"),
-    TARGET_STRING(""), 0, 0, 2, 0, 1 },
+    TARGET_STRING("a_v"), 0, 0, 2, 0, 1 },
 
   { 5, 0, TARGET_STRING("UI/Data Type Conversion"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
@@ -347,7 +347,7 @@ static const rtwCAPI_ModelParameters rtModelParameters[] = {
 
   { 96, TARGET_STRING("b"), 0, 0, 0 },
 
-  { 97, TARGET_STRING("img_rgns"), 0, 1, 0 },
+  { 97, TARGET_STRING("image_data"), 0, 1, 0 },
 
   { 0, (NULL), 0, 0, 0 }
 };
@@ -357,10 +357,10 @@ static const rtwCAPI_ModelParameters rtModelParameters[] = {
 /* Declare Data Addresses statically */
 static void* rtDataAddrMap[] = {
   &modified_motor_B.Run,               /* 0: Signal */
-  &modified_motor_B.image_data[0],     /* 1: Signal */
+  &modified_motor_B.image_data_fixed[0],/* 1: Signal */
   &modified_motor_B.angles_vector[0],  /* 2: Signal */
   &modified_motor_B.target_pos,        /* 3: Signal */
-  &modified_motor_B.RateTransition1[0],/* 4: Signal */
+  &modified_motor_B.a_v[0],            /* 4: Signal */
   &modified_motor_B.DataTypeConversion,/* 5: Signal */
   &modified_motor_B.DataTypeConversion1,/* 6: Signal */
   &modified_motor_B.DataTypeConversion2,/* 7: Signal */
@@ -453,7 +453,7 @@ static void* rtDataAddrMap[] = {
   &modified_motor_P.L,                 /* 94: Model Parameter */
   &modified_motor_P.R,                 /* 95: Model Parameter */
   &modified_motor_P.b,                 /* 96: Model Parameter */
-  &modified_motor_P.img_rgns[0],       /* 97: Model Parameter */
+  &modified_motor_P.image_data[0],     /* 97: Model Parameter */
 };
 
 /* Declare Data Run-Time Dimension Buffer Addresses statically */
@@ -497,7 +497,7 @@ static const uint_T rtDimensionArray[] = {
   1,                                   /* 0 */
   1,                                   /* 1 */
   100,                                 /* 2 */
-  4,                                   /* 3 */
+  3,                                   /* 3 */
   100,                                 /* 4 */
   1                                    /* 5 */
 };
@@ -558,10 +558,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 3380822300U,
-    356858364U,
-    165446041U,
-    2969498295U },
+  { 2214934996U,
+    3156677724U,
+    1405682829U,
+    1903950651U },
   (NULL), 0,
   0
 };
