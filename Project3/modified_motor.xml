@@ -100,28 +100,6 @@
           </parameter>
           </block>
             <block>
-            <blkName>Target_Position1</blkName>
-            <xpcblkName>Logic Block/Position Iterator/Target_Position1</xpcblkName>
-            <SLblockPath>modified_motor/Logic Block/Position Iterator/Target_Position1</SLblockPath>
-            <isSrc>[0 1 0]</isSrc>
-          <parameter>
-          <paramName>InitialOutput</paramName>
-          <dim>[1, 1]</dim>  
-		  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
-          </parameter>
-          </block>
-            <block>
-            <blkName>Target_Position2</blkName>
-            <xpcblkName>Logic Block/Position Iterator/Target_Position2</xpcblkName>
-            <SLblockPath>modified_motor/Logic Block/Position Iterator/Target_Position2</SLblockPath>
-            <isSrc>[0 1 0]</isSrc>
-          <parameter>
-          <paramName>InitialOutput</paramName>
-          <dim>[1, 1]</dim>  
-		  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
-          </parameter>
-          </block>
-            <block>
             <blkName>Store_Index</blkName>
             <xpcblkName>Logic Block/Position Iterator/Store_Index</xpcblkName>
             <SLblockPath>modified_motor/Logic Block/Position Iterator/Store_Index</SLblockPath>
@@ -143,16 +121,6 @@
 		  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
           </parameter>
           </block>
-			  
-			  
-              <signal>
-              <sigName>Position_List</sigName>
-              <xpcsigName>Logic Block/Position Iterator/Position_List</xpcsigName>
-              <sigWidth>100</sigWidth>
-              <sigDim>[100, 1]</sigDim>
-			  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
 			  
 			  
               <signal>
@@ -205,26 +173,6 @@ Read1</sigName>
               <xpcsigName>Logic Block/Position Iterator/Data Store Read1</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
-              <sigName>TmpSignal ConversionAtHiddenToAsyncQueue_InsertedFor_Selector1_at_outport_0Inport1</sigName>
-              <xpcsigName>Logic Block/Position Iterator/TmpSignal ConversionAtHiddenToAsyncQueue_InsertedFor_Selector1_at_outport_0Inport1</xpcsigName>
-              <sigWidth>2</sigWidth>
-              <sigDim>[2, 1]</sigDim>
-			  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
-              <sigName>TmpSignal ConversionAtHiddenToAsyncQueue_InsertedFor_Selector_at_outport_0Inport1</sigName>
-              <xpcsigName>Logic Block/Position Iterator/TmpSignal ConversionAtHiddenToAsyncQueue_InsertedFor_Selector_at_outport_0Inport1</xpcsigName>
-              <sigWidth>2</sigWidth>
-              <sigDim>[2, 1]</sigDim>
 			  <SubSystemName>modified_motor/Logic Block/Position Iterator</SubSystemName>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
@@ -1072,7 +1020,7 @@ Read1</sigName>
    </parameter>
    <parameter>
       <paramName>image_data</paramName>
-          <dim>[3,3]</dim>
+          <dim>[1,3]</dim>
 		 <SubSystemName>modified_motor</SubSystemName>
    </parameter>
 </block>

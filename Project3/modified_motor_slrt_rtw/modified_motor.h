@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.239
+ * Model version              : 1.246
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 21:52:22 2020
+ * C source code generated on : Thu Mar 12 22:46:59 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -872,12 +872,8 @@ typedef struct {
   real_T UnitDelay;                    /* '<S7>/Unit Delay' */
   real_T Sum;                          /* '<S7>/Sum' */
   real_T y;                            /* '<S12>/Convert to Rad' */
-  real_T Position_List[100];           /* '<S9>/Position_List' */
   real_T iter_cur_index;               /* '<S9>/Data Store Read' */
   real_T DataStoreRead1;               /* '<S9>/Data Store Read1' */
-  real_T TmpSignalConversionAtHiddenToAs[2];/* '<S9>/TmpSignal ConversionAtHiddenToAsyncQueue_InsertedFor_Selector1_at_outport_0Inport1' */
-  real_T TmpSignalConversionAtHiddenTo_i[2];/* '<S9>/TmpSignal ConversionAtHiddenToAsyncQueue_InsertedFor_Selector_at_outport_0Inport1' */
-  real_T OutportBufferForTarget_Position[2];
   real_T target_pos_o;                 /* '<S9>/Iterator' */
   real_T next_index;                   /* '<S9>/Iterator' */
   real_T next_run;                     /* '<S9>/Iterator' */
@@ -926,16 +922,6 @@ typedef struct {
     void *AQHandles;
     void *SlioLTF;
   } HiddenToAsyncQueue_InsertedFo_d;   /* synthesized block */
-
-  struct {
-    void *AQHandles;
-    void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedFo_g;   /* synthesized block */
-
-  struct {
-    void *AQHandles;
-    void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedF_gn;   /* synthesized block */
 
   struct {
     int_T AcquireOK;
@@ -1034,17 +1020,11 @@ struct P_modified_motor_T_ {
   real_T b;                            /* Variable: b
                                         * Referenced by: '<S16>/Damping'
                                         */
-  real_T image_data[9];                /* Variable: image_data
+  real_T image_data[3];                /* Variable: image_data
                                         * Referenced by: '<S1>/Constant'
                                         */
   real_T Target_Position_Y0;           /* Computed Parameter: Target_Position_Y0
                                         * Referenced by: '<S9>/Target_Position'
-                                        */
-  real_T Target_Position1_Y0;          /* Computed Parameter: Target_Position1_Y0
-                                        * Referenced by: '<S9>/Target_Position1'
-                                        */
-  real_T Target_Position2_Y0;          /* Computed Parameter: Target_Position2_Y0
-                                        * Referenced by: '<S9>/Target_Position2'
                                         */
   real_T Store_Index_InitialValue;     /* Expression: 99
                                         * Referenced by: '<S9>/Store_Index'
@@ -1232,10 +1212,10 @@ struct P_modified_motor_T_ {
   real_T Integrator1_IC;               /* Expression: 0
                                         * Referenced by: '<S16>/Integrator1'
                                         */
-  real_T Color_Value;                  /* Expression: 1
+  real_T Color_Value;                  /* Expression: 2
                                         * Referenced by: '<S4>/Color'
                                         */
-  real_T Position_Value;               /* Expression: 0
+  real_T Position_Value;               /* Expression: 1.5708
                                         * Referenced by: '<S4>/Position'
                                         */
   real_T Run_Value;                    /* Expression: 1
