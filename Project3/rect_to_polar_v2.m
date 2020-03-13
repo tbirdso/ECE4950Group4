@@ -54,6 +54,7 @@ for i = 1:numObjects
     elseif((Xdiff == 0) && (Ydiff == 0))
         Angles(i) = 0;
     end
+    Angles(i) = Angles(i) * -1;
 end
 
 Angles_sorted = sort(Angles);
