@@ -39,6 +39,9 @@ centroids = cat(1, regCentroids.Centroid);
 regAreas = regionprops(connectedComponents, 'Area');
 
 %% Filter out bad connected components
+MIN_AREA = 600;
+MAX_AREA = 1600;
+
 filteredCents1 = zeros(100,2);
 numObj = length(regAreas);
 if (numObj > 100)
@@ -46,7 +49,7 @@ if (numObj > 100)
 end
 count = 0;
 for i = 1:numObj
-    if ((regAreas(i) > 1150) && (regAreas(i) < 1425))
+    if ((regAreas(i).Area > MIN_AREA) && (regAreas(i).Area < MAX_AREA))
         count = count + 1;
         filteredCents1(count, 1) = centroids(i, 1);
         filteredCents1(count, 2) = centroids(i, 2);
@@ -60,7 +63,7 @@ for i = 1:numCents
     filteredCents(i,2) = filteredCents1(i,2);
 end
 %% Get coordinates and colors of centroids
-numCentroids = numel(filteredCents);
+numCentroids = size(filteredCents , 1);
 hsvImg = rgb2hsv(newImg);
 coords = zeros(numCentroids,2);
 colors = zeros(numCentroids,1);

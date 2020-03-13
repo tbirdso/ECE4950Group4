@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.227
+ * Model version              : 1.228
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 20:45:26 2020
+ * C source code generated on : Thu Mar 12 20:54:42 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -880,7 +880,6 @@ typedef struct {
   real_T next_index;                   /* '<S9>/Iterator' */
   real_T next_run;                     /* '<S9>/Iterator' */
   real_T angles_vector[100];           /* '<S2>/Generate Angles List' */
-  real_T num_angles;                   /* '<S2>/Generate Angles List' */
   real_T image_data_fixed[300];        /* '<S1>/Process Image' */
 } B_modified_motor_T;
 
@@ -920,11 +919,6 @@ typedef struct {
     void *AQHandles;
     void *SlioLTF;
   } HiddenToAsyncQueue_InsertedFo_a;   /* synthesized block */
-
-  struct {
-    void *AQHandles;
-    void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedF_ax;   /* synthesized block */
 
   struct {
     void *AQHandles;
@@ -1044,7 +1038,7 @@ struct P_modified_motor_T_ {
   real_T b;                            /* Variable: b
                                         * Referenced by: '<S16>/Damping'
                                         */
-  real_T image_data[15];               /* Variable: image_data
+  real_T image_data[300];              /* Variable: image_data
                                         * Referenced by: '<S1>/Constant'
                                         */
   real_T Target_Position_Y0;           /* Computed Parameter: Target_Position_Y0
