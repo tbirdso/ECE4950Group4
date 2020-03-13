@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.249
+ * Model version              : 1.251
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 22:55:44 2020
+ * C source code generated on : Thu Mar 12 23:03:30 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -491,7 +491,7 @@ static const rtwCAPI_DimensionMap rtDimensionMap[] = {
 
   { rtwCAPI_SCALAR, 4, 2, 0 },
 
-  { rtwCAPI_VECTOR, 6, 2, 0 }
+  { rtwCAPI_MATRIX_COL_MAJOR, 6, 2, 0 }
 };
 
 /* Dimension Array- use dimArrayIndex to access elements of this array */
@@ -502,7 +502,7 @@ static const uint_T rtDimensionArray[] = {
   1,                                   /* 3 */
   1,                                   /* 4 */
   1,                                   /* 5 */
-  1,                                   /* 6 */
+  3,                                   /* 6 */
   3                                    /* 7 */
 };
 
@@ -562,10 +562,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 1545296900U,
-    2831045829U,
-    4249311690U,
-    2528103449U },
+  { 3786560355U,
+    1202919966U,
+    2604898554U,
+    1101670197U },
   (NULL), 0,
   0
 };

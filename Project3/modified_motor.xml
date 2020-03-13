@@ -1020,7 +1020,7 @@ Read1</sigName>
    </parameter>
    <parameter>
       <paramName>image_data</paramName>
-          <dim>[1,3]</dim>
+          <dim>[3,3]</dim>
 		 <SubSystemName>modified_motor</SubSystemName>
    </parameter>
 </block>

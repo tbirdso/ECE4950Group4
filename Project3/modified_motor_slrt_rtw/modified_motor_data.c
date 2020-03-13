@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.249
+ * Model version              : 1.251
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 22:55:44 2020
+ * C source code generated on : Thu Mar 12 23:03:30 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -45,7 +45,7 @@ P_modified_motor_T modified_motor_P = {
   /*  Variable: image_data
    * Referenced by: '<S1>/Constant'
    */
-  { 3.0, 187.0, 251.0 },
+  { 3.0, 2.0, 1.0, 124.0, 211.0, 218.0, 210.0, 344.0, 114.0 },
   0.0,                                 /* Computed Parameter: Target_Position_Y0
                                         * Referenced by: '<S9>/Target_Position'
                                         */
@@ -277,13 +277,13 @@ P_modified_motor_T modified_motor_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S16>/Integrator1'
                                         */
-  1.0,                                 /* Expression: 1
+  3.0,                                 /* Expression: 3
                                         * Referenced by: '<S4>/Color'
                                         */
-  0.0,                                 /* Expression: 0
+  0.5236,                              /* Expression: 0.5236
                                         * Referenced by: '<S4>/Position'
                                         */
-  1.0,                                 /* Expression: 1
+  0.0,                                 /* Expression: 0
                                         * Referenced by: '<Root>/Run'
                                         */
   1.0,                                 /* Expression: 1
@@ -292,7 +292,7 @@ P_modified_motor_T modified_motor_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S7>/Unit Delay'
                                         */
-  1                                    /* Computed Parameter: Mode_Value
+  2                                    /* Computed Parameter: Mode_Value
                                         * Referenced by: '<S4>/Mode'
                                         */
 };

@@ -869,8 +869,8 @@ pt(54).dtname     = 'real_T';
   
 pt(55).blockname = '';
 pt(55).paramname = 'image_data';
-pt(55).class     = 'vector';
-pt(55).nrows     = 1;
+pt(55).class     = 'col-mat';
+pt(55).nrows     = 3;
 pt(55).ncols     = 3;
 pt(55).subsource = 'SS_DOUBLE';
 pt(55).ndims     = '2';

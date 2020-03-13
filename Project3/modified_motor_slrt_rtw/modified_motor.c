@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.249
+ * Model version              : 1.251
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 22:55:44 2020
+ * C source code generated on : Thu Mar 12 23:03:30 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -47,12 +47,9 @@ static void modified_motor_merge_block(int32_T idx_data[], real_T x_data[],
 static void modified_motor_sortIdx(real_T x_data[], int32_T *x_size, int32_T
   idx_data[], int32_T *idx_size);
 static void modified_motor_sort(real_T x_data[], int32_T *x_size);
-static void modified_mot_rect_to_polar_v2_c(const real_T center_coords_data[],
-  const int32_T center_coords_size[2], real_T Angles_sorted_data[], int32_T
-  *Angles_sorted_size, real_T *numObjects);
 static void modified_motor_rect_to_polar_v2(const real_T center_coords_data[],
   const int32_T center_coords_size[2], real_T Angles_sorted_data[], int32_T
-  *Angles_sorted_size);
+  *Angles_sorted_size, real_T *numObjects);
 static void rate_monotonic_scheduler(void);
 time_T rt_SimUpdateDiscreteEvents(
   int_T rtmNumSampTimes, void *rtmTimingData, int_T *rtmSampleHitPtr, int_T
@@ -524,7 +521,7 @@ static void modified_motor_sort(real_T x_data[], int32_T *x_size)
 }
 
 /* Function for MATLAB Function: '<S2>/Generate Angles List' */
-static void modified_mot_rect_to_polar_v2_c(const real_T center_coords_data[],
+static void modified_motor_rect_to_polar_v2(const real_T center_coords_data[],
   const int32_T center_coords_size[2], real_T Angles_sorted_data[], int32_T
   *Angles_sorted_size, real_T *numObjects)
 {
@@ -582,66 +579,6 @@ static void modified_mot_rect_to_polar_v2_c(const real_T center_coords_data[],
 
   modified_motor_sort(Angles_sorted_data, Angles_sorted_size);
   *numObjects = *Angles_sorted_size;
-}
-
-/* Function for MATLAB Function: '<S2>/Generate Angles List' */
-static void modified_motor_rect_to_polar_v2(const real_T center_coords_data[],
-  const int32_T center_coords_size[2], real_T Angles_sorted_data[], int32_T
-  *Angles_sorted_size)
-{
-  int32_T i;
-
-  /*  PURPOSE - Convert rectangular object coordinates to angle for */
-  /*            motor position */
-  /*  INPUTS */
-  /*    - X, Y coordinates == center coords of each object */
-  /*  OUTPUTS */
-  /*    - Vector of angles (radians) ordered ascending */
-  /*  NOTES */
-  /*    - Theta == 0 is at the east of the map */
-  /*    - Positive angles are in south plane */
-  /*    - Negative angles are in north plane */
-  /*    - Camera origin (0,0) is at NW corner */
-  /*    - Game board origin is at image center */
-  /*  TODO: confirm actual frame dimensions */
-  /*  Get the game board center (Approx. Motor Location)  */
-  /*  so we can calculate relative angles */
-  *Angles_sorted_size = center_coords_size[0];
-  for (i = 0; i < center_coords_size[0]; i++) {
-    Angles_sorted_data[i] = atan((center_coords_data[i + center_coords_size[0]]
-      - 240.0) / (center_coords_data[i] - 320.0));
-
-    /*  Quandrant dependent angle math */
-    /*  Q4 */
-    if ((center_coords_data[i] - 320.0 > 0.0) && (center_coords_data[i +
-         center_coords_size[0]] - 240.0 < 0.0)) {
-      /*  Q3 */
-    } else if ((center_coords_data[i] - 320.0 < 0.0) && (center_coords_data[i +
-                center_coords_size[0]] - 240.0 < 0.0)) {
-      Angles_sorted_data[i] -= 3.1415926535897931;
-
-      /*  Q2 */
-    } else if ((center_coords_data[i] - 320.0 < 0.0) && (center_coords_data[i +
-                center_coords_size[0]] - 240.0 > 0.0)) {
-      Angles_sorted_data[i] += 3.1415926535897931;
-    } else if ((center_coords_data[i] - 320.0 > 0.0) && (center_coords_data[i +
-                center_coords_size[0]] - 240.0 > 0.0)) {
-      /*  may need to fix this, this is 4th quadrant */
-      /*  Special case: angle is at -pi */
-    } else if ((center_coords_data[i + center_coords_size[0]] - 240.0 == 0.0) &&
-               (center_coords_data[i] - 320.0 < 0.0)) {
-      Angles_sorted_data[i] = -3.1415926535897931;
-    } else {
-      if ((center_coords_data[i] - 320.0 == 0.0) && (center_coords_data[i +
-           center_coords_size[0]] - 240.0 == 0.0)) {
-        Angles_sorted_data[i] = 0.0;
-      }
-    }
-
-    Angles_sorted_data[i] = -Angles_sorted_data[i];
-  }
-
-  modified_motor_sort(Angles_sorted_data, Angles_sorted_size);
 }
 
 /* Model output function for TID0 */
@@ -905,9 +842,16 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
 
     /*  ex. pass back [color; x_pos; y_pos] */
     /* '<S6>:1:10' */
-    modified_motor_B.image_data_fixed[0] = modified_motor_P.image_data[0];
-    modified_motor_B.image_data_fixed[100] = modified_motor_P.image_data[1];
-    modified_motor_B.image_data_fixed[200] = modified_motor_P.image_data[2];
+    for (b_trueCount = 0; b_trueCount < 3; b_trueCount++) {
+      modified_motor_B.image_data_fixed[100 * b_trueCount] =
+        modified_motor_P.image_data[3 * b_trueCount];
+      modified_motor_B.image_data_fixed[1 + 100 * b_trueCount] =
+        modified_motor_P.image_data[3 * b_trueCount + 1];
+      modified_motor_B.image_data_fixed[2 + 100 * b_trueCount] =
+        modified_motor_P.image_data[3 * b_trueCount + 2];
+    }
+
+    /* End of MATLAB Function: '<S1>/Process Image' */
 
     /* DataTypeConversion: '<S4>/Data Type Conversion2' incorporates:
      *  Constant: '<S4>/Mode'
@@ -986,7 +930,9 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
       }
 
       modified_motor_rect_to_polar_v2(tmp_data, tmp_size, angles_to_visit_data,
-        &angles_to_visit_size);
+        &angles_to_visit_size, &lastTime);
+
+      /* '<S8>:1:41' */
     } else if (modified_motor_B.DataTypeConversion2 == 2.0) {
       /* '<S8>:1:43' */
       /* '<S8>:1:44' */
@@ -1023,7 +969,7 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
           modified_motor_B.image_data_fixed[d_data[b_trueCount] + 199];
       }
 
-      modified_mot_rect_to_polar_v2_c(tmp_data, tmp_size, angles_to_visit_data,
+      modified_motor_rect_to_polar_v2(tmp_data, tmp_size, angles_to_visit_data,
         &angles_to_visit_size, &lastTime);
 
       /* '<S8>:1:45' */
@@ -2038,7 +1984,7 @@ RT_MODEL_modified_motor_T *modified_motor(void)
   modified_motor_M->Sizes.numSampTimes = (3);/* Number of sample times */
   modified_motor_M->Sizes.numBlocks = (68);/* Number of blocks */
   modified_motor_M->Sizes.numBlockIO = (43);/* Number of block outputs */
-  modified_motor_M->Sizes.numBlockPrms = (99);/* Sum of parameter "widths" */
+  modified_motor_M->Sizes.numBlockPrms = (105);/* Sum of parameter "widths" */
   return modified_motor_M;
 }
 
