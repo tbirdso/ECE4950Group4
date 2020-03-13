@@ -9,7 +9,7 @@
  *
  * Model version              : 1.222
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 19:59:54 2020
+ * C source code generated on : Thu Mar 12 20:08:09 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -1043,7 +1043,7 @@ struct P_modified_motor_T_ {
   real_T RateTransition_X0;            /* Expression: 0
                                         * Referenced by: '<S2>/Rate Transition'
                                         */
-  real_T Run_Value;                    /* Expression: 0
+  real_T Run_Value;                    /* Expression: 1
                                         * Referenced by: '<Root>/Run'
                                         */
   real_T Gain_Gain;                    /* Expression: 1
@@ -1223,10 +1223,10 @@ struct P_modified_motor_T_ {
   real_T Integrator1_IC;               /* Expression: 0
                                         * Referenced by: '<S16>/Integrator1'
                                         */
-  real_T Color_Value;                  /* Expression: 4
+  real_T Color_Value;                  /* Expression: 1
                                         * Referenced by: '<S4>/Color'
                                         */
-  real_T Position_Value;               /* Expression: 0
+  real_T Position_Value;               /* Expression: 3.1416
                                         * Referenced by: '<S4>/Position'
                                         */
   real_T Constant_Value_b;             /* Expression: 1

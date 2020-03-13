@@ -9,7 +9,7 @@
  *
  * Model version              : 1.222
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 19:59:54 2020
+ * C source code generated on : Thu Mar 12 20:08:09 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -77,7 +77,7 @@ P_modified_motor_T modified_motor_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S2>/Rate Transition'
                                         */
-  0.0,                                 /* Expression: 0
+  1.0,                                 /* Expression: 1
                                         * Referenced by: '<Root>/Run'
                                         */
   1.0,                                 /* Expression: 1
@@ -299,10 +299,10 @@ P_modified_motor_T modified_motor_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S16>/Integrator1'
                                         */
-  4.0,                                 /* Expression: 4
+  1.0,                                 /* Expression: 1
                                         * Referenced by: '<S4>/Color'
                                         */
-  0.0,                                 /* Expression: 0
+  3.1416,                              /* Expression: 3.1416
                                         * Referenced by: '<S4>/Position'
                                         */
   1.0,                                 /* Expression: 1
@@ -311,7 +311,7 @@ P_modified_motor_T modified_motor_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S7>/Unit Delay'
                                         */
-  1                                    /* Computed Parameter: Mode_Value
+  2                                    /* Computed Parameter: Mode_Value
                                         * Referenced by: '<S4>/Mode'
                                         */
 };

@@ -9,7 +9,7 @@
  *
  * Model version              : 1.222
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 19:59:54 2020
+ * C source code generated on : Thu Mar 12 20:08:09 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -578,6 +578,8 @@ static void modified_mot_rect_to_polar_v2_c(const real_T center_coords_data[],
         Angles_sorted_data[i] = 0.0;
       }
     }
+
+    Angles_sorted_data[i] = -Angles_sorted_data[i];
   }
 
   modified_motor_sort_o(Angles_sorted_data, Angles_sorted_size);
@@ -882,6 +884,7 @@ static void modified_motor_rect_to_polar_v2(const real_T center_coords[200],
       }
     }
 
+    Angles_sorted_0 = -Angles_sorted_0;
     Angles_sorted[i] = Angles_sorted_0;
   }
 

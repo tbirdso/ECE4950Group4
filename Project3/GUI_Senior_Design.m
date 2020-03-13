@@ -218,8 +218,8 @@ function push_take_picture_Callback(hObject, eventdata, handles)
 % hObject    handle to push_take_picture (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-evalin('base','img_foreground = snapshot(camera)');
-
+evalin('base','img_foreground = snapshot(camera);');
+evalin('base','image_data = process_image(img_background, img_foreground);');
 
 
 % --- Executes on button press in push_backgroundpicture.
@@ -229,5 +229,5 @@ function push_backgroundpicture_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-evalin('base','img_background = snapshot(camera)');
+evalin('base','img_background = snapshot(camera);');
 

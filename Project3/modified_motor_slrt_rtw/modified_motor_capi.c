@@ -9,7 +9,7 @@
  *
  * Model version              : 1.222
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 19:59:54 2020
+ * C source code generated on : Thu Mar 12 20:08:09 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -558,10 +558,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 2214934996U,
-    3156677724U,
-    1405682829U,
-    1903950651U },
+  { 1989067069U,
+    4249829509U,
+    1407187334U,
+    741878783U },
   (NULL), 0,
   0
 };
