@@ -97,8 +97,8 @@ end
 hold on
 for i = 1:numCentroids
     str = {num2str(image_data(i,2)), num2str(image_data(i,3))};
-    text(image_data(i,2), image_data(i,3), num2str(image_data(i,1)));
-    text((image_data(i,2) + 5), (image_data(i,3) + 5), str);
+    text(image_data(i,2), image_data(i,3), num2str(image_data(i,1)), 'Color','red');
+    text((image_data(i,2) + 5), (image_data(i,3) + 5), str,'Color','red');
 end
 hold off
 end

@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.228
+ * Model version              : 1.239
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 20:54:42 2020
+ * C source code generated on : Thu Mar 12 21:52:22 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -838,7 +838,6 @@
 /* Block signals (auto storage) */
 typedef struct {
   real_T target_pos;                   /* '<S2>/Rate Transition' */
-  real_T Run;                          /* '<Root>/Run' */
   real_T Gain;                         /* '<S5>/Gain' */
   real_T theta;                        /* '<S16>/Integrator2' */
   real_T Positionsteps;                /* '<S12>/Q4 Enc ' */
@@ -870,16 +869,20 @@ typedef struct {
   real_T DataTypeConversion1;          /* '<S4>/Data Type Conversion1' */
   real_T DataTypeConversion;           /* '<S4>/Data Type Conversion' */
   real_T a_v[100];                     /* '<S2>/Rate Transition1' */
-  real_T TmpRTBAtPositionIteratorInport2;
   real_T UnitDelay;                    /* '<S7>/Unit Delay' */
   real_T Sum;                          /* '<S7>/Sum' */
   real_T y;                            /* '<S12>/Convert to Rad' */
+  real_T Position_List[100];           /* '<S9>/Position_List' */
   real_T iter_cur_index;               /* '<S9>/Data Store Read' */
   real_T DataStoreRead1;               /* '<S9>/Data Store Read1' */
+  real_T TmpSignalConversionAtHiddenToAs[2];/* '<S9>/TmpSignal ConversionAtHiddenToAsyncQueue_InsertedFor_Selector1_at_outport_0Inport1' */
+  real_T TmpSignalConversionAtHiddenTo_i[2];/* '<S9>/TmpSignal ConversionAtHiddenToAsyncQueue_InsertedFor_Selector_at_outport_0Inport1' */
+  real_T OutportBufferForTarget_Position[2];
   real_T target_pos_o;                 /* '<S9>/Iterator' */
   real_T next_index;                   /* '<S9>/Iterator' */
   real_T next_run;                     /* '<S9>/Iterator' */
   real_T angles_vector[100];           /* '<S2>/Generate Angles List' */
+  real_T num_angles;                   /* '<S2>/Generate Angles List' */
   real_T image_data_fixed[300];        /* '<S1>/Process Image' */
 } B_modified_motor_T;
 
@@ -891,7 +894,6 @@ typedef struct {
   real_T LastUAtTimeA;                 /* '<S5>/Derivative' */
   real_T TimeStampB;                   /* '<S5>/Derivative' */
   real_T LastUAtTimeB;                 /* '<S5>/Derivative' */
-  volatile real_T TmpRTBAtPositionIteratorInport2;/* synthesized block */
   real_T Index;                        /* '<S9>/Store_Index' */
   real_T Run_sig;                      /* '<S9>/Store_run_pulse' */
   real_T Q4DA_RWORK[16];               /* '<S12>/Q4 DA ' */
@@ -899,11 +901,6 @@ typedef struct {
     void *AQHandles;
     void *SlioLTF;
   } HiddenToAsyncQueue_InsertedFor_;   /* synthesized block */
-
-  struct {
-    void *AQHandles;
-    void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedFo_l;   /* synthesized block */
 
   struct {
     void *AQHandles;
@@ -923,22 +920,22 @@ typedef struct {
   struct {
     void *AQHandles;
     void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedF_ax;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
   } HiddenToAsyncQueue_InsertedFo_d;   /* synthesized block */
 
   struct {
     void *AQHandles;
     void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedF_eg;   /* synthesized block */
+  } HiddenToAsyncQueue_InsertedFo_g;   /* synthesized block */
 
   struct {
     void *AQHandles;
     void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedF_lh;   /* synthesized block */
-
-  struct {
-    void *AQHandles;
-    void *SlioLTF;
-  } HiddenToAsyncQueue_InsertedFo_h;   /* synthesized block */
+  } HiddenToAsyncQueue_InsertedF_gn;   /* synthesized block */
 
   struct {
     int_T AcquireOK;
@@ -958,7 +955,6 @@ typedef struct {
   } SFunction_IWORK_m;                 /* '<S15>/S-Function' */
 
   int_T Q4DA_IWORK;                    /* '<S12>/Q4 DA ' */
-  volatile int8_T TmpRTBAtPositionIteratorInpor_a;/* synthesized block */
   int8_T PositionIterator_SubsysRanBC; /* '<S2>/Position Iterator' */
 } DW_modified_motor_T;
 
@@ -1038,11 +1034,17 @@ struct P_modified_motor_T_ {
   real_T b;                            /* Variable: b
                                         * Referenced by: '<S16>/Damping'
                                         */
-  real_T image_data[300];              /* Variable: image_data
+  real_T image_data[9];                /* Variable: image_data
                                         * Referenced by: '<S1>/Constant'
                                         */
   real_T Target_Position_Y0;           /* Computed Parameter: Target_Position_Y0
                                         * Referenced by: '<S9>/Target_Position'
+                                        */
+  real_T Target_Position1_Y0;          /* Computed Parameter: Target_Position1_Y0
+                                        * Referenced by: '<S9>/Target_Position1'
+                                        */
+  real_T Target_Position2_Y0;          /* Computed Parameter: Target_Position2_Y0
+                                        * Referenced by: '<S9>/Target_Position2'
                                         */
   real_T Store_Index_InitialValue;     /* Expression: 99
                                         * Referenced by: '<S9>/Store_Index'
@@ -1052,9 +1054,6 @@ struct P_modified_motor_T_ {
                                         */
   real_T RateTransition_X0;            /* Expression: 0
                                         * Referenced by: '<S2>/Rate Transition'
-                                        */
-  real_T Run_Value;                    /* Expression: 1
-                                        * Referenced by: '<Root>/Run'
                                         */
   real_T Gain_Gain;                    /* Expression: 1
                                         * Referenced by: '<S5>/Gain'
@@ -1238,6 +1237,9 @@ struct P_modified_motor_T_ {
                                         */
   real_T Position_Value;               /* Expression: 0
                                         * Referenced by: '<S4>/Position'
+                                        */
+  real_T Run_Value;                    /* Expression: 1
+                                        * Referenced by: '<Root>/Run'
                                         */
   real_T Constant_Value_b;             /* Expression: 1
                                         * Referenced by: '<S7>/Constant'

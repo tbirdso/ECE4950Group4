@@ -11,7 +11,7 @@
 %   - Negative angles are in north plane
 %   - Camera origin (0,0) is at NW corner
 %   - Game board origin is at image center
-function Angles_sorted = rect_to_polar_v2( center_coords )
+function [Angles_sorted, numObjects] = rect_to_polar_v2( center_coords )
 
 X_COL = 1;
 Y_COL = 2;
@@ -58,6 +58,7 @@ for i = 1:numObjects
 end
 
 Angles_sorted = sort(Angles);
+numObjects = length(Angles_sorted);
 
 
 end
