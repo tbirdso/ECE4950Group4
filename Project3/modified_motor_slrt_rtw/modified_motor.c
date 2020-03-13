@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.246
+ * Model version              : 1.249
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 22:46:59 2020
+ * C source code generated on : Thu Mar 12 22:55:44 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -529,7 +529,6 @@ static void modified_mot_rect_to_polar_v2_c(const real_T center_coords_data[],
   *Angles_sorted_size, real_T *numObjects)
 {
   int32_T i;
-  int32_T u0;
 
   /*  PURPOSE - Convert rectangular object coordinates to angle for */
   /*            motor position */
@@ -546,17 +545,8 @@ static void modified_mot_rect_to_polar_v2_c(const real_T center_coords_data[],
   /*  TODO: confirm actual frame dimensions */
   /*  Get the game board center (Approx. Motor Location)  */
   /*  so we can calculate relative angles */
-  if (center_coords_size[0] == 0) {
-    u0 = 0;
-  } else {
-    u0 = center_coords_size[0];
-    if (!(u0 > 2)) {
-      u0 = 2;
-    }
-  }
-
-  *Angles_sorted_size = u0;
-  for (i = 0; i < u0; i++) {
+  *Angles_sorted_size = center_coords_size[0];
+  for (i = 0; i < center_coords_size[0]; i++) {
     Angles_sorted_data[i] = atan((center_coords_data[i + center_coords_size[0]]
       - 240.0) / (center_coords_data[i] - 320.0));
 
@@ -600,7 +590,6 @@ static void modified_motor_rect_to_polar_v2(const real_T center_coords_data[],
   *Angles_sorted_size)
 {
   int32_T i;
-  int32_T u0;
 
   /*  PURPOSE - Convert rectangular object coordinates to angle for */
   /*            motor position */
@@ -617,17 +606,8 @@ static void modified_motor_rect_to_polar_v2(const real_T center_coords_data[],
   /*  TODO: confirm actual frame dimensions */
   /*  Get the game board center (Approx. Motor Location)  */
   /*  so we can calculate relative angles */
-  if (center_coords_size[0] == 0) {
-    u0 = 0;
-  } else {
-    u0 = center_coords_size[0];
-    if (!(u0 > 2)) {
-      u0 = 2;
-    }
-  }
-
-  *Angles_sorted_size = u0;
-  for (i = 0; i < u0; i++) {
+  *Angles_sorted_size = center_coords_size[0];
+  for (i = 0; i < center_coords_size[0]; i++) {
     Angles_sorted_data[i] = atan((center_coords_data[i + center_coords_size[0]]
       - 240.0) / (center_coords_data[i] - 320.0));
 
@@ -923,7 +903,7 @@ void modified_motor_output0(void)      /* Sample time: [0.0s, 0.0s] */
     /* '<S6>:1:7' */
     memset(&modified_motor_B.image_data_fixed[0], 0, 300U * sizeof(real_T));
 
-    /*  ex. pass back [shape; color; x_pos; y_pos] */
+    /*  ex. pass back [color; x_pos; y_pos] */
     /* '<S6>:1:10' */
     modified_motor_B.image_data_fixed[0] = modified_motor_P.image_data[0];
     modified_motor_B.image_data_fixed[100] = modified_motor_P.image_data[1];

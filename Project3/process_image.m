@@ -43,7 +43,7 @@ MIN_AREA = 600;
 MAX_AREA = 1600;
 
 filteredCents1 = zeros(100,2);
-numObj = length(regAreas);
+numObj = size(regAreas,1);
 if (numObj > 100)
     numObj = 100;
 end

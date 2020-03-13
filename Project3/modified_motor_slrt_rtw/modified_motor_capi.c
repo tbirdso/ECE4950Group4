@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.246
+ * Model version              : 1.249
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 22:46:59 2020
+ * C source code generated on : Thu Mar 12 22:55:44 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -562,10 +562,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 3127947078U,
-    1199524748U,
-    4293512406U,
-    1841553220U },
+  { 1545296900U,
+    2831045829U,
+    4249311690U,
+    2528103449U },
   (NULL), 0,
   0
 };

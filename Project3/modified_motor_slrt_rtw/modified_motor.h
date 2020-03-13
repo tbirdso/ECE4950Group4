@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.246
+ * Model version              : 1.249
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 22:46:59 2020
+ * C source code generated on : Thu Mar 12 22:55:44 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -1212,10 +1212,10 @@ struct P_modified_motor_T_ {
   real_T Integrator1_IC;               /* Expression: 0
                                         * Referenced by: '<S16>/Integrator1'
                                         */
-  real_T Color_Value;                  /* Expression: 2
+  real_T Color_Value;                  /* Expression: 1
                                         * Referenced by: '<S4>/Color'
                                         */
-  real_T Position_Value;               /* Expression: 1.5708
+  real_T Position_Value;               /* Expression: 0
                                         * Referenced by: '<S4>/Position'
                                         */
   real_T Run_Value;                    /* Expression: 1
