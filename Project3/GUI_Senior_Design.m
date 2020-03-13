@@ -187,7 +187,7 @@ function sticker_location_Callback(hObject, eventdata, handles)
 % hObject    handle to sticker_location (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-sticker_location_degrees = str2double(get(hObject,'String'))
+sticker_location_degrees = str2double(get(hObject,'String'));
 stick_location_deg_capped = mod(sticker_location_degrees, 360);
 if stick_location_deg_capped > 180
     stick_location_deg_capped = stick_location_deg_capped - 360;
