@@ -7,9 +7,9 @@
  *
  * Code generation for model "modified_motor".
  *
- * Model version              : 1.222
+ * Model version              : 1.227
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Thu Mar 12 20:08:09 2020
+ * C source code generated on : Thu Mar 12 20:45:26 2020
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -880,6 +880,7 @@ typedef struct {
   real_T next_index;                   /* '<S9>/Iterator' */
   real_T next_run;                     /* '<S9>/Iterator' */
   real_T angles_vector[100];           /* '<S2>/Generate Angles List' */
+  real_T num_angles;                   /* '<S2>/Generate Angles List' */
   real_T image_data_fixed[300];        /* '<S1>/Process Image' */
 } B_modified_motor_T;
 
@@ -923,12 +924,27 @@ typedef struct {
   struct {
     void *AQHandles;
     void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedF_ax;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
   } HiddenToAsyncQueue_InsertedFo_d;   /* synthesized block */
 
   struct {
     void *AQHandles;
     void *SlioLTF;
   } HiddenToAsyncQueue_InsertedF_eg;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedF_lh;   /* synthesized block */
+
+  struct {
+    void *AQHandles;
+    void *SlioLTF;
+  } HiddenToAsyncQueue_InsertedFo_h;   /* synthesized block */
 
   struct {
     int_T AcquireOK;
@@ -1028,7 +1044,7 @@ struct P_modified_motor_T_ {
   real_T b;                            /* Variable: b
                                         * Referenced by: '<S16>/Damping'
                                         */
-  real_T image_data[300];              /* Variable: image_data
+  real_T image_data[15];               /* Variable: image_data
                                         * Referenced by: '<S1>/Constant'
                                         */
   real_T Target_Position_Y0;           /* Computed Parameter: Target_Position_Y0
@@ -1226,7 +1242,7 @@ struct P_modified_motor_T_ {
   real_T Color_Value;                  /* Expression: 1
                                         * Referenced by: '<S4>/Color'
                                         */
-  real_T Position_Value;               /* Expression: 3.1416
+  real_T Position_Value;               /* Expression: 0
                                         * Referenced by: '<S4>/Position'
                                         */
   real_T Constant_Value_b;             /* Expression: 1

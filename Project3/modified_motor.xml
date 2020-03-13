@@ -201,11 +201,22 @@ Read1</sigName>
 			  
 			  
               <signal>
-              <sigName>Generate Angles List</sigName>
-              <xpcsigName>Logic Block/Generate Angles List</xpcsigName>
+              <sigName>Generate Angles List/p1</sigName>
+              <xpcsigName>Logic Block/Generate Angles List/p1</xpcsigName>
               <sigWidth>100</sigWidth>
               <sigDim>[100, 1]</sigDim>
 			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Generate Angles List/p2</sigName>
+              <xpcsigName>Logic Block/Generate Angles List/p2</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>modified_motor/Logic Block</SubSystemName>
+                <sigLabel>num_angles</sigLabel>
 			  <sigTestPoint>false</sigTestPoint>
             </signal>
 			  
@@ -1019,7 +1030,7 @@ Read1</sigName>
    </parameter>
    <parameter>
       <paramName>image_data</paramName>
-          <dim>[100,3]</dim>
+          <dim>[5,3]</dim>
 		 <SubSystemName>modified_motor</SubSystemName>
    </parameter>
 </block>

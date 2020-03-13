@@ -27,7 +27,7 @@ MotX = IMG_LENGTH_X/2;
 
 MotY = IMG_HEIGHT_Y/2;
 
-numObjects = size(center_coords, 1);
+numObjects = length(center_coords);
 Angles = zeros(numObjects, 1);
 
 for i = 1:numObjects
